@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Investment Property Finder — Find the Most Profitable Properties</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/OrbitControls.js"></script>
+</head>
+<body>
+
+<!-- 3D animated hero background -->
+<canvas id="hero-canvas"></canvas>
+<div class="gradient-overlay"></div>
+
+<header class="hero">
+  <nav class="nav">
+    <div class="logo">🏡 <span>AI Property</span> Finder</div>
+    <div class="nav-links">
+      <a href="#search">Search</a>
+      <a href="#results">Properties</a>
+      <a href="#how">How It Works</a>
+    </div>
+  </nav>
+  <div class="hero-content">
+    <h1 class="glitch">Find the Most <span class="hl">Profitable</span> Properties</h1>
+    <p>AI-powered analysis of liens, grants &amp; discounts · best careers &amp; business ideas per area ·
+       walk scores &amp; quality of life · soil quality &amp; best farms · real photos + live satellite &amp; 3D views.</p>
+    <a class="cta" href="#search">Start Investing Smart ↓</a>
+  </div>
+</header>
+
+<section id="search" class="search-panel">
+  <div class="glass">
+    <input id="q" type="text" placeholder='Try: "farmland with rich soil in Texas" or "high cash flow multi-family"…'>
+    <button id="search-btn">🔍 AI Search</button>
+  </div>
+  <div class="filters glass">
+    <label>Max Price <input id="f-max" type="number" placeholder="any"></label>
+    <label>Min Cap Rate % <input id="f-cap" type="number" step="0.1" placeholder="any"></label>
+    <label>Type
+      <select id="f-type">
+        <option value="">Any</option>
+        <option value="single_family">Single Family</option>
+        <option value="multi_family">Multi Family</option>
+        <option value="mixed_use">Mixed Use</option>
+        <option value="farmland">Farmland</option>
+        <option value="commercial">Commercial</option>
+      </select>
+    </label>
+    <button id="filter-btn">Apply</button>
+  </div>
+</section>
+
+<section id="results">
+  <h2 class="section-title">🔥 Top Investment Properties</h2>
+  <div id="cards" class="cards"></div>
+</section>
+
+<section id="how" class="how glass">
+  <h2 class="section-title">🧠 What the AI Assesses</h2>
+  <div class="features">
+    <div class="feature tilt">💰 Liens, Grants &amp; Discounts</div>
+    <div class="feature tilt">💼 Best Careers in the Area</div>
+    <div class="feature tilt">🏪 Profitable Business Ideas</div>
+    <div class="feature tilt">🚶 Walk Score &amp; Life Quality</div>
+    <div class="feature tilt">🌱 Soil Quality &amp; Best Crops</div>
+    <div class="feature tilt">🛰️ Live Satellite + 3D View</div>
+  </div>
+</section>
+
+<!-- Detail modal -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <button id="modal-close">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<footer>Built on the AI Investment Property Finder engine · Data refreshed live from analysis</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
