@@ -1,0 +1,17 @@
+name = "terrayield-app"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# Routes for your domain on Cloudflare
+# Once you add terrayield.com / terrayeild.com in your Cloudflare dashboard,
+# uncomment and set your routes:
+# routes = [
+#   { pattern = "terrayield.com/*", zone_name = "terrayield.com" },
+#   { pattern = "www.terrayield.com/*", zone_name = "terrayield.com" },
+#   { pattern = "terrayeild.com/*", zone_name = "terrayeild.com" },
+#   { pattern = "www.terrayeild.com/*", zone_name = "terrayeild.com" }
+# ]
+
+[vars]
+ENVIRONMENT = "production"
+APP_NAME = "TerraYield AI Property Finder"
