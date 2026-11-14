@@ -1,0 +1,14 @@
+{
+  "name": "terrayield-cloudflare-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker & Edge Web App for TerraYield Property Finder (terrayield.com / terrayeild.com)",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
