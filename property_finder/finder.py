@@ -26,6 +26,7 @@ from .intelligence.demographics import DemographicAnalyzer
 from .intelligence.business_matcher import BusinessDemographicMatcher
 from .intelligence.soil_analyzer import SoilCropAnalyzer
 from .intelligence.ai_memo import InvestmentMemoGenerator
+from .intelligence.development_pipeline import DevelopmentPipelineAnalyzer
 from .portfolio.portfolio import PropertyPortfolio
 from .scrapers.orchestrator import MultiChannelPropertyScraper
 
@@ -95,7 +96,10 @@ class PropertyFinder:
         # 5. Soil & Agricultural analysis
         SoilCropAnalyzer.analyze(prop)
 
-        # 6. Generate Executive Memo
+        # 6. Development pipeline & upcoming area intelligence
+        DevelopmentPipelineAnalyzer.analyze(prop)
+
+        # 7. Generate Executive Memo
         InvestmentMemoGenerator.generate(prop)
 
         return prop
