@@ -1,0 +1,40 @@
+name: Node.js with Webpack
+
+on:
+  push:
+    paths:
+      - "cloudflare/**"
+      - ".github/workflows/node-webpack.yml"
+  pull_request:
+    paths:
+      - "cloudflare/**"
+      - ".github/workflows/node-webpack.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cloudflare
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies and Webpack
+        run: npm install --no-save webpack webpack-cli
+
+      - name: Bundle Cloudflare Worker with Webpack
+        run: >-
+          npx webpack --mode production --target webworker
+          --entry ./src/index.js
+          --output-path ./dist
+          --output-filename worker.js
