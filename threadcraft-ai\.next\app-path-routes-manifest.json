@@ -1,0 +1,13 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/identify/route": "/api/identify",
+  "/api/orders/route": "/api/orders",
+  "/checkout/page": "/checkout",
+  "/customize/page": "/customize",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/preview/page": "/preview",
+  "/pricing/page": "/pricing",
+  "/upload/page": "/upload"
+}
