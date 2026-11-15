@@ -209,6 +209,7 @@ class Property:
     business_recommendations: List[BusinessRecommendation] = field(default_factory=list)
     crop_suitability: List[CropSuitability] = field(default_factory=list)
     ai_investment_memo: Optional[str] = None
+    development: Optional[Any] = None  # DevelopmentProfile (imported at runtime to avoid circular)
 
     def to_dict(self) -> Dict[str, Any]:
         res = asdict(self)
