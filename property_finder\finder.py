@@ -26,7 +26,9 @@ from .intelligence.demographics import DemographicAnalyzer
 from .intelligence.business_matcher import BusinessDemographicMatcher
 from .intelligence.soil_analyzer import SoilCropAnalyzer
 from .intelligence.ai_memo import InvestmentMemoGenerator
+from .intelligence.development_pipeline import DevelopmentPipelineAnalyzer
 from .portfolio.portfolio import PropertyPortfolio
+from .scrapers.orchestrator import MultiChannelPropertyScraper
 
 
 class PropertyFinder:
@@ -38,6 +40,7 @@ class PropertyFinder:
     def __init__(self, properties: Optional[List[Property]] = None):
         self.properties: Dict[str, Property] = {}
         self.portfolios: Dict[str, PropertyPortfolio] = {}
+        self.scraper_orchestrator = MultiChannelPropertyScraper()
         
         # Load default database
         initial_props = properties if properties is not None else get_sample_properties()
@@ -93,7 +96,10 @@ class PropertyFinder:
         # 5. Soil & Agricultural analysis
         SoilCropAnalyzer.analyze(prop)
 
-        # 6. Generate Executive Memo
+        # 6. Development pipeline & upcoming area intelligence
+        DevelopmentPipelineAnalyzer.analyze(prop)
+
+        # 7. Generate Executive Memo
         InvestmentMemoGenerator.generate(prop)
 
         return prop
@@ -198,6 +204,43 @@ class PropertyFinder:
 
         scored.sort(key=lambda x: x[1], reverse=True)
         return [item[0] for item in scored]
+
+    def deep_dive_search(
+        self,
+        region: str = "ALL",  # State code (e.g., "FL", "TX", "CA") or Territory ("PR", "VI", "GU", "AS", "MP")
+        strategy_focus: str = "all",
+        min_price: Optional[int] = None,
+        max_price: Optional[int] = None,
+        auto_ingest: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Executes an AI deep-dive scan across Facebook Marketplace, MLS listing portals,
+        LandWatch, LoopNet, and territory boards. Automatically analyzes and ingests discoveries.
+        """
+        plan = self.scraper_orchestrator.generate_deep_dive_plan(
+            region=region,
+            strategy_focus=strategy_focus,
+            min_price=min_price,
+            max_price=max_price
+        )
+
+        discovered_props = self.scraper_orchestrator.fetch_simulated_live_stream(
+            region=region,
+            strategy_focus=strategy_focus
+        )
+
+        ingested_count = 0
+        if auto_ingest:
+            for prop in discovered_props:
+                self.add_property(prop)
+                ingested_count += 1
+
+        return {
+            "search_plan": plan,
+            "discovered_properties_count": len(discovered_props),
+            "ingested_into_engine_count": ingested_count,
+            "properties": [p.to_dict() for p in discovered_props]
+        }
 
     def create_portfolio(self, name: str = "My Investment Portfolio") -> PropertyPortfolio:
         """Instantiates and registers a new investment portfolio."""
