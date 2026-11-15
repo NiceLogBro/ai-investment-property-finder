@@ -1,0 +1,36 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</_next/static/media/07c7676b89ed2778-s.p.2bn3s6zvc0dyp.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/customize/layout,_N_T_/customize/page,_N_T_/customize"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/customize/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49248,
+        "slots": {
+          "children": {
+            "hints": 49312,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/5c4f6d06999449ec09220194ca1b739e5e8f5170f235ee92c9b656137de0badd/$/customize",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/customize/page"
+    },
+    "isFallback": false
+  }
+}
