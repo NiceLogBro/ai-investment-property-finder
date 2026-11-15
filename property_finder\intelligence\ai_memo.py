@@ -22,6 +22,7 @@ class InvestmentMemoGenerator:
         soil = prop.soil
         biz = prop.business_recommendations or []
         crops = prop.crop_suitability or []
+        dev = getattr(prop, "development", None)
 
         top_biz_str = (
             f"- **{biz[0].business_type}** (Match: {biz[0].match_score}%): {biz[0].revenue_driver}"
@@ -84,7 +85,21 @@ UNITS: {prop.units} | SQFT: {prop.square_feet:,} | YEAR BUILT: {prop.year_built}
 - Top Flourishing Crop:
   {top_crop_str}
 
-6. RISK MATRIX & ACQUISITION RECOMMENDATION
+6. DEVELOPMENT PIPELINE & UPCOMING AREA INTELLIGENCE
+--------------------------------------------------------------------------------{f"""
+- Development Momentum Score: {dev.development_momentum_score}/100
+- Investment Timing: {dev.overall_investment_timing}
+- 5-Year Appreciation Forecast: +{dev.appreciation_forecast_5yr_pct:.1f}%
+- Population Growth (5yr): +{dev.population_growth_5yr_pct:.1f}% | Job Growth (1yr): +{dev.job_growth_1yr_pct:.1f}%
+- Building Permits YoY: +{dev.building_permits_yoy_change_pct:.1f}% | Days-on-Market Trend: {dev.days_on_market_yoy_change:+d} days
+- Absorption Rate: {dev.absorption_rate_months:.1f} months {'(Tight Seller Market)' if dev.absorption_rate_months < 3 else '(Balanced)'}
+- Opportunity Zone: {'YES — Eligible for OZ capital gains deferral' if dev.is_opportunity_zone else 'No'}
+- Overbuilding Risk: {dev.risk_of_overbuilding} | Gentrification Pressure: {dev.gentrification_pressure_index}/100""" if dev else """
+- Development pipeline analysis pending."""}
+{f"- Top Infrastructure Catalyst: {dev.infrastructure_projects[0].name} (${dev.infrastructure_projects[0].estimated_investment/1e6:,.0f}M investment, {dev.infrastructure_projects[0].jobs_created:,} jobs, completion {dev.infrastructure_projects[0].estimated_completion_year})" if dev and dev.infrastructure_projects else ""}
+{f"- Nearest Rezoning: {dev.rezoning_proposals[0].case_number} — {dev.rezoning_proposals[0].current_zoning} → {dev.rezoning_proposals[0].proposed_zoning} (+{dev.rezoning_proposals[0].density_increase_pct:.0f}% density increase)" if dev and dev.rezoning_proposals else ""}
+
+7. RISK MATRIX & ACQUISITION RECOMMENDATION
 --------------------------------------------------------------------------------
 - Stress-Test Resilience: DSCR of {fin.debt_service_coverage_ratio:.2f}x indicates {'solid debt safety buffer (>1.25x)' if fin.debt_service_coverage_ratio >= 1.25 else 'tight debt coverage, recommend larger equity down payment'}.
 - Strategic Action: {'ACQUISITION TARGET - Strong fundamentals across cash flow and alternative use potential.' if (fin.cash_on_cash_return >= 8.0 or fin.cap_rate >= 6.5) else 'RENEGOTIATE PURCHASE PRICE - Offer closer to 70% MAO benchmark.'}
