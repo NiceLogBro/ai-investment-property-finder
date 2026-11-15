@@ -1,0 +1,13 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/identify/route": "app/api/identify/route.js",
+  "/api/orders/route": "app/api/orders/route.js",
+  "/checkout/page": "app/checkout/page.js",
+  "/customize/page": "app/customize/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/preview/page": "app/preview/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/upload/page": "app/upload/page.js"
+}
