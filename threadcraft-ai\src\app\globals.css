@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ThreadCraft AI - Modern light design system
+   White canvas, ink text, violet/fuchsia/amber accents.
+   ============================================ */
+
+:root {
+  --ink: #0f172a;
+  --ink-soft: #475569;
+  --ink-faint: #94a3b8;
+  --line: #e2e8f0;
+  --canvas: #ffffff;
+  --canvas-soft: #f8fafc;
+  --brand: #7c3aed;
+  --brand-deep: #5b21b6;
+  --brand-soft: #ede9fe;
+  --spark: #f59e0b;
+}
+
+/* Keyframes */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.6) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-14px) translateX(6px); }
+  50% { transform: translateY(-6px) translateX(-4px); }
+  75% { transform: translateY(-16px) translateX(3px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(40px); opacity: 0; }
+}
+
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(24px, -18px) scale(1.08); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes trail-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-20px) scale(1); }
+}
+
+@keyframes borderRotate {
+  to { --border-angle: 360deg; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .animate-sparkle { animation: sparkle 2.4s ease-in-out infinite; }
+  .animate-float { animation: float 7s ease-in-out infinite; }
+  .animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-shimmer { background-size: 200% auto; animation: shimmer 3s linear infinite; }
+  .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+  .animate-drift { animation: drift 15s linear infinite; }
+  .animate-aurora { animation: aurora 12s ease-in-out infinite; }
+  .animate-gradient-shift { background-size: 200% 200%; animation: gradient-shift 5s ease infinite; }
+  .animate-trail-pulse { animation: trail-pulse 2s ease-in-out infinite; }
+  .animate-fade-in { animation: fade-in 0.35s ease-out both; }
+  .animate-marquee { animation: marquee 38s linear infinite; }
+
+  /* Cards */
+  .surface {
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.08);
+  }
+  .surface-soft {
+    background: var(--canvas-soft);
+    border: 1px solid var(--line);
+  }
+  .surface-hover {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .surface-hover:hover {
+    transform: translateY(-3px);
+    border-color: #c4b5fd;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04), 0 18px 40px -16px rgba(124, 58, 237, 0.25);
+  }
+
+  /* Brand text + buttons */
+  .text-gradient-brand {
+    background: linear-gradient(90deg, #6d28d9, #c026d3 55%, #f59e0b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #a21caf);
+    color: #fff;
+    box-shadow: 0 8px 20px -8px rgba(124, 58, 237, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 12px 26px -8px rgba(124, 58, 237, 0.7);
+  }
+  .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .btn-ghost {
+    background: var(--canvas);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost:hover { background: var(--canvas-soft); border-color: #c4b5fd; }
+
+  .dot-grid {
+    background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Scroll-driven reveal. Content stays visible where unsupported or when motion is reduced. */
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+  }
+}
+
+/* Reduced motion: stop purely decorative loops case by case (never a blanket 0.01ms override). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-sparkle,
+  .animate-float,
+  .animate-float-slow,
+  .animate-pulse-glow,
+  .animate-shimmer,
+  .animate-twinkle,
+  .animate-drift,
+  .animate-aurora,
+  .animate-gradient-shift,
+  .animate-trail-pulse,
+  .animate-marquee {
+    animation: none;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; border: 2px solid #f1f5f9; }
+::-webkit-scrollbar-thumb:hover { background: #a78bfa; }
+* { scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9; }
+
+::selection { background: rgba(124, 58, 237, 0.2); color: var(--ink); }
+
+html { scroll-behavior: smooth; color-scheme: light; }
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
