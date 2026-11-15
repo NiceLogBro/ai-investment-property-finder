@@ -31,6 +31,12 @@ from .intelligence.zoning import ZoningAnalyzer
 from .intelligence.business_matcher import BusinessDemographicMatcher
 from .intelligence.soil_analyzer import SoilCropAnalyzer
 from .intelligence.ai_memo import InvestmentMemoGenerator
+from .scrapers import (
+    MultiChannelPropertyScraper,
+    FacebookMarketplaceScraper,
+    ListingPortalScraper,
+    US_TERRITORIES_AND_STATES,
+)
 
 __version__ = "1.0.0"
 __all__ = [
@@ -53,4 +59,8 @@ __all__ = [
     "BusinessDemographicMatcher",
     "SoilCropAnalyzer",
     "InvestmentMemoGenerator",
+    "MultiChannelPropertyScraper",
+    "FacebookMarketplaceScraper",
+    "ListingPortalScraper",
+    "US_TERRITORIES_AND_STATES",
 ]
