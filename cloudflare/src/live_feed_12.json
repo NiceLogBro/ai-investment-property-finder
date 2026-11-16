@@ -1,0 +1,1070 @@
+[
+  {
+    "id": "live-tx-travis-2026",
+    "title": "42.5 AC Judicial Foreclosure \u2014 Travis County Blackland Basin",
+    "address": "18400 Cameron Rd",
+    "city": "Manor",
+    "county": "Travis",
+    "state": "TX",
+    "zipCode": "78653",
+    "distressType": "Judicial Foreclosure",
+    "auctionDate": "Nov 24, 2026 - 10:00 AM CST",
+    "auctionVenue": "Travis County Courthouse Steps, Austin TX (Docket #D-1-GN-26-004182)",
+    "parcelIdAPN": "0242190104",
+    "acreage": 42.5,
+    "propertyType": "Agricultural / Future Industrial",
+    "currentCondition": "Fallow pasture with active ag exemption, super-priority county tax lien",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Prime high-growth corridor between Samsung Taylor semiconductor fab and Austin metro. Foreclosed debt of $210,000 against $590,000 certified market valuation. High-yield Blackland vertisol clay suitable for organic cotton or solar utility lease.",
+    "tags": [
+      "Judicial Foreclosure",
+      "Samsung Corridor",
+      "Solar Lease",
+      "Prime Clay"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 30.4124,
+      "lng": -97.5189
+    },
+    "financials": {
+      "askingOrOpeningBid": 210000,
+      "estimatedARV": 590000,
+      "equitySpreadDiscount": 64,
+      "capRate": 11.2,
+      "irr5Year": 28.5,
+      "annualTaxes": 1240,
+      "assessedValue": 560000
+    },
+    "soil": {
+      "soilSeries": "Houston Black Clay",
+      "ph": 7.8,
+      "drainageClass": "Moderately Well Drained",
+      "organicMatter": "3.4%",
+      "nccpiSoilIndex": 82
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Organic Fiber Cotton & Hemp",
+        "grossRevenuePerAcre": 2400,
+        "estYieldPerAcre": "1,200 lbs",
+        "operatingCostPerAcre": 850,
+        "netMargin": "64%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Grid-Tie Solar Facility Ground Lease",
+        "estCapex": 25000,
+        "estAnnualNOI": 125000,
+        "paybackYears": 0.2
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "USDA REAP Renewable Energy & Solar Grant",
+        "maxAwardAmount": 500000,
+        "matchPercentage": "50% Match",
+        "agency": "USDA Rural Development"
+      },
+      {
+        "programName": "NRCS EQIP Water & Soil Conservation",
+        "maxAwardAmount": 180000,
+        "matchPercentage": "75% Cost Share",
+        "agency": "USDA NRCS"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.526723,30.404577,-97.511077,30.420223&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -97.526723,
+        "miny": 30.404577,
+        "maxx": -97.511077,
+        "maxy": 30.420223
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-fl-redland-2026",
+    "title": "18.2 AC Redland Tropical Avocado & Mamey Grove Tax Deed",
+    "address": "21400 SW 248th St",
+    "city": "Homestead",
+    "county": "Miami-Dade",
+    "state": "FL",
+    "zipCode": "33031",
+    "distressType": "Tax Deed Sale",
+    "auctionDate": "Nov 26, 2026 - 11:00 AM EST",
+    "auctionVenue": "Miami-Dade Clerk Online Portal (Cert #2026-08149)",
+    "parcelIdAPN": "30-6814-000-0190",
+    "acreage": 18.2,
+    "propertyType": "Specialty Tropical Orchard",
+    "currentCondition": "Mature Haas & Monroe avocado trees + mamey sapote; micro-jet irrigation installed",
+    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "High-value Miami-Dade Redland agricultural preserve. Back taxes of $145,000 for 18.2 acres with mature fruit canopy producing $14,000/acre gross revenue at local packing houses. Protected agricultural zoning with ultra-low greenbelt tax status.",
+    "tags": [
+      "Tax Deed",
+      "Redland Tropical",
+      "Avocado Grove",
+      "Greenbelt Tax Exemption"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 25.5342,
+      "lng": -80.5281
+    },
+    "financials": {
+      "askingOrOpeningBid": 145000,
+      "estimatedARV": 480000,
+      "equitySpreadDiscount": 70,
+      "capRate": 13.8,
+      "irr5Year": 32.4,
+      "annualTaxes": 980,
+      "assessedValue": 460000
+    },
+    "soil": {
+      "soilSeries": "Krome Very Gravelly Loam",
+      "ph": 7.6,
+      "drainageClass": "Well Drained Oolitic Limestone",
+      "organicMatter": "4.1%",
+      "nccpiSoilIndex": 88
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Monroe Avocado & Mamey Sapote",
+        "grossRevenuePerAcre": 14200,
+        "estYieldPerAcre": "12,500 lbs",
+        "operatingCostPerAcre": 3800,
+        "netMargin": "73%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Direct-to-Consumer Exotic Tropical Box Shipping",
+        "estCapex": 35000,
+        "estAnnualNOI": 165000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "USDA Specialty Crop Block Grant (SCBGP)",
+        "maxAwardAmount": 250000,
+        "matchPercentage": "Non-repayable",
+        "agency": "Florida Dept of Ag (FDACS)"
+      },
+      {
+        "programName": "Micro-Irrigation Water Conservation Incentive",
+        "maxAwardAmount": 75000,
+        "matchPercentage": "80% Cost Share",
+        "agency": "South Florida Water Mgmt"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-80.533219,25.529081,-80.522981,25.539319&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -80.533219,
+        "miny": 25.529081,
+        "maxx": -80.522981,
+        "maxy": 25.539319
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-hi-kona-2026",
+    "title": "24.8 AC Kona Coffee Belt Volcanic Farm Pre-Foreclosure",
+    "address": "82-6012 Mamalahoa Hwy",
+    "city": "Captain Cook",
+    "county": "Hawaii",
+    "state": "HI",
+    "zipCode": "96704",
+    "distressType": "Pre-Foreclosure Notice of Default",
+    "auctionDate": "Dec 03, 2026 - 1:30 PM HST",
+    "auctionVenue": "Kona 3rd Circuit Court Steps, Kealakekua HI (Civil #26-1-0193)",
+    "parcelIdAPN": "3-8-2-005-014",
+    "acreage": 24.8,
+    "propertyType": "High-Altitude Coffee & Macadamia",
+    "currentCondition": "Elevation 1,450 ft, organic Kona Typica plantings, natural afternoon cloud cover",
+    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "World-renowned Kona Coffee Belt microclimate. Bank default notice issued for $295,000 note balance against $850,000 fee simple appraisal. Premium estate green bean sales command $42-$65/lb with zero mainland import tariffs.",
+    "tags": [
+      "Pre-Foreclosure",
+      "Kona Coffee",
+      "Volcanic Terroir",
+      "Fee Simple"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 19.4932,
+      "lng": -155.8984
+    },
+    "financials": {
+      "askingOrOpeningBid": 295000,
+      "estimatedARV": 850000,
+      "equitySpreadDiscount": 65,
+      "capRate": 14.5,
+      "irr5Year": 34.0,
+      "annualTaxes": 1450,
+      "assessedValue": 820000
+    },
+    "soil": {
+      "soilSeries": "Kona Extremely Stony Muck (Volcanic Andisol)",
+      "ph": 6.2,
+      "drainageClass": "Rapid Subsurface Drainage",
+      "organicMatter": "9.2%",
+      "nccpiSoilIndex": 91
+    },
+    "suitableCrops": [
+      {
+        "cropName": "100% Pure Kona Typica Coffee",
+        "grossRevenuePerAcre": 22000,
+        "estYieldPerAcre": "2,200 lbs parchment",
+        "operatingCostPerAcre": 6800,
+        "netMargin": "69%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Kona Estate Agritourism & Roastery Tasting Pavilion",
+        "estCapex": 65000,
+        "estAnnualNOI": 240000,
+        "paybackYears": 0.4
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "Hawaii Agribusiness Development Corp Grant",
+        "maxAwardAmount": 300000,
+        "matchPercentage": "Non-repayable",
+        "agency": "State of Hawaii ADC"
+      },
+      {
+        "programName": "USDA CBB Mitigation Subsidy",
+        "maxAwardAmount": 50000,
+        "matchPercentage": "Direct Reimbursement",
+        "agency": "USDA ARS"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-155.904376,19.487224,-155.892424,19.499176&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -155.904376,
+        "miny": 19.487224,
+        "maxx": -155.892424,
+        "maxy": 19.499176
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-ca-kern-2026",
+    "title": "65.0 AC Central Valley Pistachio & Dual-Use Solar Easement",
+    "address": "29800 Lerdo Hwy",
+    "city": "Bakersfield",
+    "county": "Kern",
+    "state": "CA",
+    "zipCode": "93314",
+    "distressType": "Sheriff Execution Sale",
+    "auctionDate": "Dec 08, 2026 - 10:00 AM PST",
+    "auctionVenue": "Kern County Sheriff Headquarters, Bakersfield CA (Case #BCV-26-100874)",
+    "parcelIdAPN": "102-120-44-00",
+    "acreage": 65.0,
+    "propertyType": "Agrivoltaic & Tree Nut Orchard",
+    "currentCondition": "Deep well with 480V solar pump, SGMA Tier 1 water allocation",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Adjudicated creditor judgment execution. Opening bid $380,000 for 65 contiguous acres with Tier 1 SGMA water rights. Dual revenue from salt-tolerant Golden Hills pistachio rootstock + utility interconnection study approval for 8MW solar.",
+    "tags": [
+      "Sheriff Sale",
+      "Kern Water Bank",
+      "Pistachio",
+      "Agrivoltaic"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 35.4871,
+      "lng": -119.2482
+    },
+    "financials": {
+      "askingOrOpeningBid": 380000,
+      "estimatedARV": 920000,
+      "equitySpreadDiscount": 59,
+      "capRate": 10.9,
+      "irr5Year": 26.8,
+      "annualTaxes": 2600,
+      "assessedValue": 890000
+    },
+    "soil": {
+      "soilSeries": "Milham Sandy Loam",
+      "ph": 7.9,
+      "drainageClass": "Well Drained Alluvium",
+      "organicMatter": "1.8%",
+      "nccpiSoilIndex": 79
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Golden Hills Pistachio",
+        "grossRevenuePerAcre": 8400,
+        "estYieldPerAcre": "3,800 lbs",
+        "operatingCostPerAcre": 3100,
+        "netMargin": "63%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Substation Intertie 8MW Agrivoltaic Array",
+        "estCapex": 80000,
+        "estAnnualNOI": 290000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "California CDFA SWEEP Water Efficiency Grant",
+        "maxAwardAmount": 200000,
+        "matchPercentage": "100% Grant",
+        "agency": "CDFA Climate"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.257875,35.477425,-119.238525,35.496775&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.257875,
+        "miny": 35.477425,
+        "maxx": -119.238525,
+        "maxy": 35.496775
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-wa-yakima-2026",
+    "title": "35.0 AC Yakima Valley Honeycrisp & Honeyberry Irrigation Lien",
+    "address": "4100 Roza Canal Rd",
+    "city": "Sunnyside",
+    "county": "Yakima",
+    "state": "WA",
+    "zipCode": "98944",
+    "distressType": "Irrigation District Lien Sale",
+    "auctionDate": "Nov 30, 2026 - 1:00 PM PST",
+    "auctionVenue": "Roza Irrigation District Hall, Sunnyside WA (Assessment Roll #R-2026-44)",
+    "parcelIdAPN": "221008-11002",
+    "acreage": 35.0,
+    "propertyType": "Trellised Fruit Orchard",
+    "currentCondition": "V-trellis infrastructure, frost fans installed, gravity pressurized canal head",
+    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Senior Roza irrigation assessment default. Opening bid $185,000 for 35 acres of high-density Honeycrisp apples and Rainier cherries. Washington State senior water rights deliver 3.5 acre-feet/acre guaranteed delivery.",
+    "tags": [
+      "Irrigation Lien",
+      "Yakima Valley",
+      "Senior Water",
+      "Honeycrisp"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 46.3218,
+      "lng": -120.0125
+    },
+    "financials": {
+      "askingOrOpeningBid": 185000,
+      "estimatedARV": 510000,
+      "equitySpreadDiscount": 64,
+      "capRate": 12.1,
+      "irr5Year": 29.8,
+      "annualTaxes": 1850,
+      "assessedValue": 490000
+    },
+    "soil": {
+      "soilSeries": "Warden Silt Loam",
+      "ph": 7.2,
+      "drainageClass": "Deep Well Drained Loess",
+      "organicMatter": "2.6%",
+      "nccpiSoilIndex": 86
+    },
+    "suitableCrops": [
+      {
+        "cropName": "High-Density Honeycrisp Apple",
+        "grossRevenuePerAcre": 16500,
+        "estYieldPerAcre": "48 bins/ac",
+        "operatingCostPerAcre": 5200,
+        "netMargin": "68%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Cold Storage & Controlled Atmosphere Packing Hub",
+        "estCapex": 55000,
+        "estAnnualNOI": 175000,
+        "paybackYears": 0.4
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "WA Dept of Ecology Water Efficiency Assistance",
+        "maxAwardAmount": 150000,
+        "matchPercentage": "70% Cost Share",
+        "agency": "Ecology Water"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.019599,46.314701,-120.005401,46.328899&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -120.019599,
+        "miny": 46.314701,
+        "maxx": -120.005401,
+        "maxy": 46.328899
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-az-maricopa-2026",
+    "title": "50.0 AC Maricopa Agrihood & Pecan Grove Sheriff Auction",
+    "address": "38500 W Baseline Rd",
+    "city": "Tonopah",
+    "county": "Maricopa",
+    "state": "AZ",
+    "zipCode": "85354",
+    "distressType": "Sheriff Foreclosure Sale",
+    "auctionDate": "Dec 10, 2026 - 11:30 AM MST",
+    "auctionVenue": "Maricopa County Superior Court, Phoenix AZ (Case #CV2026-09142)",
+    "parcelIdAPN": "506-38-012-A",
+    "acreage": 50.0,
+    "propertyType": "Agrihood / Irrigated Nut Grove",
+    "currentCondition": "2 irrigation wells (1,200 GPM), grandfathered groundwater rights (IGFR)",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Judicial foreclosure against defaulted commercial investment entity. 50 contiguous acres located inside Phoenix western expansion path. Grandfathered Arizona water rights allow unrestricted irrigation for Western Schley pecans or CEA hydroponics.",
+    "tags": [
+      "Sheriff Auction",
+      "Phoenix Metro Growth",
+      "Pecan Grove",
+      "Grandfathered Water"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 33.4912,
+      "lng": -112.9421
+    },
+    "financials": {
+      "askingOrOpeningBid": 260000,
+      "estimatedARV": 710000,
+      "equitySpreadDiscount": 63,
+      "capRate": 11.5,
+      "irr5Year": 27.9,
+      "annualTaxes": 1650,
+      "assessedValue": 680000
+    },
+    "soil": {
+      "soilSeries": "Avondale Clay Loam",
+      "ph": 8.1,
+      "drainageClass": "Deep Calcareous Alluvium",
+      "organicMatter": "1.4%",
+      "nccpiSoilIndex": 78
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Western Schley Improved Pecan",
+        "grossRevenuePerAcre": 9200,
+        "estYieldPerAcre": "2,400 lbs",
+        "operatingCostPerAcre": 2900,
+        "netMargin": "68%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Controlled Environment Agriculture Greenhouse Complex",
+        "estCapex": 95000,
+        "estAnnualNOI": 310000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "USDA Drought Resiliency & Irrigation Modernization",
+        "maxAwardAmount": 350000,
+        "matchPercentage": "75% Match",
+        "agency": "USDA NRCS"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.950585,33.482715,-112.933615,33.499685&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -112.950585,
+        "miny": 33.482715,
+        "maxx": -112.933615,
+        "maxy": 33.499685
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-fl-plantcity-2026",
+    "title": "28.4 AC Plant City Strawberry & Specialty Vegetable Auction",
+    "address": "5602 Forbes Rd",
+    "city": "Plant City",
+    "county": "Hillsborough",
+    "state": "FL",
+    "zipCode": "33565",
+    "distressType": "County Tax Certificate Auction",
+    "auctionDate": "Dec 01, 2026 - 9:00 AM EST",
+    "auctionVenue": "Hillsborough County Tax Collector Portal (Cert #2026-3819)",
+    "parcelIdAPN": "U-08-28-21-ZZZ-000002-71040.0",
+    "acreage": 28.4,
+    "propertyType": "Winter Strawberry & Bell Pepper",
+    "currentCondition": "Tiled drainage, drip fertigation, SWFWMD water use permit in place",
+    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Winter capital of US strawberry production. Tax certificate default on 28.4 high-elevation acres. SWFWMD consumptive water use permit valid through 2034. Winter fresh berries achieve off-season pricing of $24,000/acre.",
+    "tags": [
+      "Tax Certificate",
+      "Strawberry Capital",
+      "SWFWMD Permit",
+      "Winter Harvest"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 28.0315,
+      "lng": -82.1482
+    },
+    "financials": {
+      "askingOrOpeningBid": 190000,
+      "estimatedARV": 540000,
+      "equitySpreadDiscount": 65,
+      "capRate": 13.2,
+      "irr5Year": 31.2,
+      "annualTaxes": 1420,
+      "assessedValue": 515000
+    },
+    "soil": {
+      "soilSeries": "Seffner Fine Sand",
+      "ph": 6.5,
+      "drainageClass": "Somewhat Poorly to Moderately Well Drained",
+      "organicMatter": "3.2%",
+      "nccpiSoilIndex": 84
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Florida Brilliance Winter Strawberry",
+        "grossRevenuePerAcre": 24500,
+        "estYieldPerAcre": "3,200 flats",
+        "operatingCostPerAcre": 7800,
+        "netMargin": "68%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Agri-Tourism U-Pick & Farmstand Destination",
+        "estCapex": 40000,
+        "estAnnualNOI": 185000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "SWFWMD FARMS Cost-Share BMP Grant",
+        "maxAwardAmount": 220000,
+        "matchPercentage": "75% Reimbursement",
+        "agency": "SWFWMD"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.154595,28.025105,-82.141805,28.037895&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -82.154595,
+        "miny": 28.025105,
+        "maxx": -82.141805,
+        "maxy": 28.037895
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-tx-georgetown-2026",
+    "title": "38.0 AC Williamson County Blackland Industrial Foreclosure",
+    "address": "7200 FM 972",
+    "city": "Georgetown",
+    "county": "Williamson",
+    "state": "TX",
+    "zipCode": "78626",
+    "distressType": "Non-Judicial Deed of Trust Sale",
+    "auctionDate": "Dec 01, 2026 - 10:00 AM CST",
+    "auctionVenue": "Williamson County Justice Center, Georgetown TX",
+    "parcelIdAPN": "R-18-0922-0000-0012",
+    "acreage": 38.0,
+    "propertyType": "Ag / Industrial Transition",
+    "currentCondition": "Paved road frontage, high-speed 3-phase electric at perimeter",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Default under $225,000 private deed of trust. Williamson County is one of America's fastest growing tech corridors. 38 acres with agricultural tax valuation and heavy power capacity for vertical farming or equipment laydown.",
+    "tags": [
+      "Deed of Trust Sale",
+      "Williamson Growth",
+      "3-Phase Power",
+      "Ag Exemption"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 30.6841,
+      "lng": -97.6418
+    },
+    "financials": {
+      "askingOrOpeningBid": 225000,
+      "estimatedARV": 620000,
+      "equitySpreadDiscount": 64,
+      "capRate": 11.8,
+      "irr5Year": 29.1,
+      "annualTaxes": 1120,
+      "assessedValue": 590000
+    },
+    "soil": {
+      "soilSeries": "Austin Silty Clay",
+      "ph": 7.7,
+      "drainageClass": "Well Drained Chalky Substratum",
+      "organicMatter": "3.6%",
+      "nccpiSoilIndex": 80
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Winter Wheat & Sorghum Rotation",
+        "grossRevenuePerAcre": 1850,
+        "estYieldPerAcre": "85 bu/ac",
+        "operatingCostPerAcre": 620,
+        "netMargin": "66%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Contractor Storage & Clean Tech Laydown Yard",
+        "estCapex": 30000,
+        "estAnnualNOI": 140000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "Texas Dept of Agriculture Young Farmer Grant",
+        "maxAwardAmount": 20000,
+        "matchPercentage": "1:1 Match",
+        "agency": "TDA"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.649197,30.676703,-97.634403,30.691497&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -97.649197,
+        "miny": 30.676703,
+        "maxx": -97.634403,
+        "maxy": 30.691497
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-hi-kula-2026",
+    "title": "15.6 AC Maui Upcountry Kula Organic Vegetable & Protea Farm",
+    "address": "14200 Kula Hwy",
+    "city": "Kula",
+    "county": "Maui",
+    "state": "HI",
+    "zipCode": "96790",
+    "distressType": "Judicial Tax Default Action",
+    "auctionDate": "Dec 05, 2026 - 10:00 AM HST",
+    "auctionVenue": "Maui 2nd Circuit Court Steps, Wailuku HI (Tax Docket #2TC-26-0038)",
+    "parcelIdAPN": "2-2-3-011-042",
+    "acreage": 15.6,
+    "propertyType": "Upcountry Volcanic Microclimate",
+    "currentCondition": "Elevation 3,200 ft, mild temperate climate, organic certified sweet onion soil",
+    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Prestigious Kula Upcountry Maui farming district. Tax default judgment of $310,000 for 15.6 acres of world-famous Kula volcanic soil. Renowned for Maui Kula Onions, organic heirloom brassicas, and exotic protea blossoms supplied to high-end resorts.",
+    "tags": [
+      "Tax Default",
+      "Kula Upcountry",
+      "Maui Onions",
+      "Volcanic Ash Soil"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 20.7812,
+      "lng": -156.3341
+    },
+    "financials": {
+      "askingOrOpeningBid": 310000,
+      "estimatedARV": 890000,
+      "equitySpreadDiscount": 65,
+      "capRate": 14.1,
+      "irr5Year": 33.6,
+      "annualTaxes": 1680,
+      "assessedValue": 860000
+    },
+    "soil": {
+      "soilSeries": "Kula Loam (Volcanic Ash / Andisol)",
+      "ph": 6.4,
+      "drainageClass": "Well Drained Weathered Ash",
+      "organicMatter": "8.5%",
+      "nccpiSoilIndex": 93
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Authentic Maui Kula Onions & Protea",
+        "grossRevenuePerAcre": 28000,
+        "estYieldPerAcre": "18,000 lbs",
+        "operatingCostPerAcre": 7900,
+        "netMargin": "72%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Resort Wholesale Supply & Farm-to-Table Experience",
+        "estCapex": 50000,
+        "estAnnualNOI": 220000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "Maui County Agricultural Micro-Grant Program",
+        "maxAwardAmount": 25000,
+        "matchPercentage": "Non-repayable",
+        "agency": "Maui County Ag Dept"
+      },
+      {
+        "programName": "USDA Value-Added Producer Grant (VAPG)",
+        "maxAwardAmount": 250000,
+        "matchPercentage": "50% Match",
+        "agency": "USDA Rural Development"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-156.33884,20.77646,-156.32936,20.78594&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -156.33884,
+        "miny": 20.77646,
+        "maxx": -156.32936,
+        "maxy": 20.78594
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-ca-fresno-2026",
+    "title": "80.0 AC San Joaquin Citrus Grove & Water Banking Auction",
+    "address": "21500 E Kings Canyon Rd",
+    "city": "Reedley",
+    "county": "Fresno",
+    "state": "CA",
+    "zipCode": "93654",
+    "distressType": "Secured Creditor Auction",
+    "auctionDate": "Dec 12, 2026 - 1:00 PM PST",
+    "auctionVenue": "Fresno County Courthouse, Fresno CA (Case #26-CECG-01290)",
+    "parcelIdAPN": "360-140-19",
+    "acreage": 80.0,
+    "propertyType": "Citrus & Recharge Basin",
+    "currentCondition": "Cara Cara & Navel orange blocks, dual recharge turnouts from Kings River",
+    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Prime Kings River alluvial belt. Secured creditor auction with $420,000 opening bid for 80 acres of producing red-fleshed Cara Cara navels with on-site groundwater recharge basin capable of banking 300 acre-feet per season.",
+    "tags": [
+      "Creditor Auction",
+      "San Joaquin Citrus",
+      "Kings River Water",
+      "Water Banking"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 36.6924,
+      "lng": -119.4481
+    },
+    "financials": {
+      "askingOrOpeningBid": 420000,
+      "estimatedARV": 1150000,
+      "equitySpreadDiscount": 63,
+      "capRate": 12.4,
+      "irr5Year": 30.2,
+      "annualTaxes": 3400,
+      "assessedValue": 1100000
+    },
+    "soil": {
+      "soilSeries": "Hanford Sandy Loam",
+      "ph": 7.1,
+      "drainageClass": "Deep Granitic Alluvium",
+      "organicMatter": "2.1%",
+      "nccpiSoilIndex": 89
+    },
+    "suitableCrops": [
+      {
+        "cropName": "Cara Cara Pink Navel Orange",
+        "grossRevenuePerAcre": 11200,
+        "estYieldPerAcre": "650 cartons/ac",
+        "operatingCostPerAcre": 3900,
+        "netMargin": "65%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Groundwater Banking & Environmental Water Credits",
+        "estCapex": 45000,
+        "estAnnualNOI": 195000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "US Bureau of Reclamation WaterSMART Grant",
+        "maxAwardAmount": 500000,
+        "matchPercentage": "50% Federal Share",
+        "agency": "USBR"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.458833,36.681667,-119.437367,36.703133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.458833,
+        "miny": 36.681667,
+        "maxx": -119.437367,
+        "maxy": 36.703133
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-wa-chelan-2026",
+    "title": "22.0 AC Wenatchee River Organic Pear Orchard Foreclosure",
+    "address": "9400 Sunitsch Canyon Rd",
+    "city": "Cashmere",
+    "county": "Chelan",
+    "state": "WA",
+    "zipCode": "98815",
+    "distressType": "Judicial Foreclosure Auction",
+    "auctionDate": "Dec 15, 2026 - 10:00 AM PST",
+    "auctionVenue": "Chelan County Courthouse, Wenatchee WA (Cause #26-2-00481)",
+    "parcelIdAPN": "231908230050",
+    "acreage": 22.0,
+    "propertyType": "Certified Organic Orchard",
+    "currentCondition": "Certified WSDA organic since 2018, Anjou & Bartlett pears, micro-sprinklers",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Protected canyon pocket orchard along Wenatchee River. Judicial decree sale at $160,000 for 22 acres of fully certified organic pears. Pristine mountain runoff water rights with zero SGMA curtailment risk.",
+    "tags": [
+      "Judicial Foreclosure",
+      "Organic Pear",
+      "Chelan Terroir",
+      "Pristine Water"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 47.5218,
+      "lng": -120.5124
+    },
+    "financials": {
+      "askingOrOpeningBid": 160000,
+      "estimatedARV": 440000,
+      "equitySpreadDiscount": 64,
+      "capRate": 12.8,
+      "irr5Year": 30.5,
+      "annualTaxes": 1350,
+      "assessedValue": 420000
+    },
+    "soil": {
+      "soilSeries": "Cashmont Sandy Loam",
+      "ph": 6.8,
+      "drainageClass": "Deep Glacial Outwash Terraces",
+      "organicMatter": "3.5%",
+      "nccpiSoilIndex": 85
+    },
+    "suitableCrops": [
+      {
+        "cropName": "WSDA Certified Organic D'Anjou Pear",
+        "grossRevenuePerAcre": 15800,
+        "estYieldPerAcre": "42 bins/ac",
+        "operatingCostPerAcre": 4800,
+        "netMargin": "70%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "Single-Orchard Craft Perry & Cider Fermentory",
+        "estCapex": 40000,
+        "estAnnualNOI": 160000,
+        "paybackYears": 0.3
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "USDA Organic Transition & Certification Cost Share",
+        "maxAwardAmount": 35000,
+        "matchPercentage": "75% Reimbursement",
+        "agency": "USDA FSA"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.518028,47.516172,-120.506772,47.527428&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -120.518028,
+        "miny": 47.516172,
+        "maxx": -120.506772,
+        "maxy": 47.527428
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  },
+  {
+    "id": "live-az-pinal-2026",
+    "title": "45.0 AC Pinal County Alfalfa & Solar Ground Lease Auction",
+    "address": "11200 W Eleven Mile Corner Rd",
+    "city": "Eloy",
+    "county": "Pinal",
+    "state": "AZ",
+    "zipCode": "85131",
+    "distressType": "County Treasurer Tax Lien Sale",
+    "auctionDate": "Dec 18, 2026 - 1:30 PM MST",
+    "auctionVenue": "Pinal County Treasurer Online Portal (Cert #2026-04918)",
+    "parcelIdAPN": "402-18-009-B",
+    "acreage": 45.0,
+    "propertyType": "Forage & Utility Solar Ground Lease",
+    "currentCondition": "Laser-leveled flood irrigation, adjacent to 69kV transmission line",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "summaryPitch": "Strategic solar corridor between Phoenix and Tucson. Tax lien sale opening at $195,000 for 45 leveled acres. Direct frontage to regional transmission line makes this an ideal candidate for utility battery energy storage (BESS) lease at $1,800/acre/year.",
+    "tags": [
+      "Tax Lien Sale",
+      "Solar Corridor",
+      "BESS Lease",
+      "Laser Leveled"
+    ],
+    "featured": true,
+    "coordinates": {
+      "lat": 32.7541,
+      "lng": -111.5842
+    },
+    "financials": {
+      "askingOrOpeningBid": 195000,
+      "estimatedARV": 530000,
+      "equitySpreadDiscount": 63,
+      "capRate": 11.4,
+      "irr5Year": 28.2,
+      "annualTaxes": 1280,
+      "assessedValue": 510000
+    },
+    "soil": {
+      "soilSeries": "Mohall Loam",
+      "ph": 8.0,
+      "drainageClass": "Deep Loamy Alluvium",
+      "organicMatter": "1.2%",
+      "nccpiSoilIndex": 77
+    },
+    "suitableCrops": [
+      {
+        "cropName": "High-Protein Dairy Alfalfa",
+        "grossRevenuePerAcre": 3200,
+        "estYieldPerAcre": "9.5 tons/ac",
+        "operatingCostPerAcre": 1200,
+        "netMargin": "62%"
+      }
+    ],
+    "businessIdeas": [
+      {
+        "name": "BESS Battery Storage Land Lease",
+        "estCapex": 20000,
+        "estAnnualNOI": 110000,
+        "paybackYears": 0.2
+      }
+    ],
+    "eligibleLandGrants": [
+      {
+        "programName": "DOE Clean Energy on Mine & Fallow Lands",
+        "maxAwardAmount": 400000,
+        "matchPercentage": "50% Match",
+        "agency": "US Dept of Energy"
+      }
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-111.59225,32.74605,-111.57615,32.76215&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "0.5% Clear Sky",
+      "ndviVigor": "0.68 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -111.59225,
+        "miny": 32.74605,
+        "maxx": -111.57615,
+        "maxy": 32.76215
+      },
+      "sunElevation": "42.1\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
+  }
+]
