@@ -149,6 +149,43 @@
   <!-- MAIN WRAPPER -->
   <main class="app-container max-w-[1880px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 transition-all duration-300">
 
+    <!-- HERO HEADER WITH PHOTO + PROPERTY SEARCH -->
+    <section class="relative rounded-3xl overflow-hidden mb-6 shadow-lg border border-slate-200">
+      <div id="heroBg" class="absolute inset-0 bg-cover bg-center transition-all duration-700" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=85')"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-slate-900/30"></div>
+      <div class="relative px-6 sm:px-10 py-10 sm:py-14 max-w-4xl">
+        <span class="inline-block px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase bg-emerald-500/90 text-white mb-3">Land · Farms · Income Properties · Careers</span>
+        <h1 id="heroTitle" class="text-3xl sm:text-5xl font-black text-white leading-tight mb-2">Find the property. <span class="sunset-text">Build the career.</span></h1>
+        <p id="heroSub" class="text-sm sm:text-base text-slate-200 mb-6 max-w-2xl">Search distressed and undervalued properties across the US, then see which careers and businesses are most profitable in that location.</p>
+        <div class="flex flex-col sm:flex-row gap-2 bg-white/95 backdrop-blur rounded-2xl p-2 shadow-xl">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+            <input id="heroSearch" type="text" onkeydown="if(event.key==='Enter')runHeroSearch()" placeholder="Desired property: vineyard, orchard, ranch, RV park, solar land, glamping..." class="w-full pl-11 pr-3 py-3 rounded-xl text-sm text-slate-800 bg-transparent focus:outline-none">
+          </div>
+          <select id="heroState" onchange="setHeroState()" class="px-3 py-3 rounded-xl text-sm font-bold text-slate-700 bg-slate-100 focus:outline-none">
+            <option value="">All Locations</option><option value="TX">Texas</option><option value="FL">Florida</option><option value="HI">Hawaii</option><option value="CA">California</option><option value="WA">Washington</option><option value="AZ">Arizona</option><option value="NC">North Carolina</option><option value="PA">Pennsylvania</option>
+          </select>
+          <button onclick="runHeroSearch()" class="px-6 py-3 rounded-xl text-sm font-black text-white bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-600 hover:to-rose-700 shadow transition">Search Properties</button>
+        </div>
+        <div id="variantChips" class="flex flex-wrap gap-1.5 mt-4"></div>
+      </div>
+    </section>
+
+    <!-- PROFITABLE CAREERS PANEL -->
+    <section id="careersPanel" class="mb-6 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="relative h-32 sm:h-36">
+        <div id="careersBg" class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2000&q=85')"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/85 to-slate-900/30"></div>
+        <div class="relative h-full px-6 sm:px-8 flex flex-col justify-center">
+          <div class="text-[10px] font-black tracking-wider uppercase text-emerald-300">Career Intelligence</div>
+          <h2 id="careersTitle" class="text-xl sm:text-2xl font-black text-white">Profitable careers in your selected location</h2>
+          <p class="text-xs text-slate-200">Pick a location above to see careers that pair well with the properties available there.</p>
+        </div>
+      </div>
+      <div id="careersGrid" class="p-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3"></div>
+      <p class="px-5 pb-4 text-[10px] text-slate-400">Income and startup figures are illustrative planning estimates, not guarantees. Verify with local market data, BLS/USDA sources, and a licensed advisor before investing.</p>
+    </section>
+
     <!-- LOOK-FOR QUICK FILTER CHIPS (SCROLLING PILL ROW) -->
     <div class="mb-5 overflow-x-auto pb-2 scrollbar-none flex items-center gap-2">
       <span class="text-xs font-black text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1 mr-1">
@@ -644,6 +681,8 @@
     }
 
     function resetAllFilters() {
+      activeVariant = ''; renderVariantChips();
+      const hsr = document.getElementById('heroSearch'); if (hsr) hsr.value = '';
       activeQuickFilter = '';
       activeRegion = '';
       document.getElementById('searchInput').value = '';
@@ -698,6 +737,8 @@
         return true;
       });
 
+      list = list.filter(variantMatches);
+
       // Advanced Underwriting Filters
       const maxPrice = parseFloat(document.getElementById('filterPriceMax')?.value);
       if (!isNaN(maxPrice) && maxPrice > 0) {
@@ -734,6 +775,8 @@
 
     function applyFilters() {
       const list = getFilteredList();
+      updateHeroForRegion();
+      renderCareers();
       document.getElementById('activeCount').textContent = list.length;
       document.getElementById('totalCount').textContent = allProperties.length;
 
@@ -748,6 +791,149 @@
       else if (currentView === 'table') renderTable(list);
       else if (currentView === 'map') renderMap(list);
     }
+
+
+    // ===== PROPERTY VARIANTS =====
+    let activeVariant = '';
+    const PROPERTY_VARIANTS = [
+      {k:'', label:'All Types', icon:'🏞️'},
+      {k:'farm|crop|acreage|agricultural|prairie', label:'Farmland', icon:'🌾'},
+      {k:'orchard|pecan|apple|citrus|avocado|mango|guava|date|nut|fruit', label:'Orchards', icon:'🍎'},
+      {k:'vineyard|grape|wine|viney', label:'Vineyards', icon:'🍇'},
+      {k:'hop|brew|elderberr|garlic|ginseng|truffle|mushroom|herb', label:'Specialty Crops', icon:'🌿'},
+      {k:'coffee|cacao|dragon|tropical|macadamia|pitaya', label:'Tropical', icon:'🌴'},
+      {k:'ranch|pasture|cattle|livestock|hay|alfalfa', label:'Ranch & Pasture', icon:'🐄'},
+      {k:'timber|forest|woodland|hardwood', label:'Timber & Forest', icon:'🌲'},
+      {k:'solar|energy|battery|bess|wind', label:'Solar & Energy', icon:'☀️'},
+      {k:'glamping|resort|agritourism|retreat|tasting|event|u-pick', label:'Agritourism & Glamping', icon:'🏕️'},
+      {k:'rv|storage|laydown|yard|industrial|commercial|mixed-use', label:'RV / Storage / Industrial', icon:'🏗️'},
+      {k:'nursery|greenhouse|hydropon|cea|palm|vertical', label:'Nursery & Greenhouse', icon:'🪴'},
+      {k:'water|well|irrigat|recharge|banking', label:'Water-Rights Land', icon:'💧'},
+      {k:'farmstead|homestead|structure|barn|house', label:'Farmsteads & Homes', icon:'🏡'}
+    ];
+
+    function renderVariantChips() {
+      const el = document.getElementById('variantChips');
+      if (!el) return;
+      el.innerHTML = PROPERTY_VARIANTS.map(v => {
+        const on = v.k === activeVariant;
+        return `<button onclick="setVariant('${v.k}')" class="px-3 py-1.5 rounded-full text-[11px] font-bold border transition ${on ? 'bg-emerald-500 text-white border-emerald-300' : 'bg-white/15 text-white border-white/30 hover:bg-white/30'}">${v.icon} ${v.label}</button>`;
+      }).join('');
+    }
+    function setVariant(k) { activeVariant = k; renderVariantChips(); applyFilters(); }
+    function variantMatches(p) {
+      if (!activeVariant) return true;
+      const re = new RegExp(activeVariant, 'i');
+      const hay = [p.title, p.propertyType, p.currentCondition, (p.tags||[]).join(' '),
+        (p.suitableCrops||[]).map(c=>c.cropName).join(' '), (p.businessIdeas||[]).map(b=>b.name).join(' ')].join(' ');
+      return re.test(hay);
+    }
+
+    // ===== HERO SEARCH =====
+    const HERO_PHOTOS = {
+      '': 'photo-1500382017468-9049fed747ef', TX: 'photo-1500937386664-56d1dfef3854', FL: 'photo-1540420773420-3366772f4999',
+      HI: 'photo-1514432324607-a09d9b4aefdd', CA: 'photo-1506377247377-2a5b3b417ebb', WA: 'photo-1595974482597-4b8da8879bc5',
+      AZ: 'photo-1509223197845-458d87318791', NC: 'photo-1448375240586-882707db888b', PA: 'photo-1500076656116-558758c991c1'
+    };
+    const STATE_NAMES = {TX:'Texas',FL:'Florida',HI:'Hawaii',CA:'California',WA:'Washington',AZ:'Arizona',NC:'North Carolina',PA:'Pennsylvania'};
+    function runHeroSearch() {
+      const q = document.getElementById('heroSearch').value;
+      document.getElementById('searchInput').value = q;
+      applyFilters();
+      document.getElementById('gridContainer').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function setHeroState() {
+      const s = document.getElementById('heroState').value;
+      setRegionFilter(s);
+    }
+    function updateHeroForRegion() {
+      const s = activeRegion || '';
+      const id = HERO_PHOTOS[s] || HERO_PHOTOS[''];
+      const url = `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=85`;
+      const hb = document.getElementById('heroBg'); if (hb) hb.style.backgroundImage = `url('${url}')`;
+      const cb = document.getElementById('careersBg'); if (cb) cb.style.backgroundImage = `url('${url}')`;
+      const hs = document.getElementById('heroState'); if (hs && hs.value !== s) hs.value = s;
+    }
+
+    // ===== PROFITABLE CAREERS BY LOCATION (illustrative planning estimates) =====
+    const CAREERS = {
+      TX: [
+        {t:'Pecan Orchard Operator', inc:'$60k–$180k', cost:'$80k–$250k', why:'Blackland/river-bottom soils, strong in-state pecan demand', kw:'pecan'},
+        {t:'Solar / Energy Land Lease Manager', inc:'$50k–$200k', cost:'$20k–$60k', why:'Fast-growing grid demand near Austin–Taylor corridor', kw:'solar'},
+        {t:'Cattle & Hay Producer', inc:'$45k–$150k', cost:'$60k–$200k', why:'Ag-exemption tax savings on rural acreage', kw:'ranch'},
+        {t:'Contractor Yard / Storage Operator', inc:'$55k–$160k', cost:'$30k–$90k', why:'Growth corridor with heavy construction demand', kw:'rv'}
+      ],
+      FL: [
+        {t:'Tropical Fruit Grower (avocado, dragon fruit)', inc:'$55k–$200k', cost:'$70k–$220k', why:'Redland limestone soils, strong specialty-fruit pricing', kw:'tropical'},
+        {t:'Nursery & Palm Grower', inc:'$50k–$170k', cost:'$60k–$180k', why:'Constant landscaping and housing-growth demand', kw:'nursery'},
+        {t:'Agritourism / U-Pick Operator', inc:'$40k–$140k', cost:'$30k–$100k', why:'Year-round visitor traffic', kw:'agritourism'},
+        {t:'Shade-House Ginger & Specialty Herbs', inc:'$45k–$130k', cost:'$40k–$120k', why:'High-value niche crops on small acreage', kw:'specialty'}
+      ],
+      HI: [
+        {t:'Kona Coffee & Cacao Farmer', inc:'$50k–$220k', cost:'$100k–$300k', why:'Premium origin pricing, volcanic soils', kw:'coffee'},
+        {t:'Farm-Stay / Agritourism Host', inc:'$50k–$180k', cost:'$40k–$150k', why:'Strong tourism demand (check county permitting)', kw:'agritourism'},
+        {t:'Macadamia & Tropical Fruit Grower', inc:'$45k–$150k', cost:'$70k–$200k', why:'Local and export value-added markets', kw:'tropical'},
+        {t:'Value-Added Food Producer', inc:'$40k–$140k', cost:'$25k–$90k', why:'Roasting, jams, chocolate sold direct to visitors', kw:'coffee'}
+      ],
+      CA: [
+        {t:'Boutique Vineyard & Winery Owner', inc:'$50k–$300k', cost:'$150k–$600k', why:'Sonoma/Paso Robles brand premium', kw:'vineyard'},
+        {t:'Pistachio / Almond Grower', inc:'$60k–$250k', cost:'$200k–$600k', why:'Strong export demand; water access is the key risk', kw:'orchard'},
+        {t:'Agrivoltaic / Solar Lease Manager', inc:'$50k–$200k', cost:'$25k–$80k', why:'Dual land use in Central Valley', kw:'solar'},
+        {t:'Olive Oil & Truffle Producer', inc:'$45k–$160k', cost:'$60k–$180k', why:'High-margin specialty products', kw:'specialty'}
+      ],
+      WA: [
+        {t:'Hop Grower', inc:'$50k–$180k', cost:'$100k–$300k', why:'Yakima Valley supplies much of US hops; craft-beer demand', kw:'hop'},
+        {t:'Apple / Cherry / Pear Orchardist', inc:'$55k–$200k', cost:'$120k–$350k', why:'Senior water rights and packing infrastructure', kw:'orchard'},
+        {t:'Cider & Craft Fermentory Owner', inc:'$45k–$160k', cost:'$40k–$120k', why:'Value-added on orchard fruit', kw:'orchard'},
+        {t:'Cold Storage & Packing Operator', inc:'$60k–$180k', cost:'$55k–$200k', why:'Chronic regional capacity demand', kw:'rv'}
+      ],
+      AZ: [
+        {t:'Medjool Date Grower', inc:'$55k–$190k', cost:'$100k–$300k', why:'Desert climate suits dates; premium fruit pricing', kw:'orchard'},
+        {t:'Alfalfa / Forage Producer', inc:'$40k–$130k', cost:'$50k–$150k', why:'Dairy demand; confirm water rights', kw:'ranch'},
+        {t:'Solar / Battery Storage Land Lessor', inc:'$50k–$200k', cost:'$20k–$60k', why:'Transmission corridors between Phoenix and Tucson', kw:'solar'},
+        {t:'Greenhouse / CEA Grower', inc:'$55k–$200k', cost:'$90k–$300k', why:'Year-round production in controlled environments', kw:'nursery'}
+      ],
+      NC: [
+        {t:'Forest-Farming (ginseng, goldenseal) Grower', inc:'$40k–$150k', cost:'$25k–$90k', why:'Appalachian woodland suits shade-grown botanicals', kw:'specialty'},
+        {t:'Eco-Retreat / Glamping Host', inc:'$45k–$160k', cost:'$40k–$150k', why:'Blue Ridge tourism near Asheville', kw:'glamping'},
+        {t:'Sustainable Timber Manager', inc:'$35k–$120k', cost:'$30k–$100k', why:'Long-horizon returns with conservation incentives', kw:'timber'},
+        {t:'Gourmet Mushroom Producer', inc:'$35k–$120k', cost:'$15k–$60k', why:'Log-grown shiitake and lion\'s mane', kw:'specialty'}
+      ],
+      PA: [
+        {t:'Organic Vegetable & Garlic Farmer', inc:'$40k–$140k', cost:'$40k–$120k', why:'Lancaster County prime soils and dense buyer base', kw:'farm'},
+        {t:'Farm Market / CSA Operator', inc:'$40k–$130k', cost:'$25k–$90k', why:'Direct-to-consumer in the Philadelphia–Baltimore region', kw:'farm'},
+        {t:'Dairy / Livestock Producer', inc:'$40k–$140k', cost:'$100k–$400k', why:'Established processing network', kw:'ranch'},
+        {t:'Agritourism & Event Host', inc:'$40k–$140k', cost:'$30k–$120k', why:'Heritage farmstead tourism', kw:'agritourism'}
+      ],
+      '': [
+        {t:'Specialty Crop Grower', inc:'$40k–$200k', cost:'$50k–$300k', why:'High value per acre on small parcels', kw:'specialty'},
+        {t:'Solar / Energy Land Lessor', inc:'$50k–$200k', cost:'$20k–$80k', why:'Passive lease income in growth corridors', kw:'solar'},
+        {t:'Agritourism / Glamping Host', inc:'$40k–$180k', cost:'$30k–$150k', why:'Experience-driven demand', kw:'glamping'},
+        {t:'Contractor Yard / RV Storage Operator', inc:'$50k–$160k', cost:'$30k–$100k', why:'Low-labor income on transition land', kw:'rv'}
+      ]
+    };
+    function renderCareers() {
+      const grid = document.getElementById('careersGrid'); if (!grid) return;
+      const s = activeRegion || '';
+      const list = CAREERS[s] || CAREERS[''];
+      const t = document.getElementById('careersTitle');
+      if (t) t.textContent = s ? `Profitable careers in ${STATE_NAMES[s] || s}` : 'Profitable careers across the US';
+      grid.innerHTML = list.map(c => {
+        const re = new RegExp(PROPERTY_VARIANTS.find(v => v.k.split('|').includes(c.kw))?.k || c.kw, 'i');
+        const n = allProperties.filter(p => (!s || p.state === s) && re.test([p.title,p.propertyType,(p.tags||[]).join(' '),(p.suitableCrops||[]).map(x=>x.cropName).join(' '),(p.businessIdeas||[]).map(b=>b.name).join(' ')].join(' '))).length;
+        return `<div class="rounded-2xl border border-slate-200 p-4 bg-slate-50/60 hover:border-emerald-300 transition flex flex-col justify-between">
+          <div><h3 class="font-black text-sm text-slate-900 mb-1">${c.t}</h3><p class="text-[11px] text-slate-500 mb-3">${c.why}</p>
+          <div class="grid grid-cols-2 gap-2 text-[10px] mb-3"><div class="bg-white rounded-xl p-2 border border-slate-200"><div class="text-slate-400 font-bold uppercase">Est. income</div><div class="font-black text-emerald-700 font-mono">${c.inc}</div></div>
+          <div class="bg-white rounded-xl p-2 border border-slate-200"><div class="text-slate-400 font-bold uppercase">Startup</div><div class="font-black text-slate-800 font-mono">${c.cost}</div></div></div></div>
+          <button onclick="applyCareer('${c.kw}')" class="w-full text-xs font-bold py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition">View ${n} matching ${n===1?'property':'properties'} →</button></div>`;
+      }).join('');
+    }
+    function applyCareer(kw) {
+      const v = PROPERTY_VARIANTS.find(x => x.k.split('|').includes(kw));
+      setVariant(v ? v.k : '');
+      document.getElementById('gridContainer').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    renderVariantChips();
 
     let globalPhotoMode = 'satellite'; // 'satellite' (Accurate Actual Parcel Ortho by default), 'ground', or 'split'
     let isCanvasMaximized = false;
