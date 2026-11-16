@@ -70,7 +70,7 @@
 
   <!-- MAIN NAVIGATION HEADER -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-amber-100/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-3">
+    <div class="app-container max-w-[1880px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-3 transition-all duration-300">
       
       <!-- Brand Logo & Identity -->
       <div class="flex items-center gap-3">
@@ -114,6 +114,10 @@
 
       <!-- Right Action Tools -->
       <div class="flex items-center gap-2 sm:gap-2.5">
+        <button id="maximizeCanvasBtn" onclick="toggleMaximizeCanvas()" title="Toggle Maximize Full-Width Canvas" class="flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300/80 px-3 py-1.5 rounded-xl text-xs font-bold transition">
+          <i class="fa-solid fa-up-right-and-down-left-from-center text-emerald-600" id="maximizeCanvasIcon"></i>
+          <span id="maximizeCanvasLabel" class="hidden sm:inline">Maximize</span>
+        </button>
         <button onclick="openImportListingsModal()" class="flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-500/20 transition">
           <i class="fa-solid fa-cloud-arrow-down"></i>
           <span>Import Live Listings</span>
@@ -143,7 +147,7 @@
   </header>
 
   <!-- MAIN WRAPPER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+  <main class="app-container max-w-[1880px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 transition-all duration-300">
 
     <!-- LOOK-FOR QUICK FILTER CHIPS (SCROLLING PILL ROW) -->
     <div class="mb-5 overflow-x-auto pb-2 scrollbar-none flex items-center gap-2">
@@ -214,6 +218,58 @@
         </div>
       </div>
 
+      <!-- SECOND ROW: MAXIMIZED ADVANCED UNDERWRITING FILTERS -->
+      <div class="mt-3.5 pt-3.5 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2.5 text-xs">
+        <div>
+          <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Max Opening Bid</label>
+          <select id="filterPriceMax" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800">
+            <option value="">Any Price</option>
+            <option value="150000">&lt; $150k</option>
+            <option value="250000">&lt; $250k</option>
+            <option value="400000">&lt; $400k</option>
+            <option value="600000">&lt; $600k</option>
+            <option value="1000000">&lt; $1.0M</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Min Acreage</label>
+          <select id="filterAcresMin" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800">
+            <option value="">Any Acreage</option>
+            <option value="10">10+ Acres</option>
+            <option value="25">25+ Acres</option>
+            <option value="50">50+ Acres</option>
+            <option value="75">75+ Acres</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Min Discount Spread</label>
+          <select id="filterDiscountMin" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800">
+            <option value="">Any Discount</option>
+            <option value="40">40%+ Below ARV</option>
+            <option value="50">50%+ Below ARV</option>
+            <option value="60">60%+ Below ARV</option>
+            <option value="65">65%+ Below ARV</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Distress / Legal Venue</label>
+          <select id="filterDistressType" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800">
+            <option value="">All Distress Types</option>
+            <option value="Judicial Foreclosure">Judicial Foreclosure</option>
+            <option value="Tax Deed">Tax Deed Sale</option>
+            <option value="Sheriff">Sheriff Auction</option>
+            <option value="Pre-Foreclosure">Pre-Foreclosure Notice</option>
+            <option value="Probate">Probate Action</option>
+          </select>
+        </div>
+        <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex items-end">
+          <button onclick="resetAllFilters()" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-1.5 px-3 rounded-xl border border-rose-200 text-xs transition flex items-center justify-center gap-1">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Reset Filters</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Regional Tabs -->
       <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-1.5">
         <span class="text-xs font-bold text-slate-400 mr-2">Region:</span>
@@ -229,19 +285,44 @@
       </div>
     </div>
 
-    <!-- RESULT COUNTER BAR -->
-    <div class="flex items-center justify-between mb-5">
-      <div class="text-xs text-slate-500 font-medium">
-        Showing <span id="activeCount" class="font-extrabold text-slate-900 font-mono">0</span> of <span class="font-bold text-slate-700 font-mono" id="totalCount">100</span> properties matching active criteria
+    <!-- RESULT COUNTER & ACCURATE PHOTO CONTROLLER -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm mb-5">
+      <div class="flex items-center gap-2.5 flex-wrap text-xs">
+        <span class="text-slate-500 font-medium">
+          Showing <span id="activeCount" class="font-extrabold text-slate-900 font-mono text-sm">0</span> of <span class="font-bold text-slate-700 font-mono" id="totalCount">100</span> verified properties
+        </span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-500 font-medium">
+          Portfolio ARV: <span id="totalArvDisplay" class="font-black text-slate-900 font-mono">$48,240,000</span>
+        </span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-500 font-medium">
+          Total Land: <span id="totalAcresDisplay" class="font-black text-slate-900 font-mono">3,892 AC</span>
+        </span>
       </div>
-      <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-        <span>View mode:</span>
-        <span id="currentViewLabel" class="text-emerald-700 uppercase">Cards Gallery</span>
+
+      <!-- Accurate Photo Source Switcher -->
+      <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold w-full sm:w-auto justify-between sm:justify-start">
+        <span class="text-[11px] text-slate-500 px-2 hidden lg:inline flex items-center gap-1">
+          <i class="fa-solid fa-camera"></i> Photos:
+        </span>
+        <button id="photoModeSatBtn" onclick="setGlobalPhotoMode('satellite')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition bg-emerald-600 text-white shadow-sm">
+          <i class="fa-solid fa-satellite"></i>
+          <span>🛰️ Actual Satellite (0.3m)</span>
+        </button>
+        <button id="photoModeGroundBtn" onclick="setGlobalPhotoMode('ground')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-emerald-700 hover:bg-white/60 transition">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span>📸 Verified Terroir Field</span>
+        </button>
+        <button id="photoModeSplitBtn" onclick="setGlobalPhotoMode('split')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-emerald-700 hover:bg-white/60 transition">
+          <i class="fa-solid fa-table-columns"></i>
+          <span>🌓 Dual View</span>
+        </button>
       </div>
     </div>
 
-    <!-- VIEW CONTAINER: DEAL CARDS GRID -->
-    <div id="gridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- VIEW CONTAINER: DEAL CARDS GRID (MAXIMIZED 4-5 COLUMN DESK) -->
+    <div id="gridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-5">
       <!-- Injected by JavaScript -->
     </div>
 
@@ -469,7 +550,7 @@
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200/80 py-8 px-4 text-center text-xs text-slate-500 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="app-container max-w-[1880px] w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-300">
       <div class="flex items-center gap-2">
         <span class="font-extrabold text-slate-900">TerraYield AI</span>
         <span>•</span>
@@ -617,6 +698,27 @@
         return true;
       });
 
+      // Advanced Underwriting Filters
+      const maxPrice = parseFloat(document.getElementById('filterPriceMax')?.value);
+      if (!isNaN(maxPrice) && maxPrice > 0) {
+        list = list.filter(p => (p.financials?.askingOrOpeningBid || 0) <= maxPrice);
+      }
+
+      const minAcres = parseFloat(document.getElementById('filterAcresMin')?.value);
+      if (!isNaN(minAcres) && minAcres > 0) {
+        list = list.filter(p => (p.acreage || 0) >= minAcres);
+      }
+
+      const minDiscount = parseFloat(document.getElementById('filterDiscountMin')?.value);
+      if (!isNaN(minDiscount) && minDiscount > 0) {
+        list = list.filter(p => (p.financials?.equitySpreadDiscount || 0) >= minDiscount);
+      }
+
+      const distressVal = document.getElementById('filterDistressType')?.value;
+      if (distressVal) {
+        list = list.filter(p => (p.distressType || '').toLowerCase().includes(distressVal.toLowerCase()));
+      }
+
       // Sorting
       list.sort((a, b) => {
         if (sort === 'cap_desc') return (b.financials.capRate || 0) - (a.financials.capRate || 0);
@@ -635,9 +737,60 @@
       document.getElementById('activeCount').textContent = list.length;
       document.getElementById('totalCount').textContent = allProperties.length;
 
+      const totalArv = list.reduce((sum, p) => sum + (p.financials?.estimatedARV || 0), 0);
+      const totalAcres = list.reduce((sum, p) => sum + (p.acreage || 0), 0);
+      const arvEl = document.getElementById('totalArvDisplay');
+      if (arvEl) arvEl.textContent = '$' + (totalArv >= 1000000 ? (totalArv / 1000000).toFixed(1) + 'M' : Math.round(totalArv / 1000) + 'k');
+      const acresEl = document.getElementById('totalAcresDisplay');
+      if (acresEl) acresEl.textContent = Math.round(totalAcres).toLocaleString() + ' AC';
+
       if (currentView === 'grid') renderCards(list);
       else if (currentView === 'table') renderTable(list);
       else if (currentView === 'map') renderMap(list);
+    }
+
+    let globalPhotoMode = 'satellite'; // 'satellite' (Accurate Actual Parcel Ortho by default), 'ground', or 'split'
+    let isCanvasMaximized = false;
+
+    function toggleMaximizeCanvas() {
+      isCanvasMaximized = !isCanvasMaximized;
+      const containers = document.querySelectorAll('.app-container');
+      const btn = document.getElementById('maximizeCanvasBtn');
+      const icon = document.getElementById('maximizeCanvasIcon');
+      const label = document.getElementById('maximizeCanvasLabel');
+
+      if (isCanvasMaximized) {
+        containers.forEach(c => {
+          c.classList.remove('max-w-[1880px]');
+          c.classList.add('max-w-none', 'px-6', 'lg:px-12');
+        });
+        if (btn) btn.className = 'flex items-center gap-1.5 bg-emerald-100 text-emerald-900 border border-emerald-300 px-3 py-1.5 rounded-xl text-xs font-bold transition';
+        if (icon) icon.className = 'fa-solid fa-down-left-and-up-right-to-center text-emerald-700';
+        if (label) label.textContent = 'Standard View';
+      } else {
+        containers.forEach(c => {
+          c.classList.add('max-w-[1880px]');
+          c.classList.remove('max-w-none', 'px-6', 'lg:px-12');
+        });
+        if (btn) btn.className = 'flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300/80 px-3 py-1.5 rounded-xl text-xs font-bold transition';
+        if (icon) icon.className = 'fa-solid fa-up-right-and-down-left-from-center text-emerald-600';
+        if (label) label.textContent = 'Maximize';
+      }
+    }
+
+    function setGlobalPhotoMode(mode) {
+      globalPhotoMode = mode;
+      ['satellite', 'ground', 'split'].forEach(m => {
+        const b = document.getElementById(`photoMode${m.charAt(0).toUpperCase() + m.slice(1)}Btn`);
+        if (b) {
+          if (m === mode) {
+            b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition bg-emerald-600 text-white shadow-sm';
+          } else {
+            b.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-emerald-700 hover:bg-white/60 transition';
+          }
+        }
+      });
+      applyFilters();
     }
 
     function renderCards(list) {
@@ -660,13 +813,48 @@
         const isSaved = savedIds.includes(p.id);
         const isComp = compareIds.includes(p.id);
 
+        const satUrl = p.satelliteUrl || getSatelliteUrl(p, 'esri');
+        const groundUrl = p.imageUrl;
+        const topoUrl = p.topoUrl || getSatelliteUrl(p, 'topo');
+
+        // Determine hero image and badge based on globalPhotoMode
+        let heroHtml = '';
+        let badgeHtml = '';
+        let toggleLabel = '';
+
+        if (globalPhotoMode === 'satellite') {
+          heroHtml = `<img id="cardImg-${p.id}" src="${satUrl}" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="sat" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
+          badgeHtml = `<span id="photoBadge-${p.id}" class="badge bg-emerald-600/95 text-white border border-emerald-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-satellite text-[10px]"></i> 🛰️ 0.3M ORTHO (NOV 2026)</span>`;
+          toggleLabel = `📸 Field`;
+        } else if (globalPhotoMode === 'ground') {
+          heroHtml = `<img id="cardImg-${p.id}" src="${groundUrl}" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="ground" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
+          badgeHtml = `<span id="photoBadge-${p.id}" class="badge bg-amber-600/95 text-white border border-amber-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-mountain-sun text-[10px]"></i> 📸 VERIFIED TERROIR</span>`;
+          toggleLabel = `🛰️ Sat`;
+        } else {
+          // Split mode: Left 50% Satellite, Right 50% Ground
+          heroHtml = `
+            <div class="w-full h-full flex relative">
+              <div class="w-1/2 h-full overflow-hidden relative border-r border-white/40">
+                <img src="${satUrl}" alt="Satellite Ortho" class="w-full h-full object-cover">
+                <span class="absolute bottom-2 left-2 bg-slate-950/80 text-[8px] font-black text-emerald-300 px-1.5 py-0.5 rounded backdrop-blur-sm">🛰️ AERIAL</span>
+              </div>
+              <div class="w-1/2 h-full overflow-hidden relative">
+                <img src="${groundUrl}" alt="Field Terroir" class="w-full h-full object-cover">
+                <span class="absolute bottom-2 right-2 bg-slate-950/80 text-[8px] font-black text-amber-300 px-1.5 py-0.5 rounded backdrop-blur-sm">📸 FIELD</span>
+              </div>
+            </div>
+          `;
+          badgeHtml = `<span id="photoBadge-${p.id}" class="badge bg-purple-700/95 text-white border border-purple-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1">🌓 DUAL AERIAL + FIELD</span>`;
+          toggleLabel = `🗺️ Topo`;
+        }
+
         return `
           <div class="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group">
             
             <!-- Image & Badges -->
             <div class="h-52 w-full relative overflow-hidden bg-slate-100">
-              <img id="cardImg-${p.id}" src="${p.imageUrl}" data-ground="${p.imageUrl}" data-sat="${p.satelliteUrl || ''}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+              ${heroHtml}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none"></div>
               
               <!-- Top Badges & Actions -->
               <div class="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
@@ -674,14 +862,11 @@
                   <span class="badge bg-amber-100/95 text-amber-950 border border-amber-300 shadow-sm backdrop-blur-sm">
                     ${p.distressType}
                   </span>
-                  <span id="satBadge-${p.id}" class="hidden px-2 py-0.5 rounded-full text-[9px] font-black bg-emerald-500 text-white border border-emerald-300 shadow backdrop-blur-sm animate-pulse">
-                    🛰️ NOV 2026 PASS • 0.3M
-                  </span>
+                  ${badgeHtml}
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <button onclick="toggleCardSatellite('${p.id}', event)" title="Toggle High-Res Satellite View" class="px-2.5 py-1 rounded-xl bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-sm border border-emerald-400/50 text-[10px] font-black flex items-center gap-1 shadow-sm transition hover:border-emerald-300">
-                    <i class="fa-solid fa-satellite text-emerald-400"></i>
-                    <span id="satBtnLabel-${p.id}">🛰️ Sat</span>
+                  <button onclick="cycleCardPhoto('${p.id}', event)" title="Cycle Photos (Satellite / Field / Topo)" class="px-2.5 py-1 rounded-xl bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-sm border border-emerald-400/50 text-[10px] font-black flex items-center gap-1 shadow-sm transition hover:border-emerald-300">
+                    <span id="satBtnLabel-${p.id}">${toggleLabel}</span>
                   </button>
                   <button onclick="toggleCompare('${p.id}')" title="Compare" class="w-8 h-8 rounded-full ${isComp ? 'bg-emerald-600 text-white' : 'bg-white/90 text-slate-700 hover:bg-white'} backdrop-blur-sm flex items-center justify-center text-xs shadow-sm transition">
                     <i class="fa-solid fa-scale-balanced"></i>
@@ -957,9 +1142,11 @@
               </div>
 
               <!-- Layer Switcher -->
-              <div class="absolute bottom-3 left-3 flex items-center gap-1.5">
-                <button onclick="switchDossierSatLayer('${p.id}', 'esri')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white/90 text-slate-900 hover:bg-white shadow transition">ESRI World (0.3m)</button>
-                <button onclick="switchDossierSatLayer('${p.id}', 'usgs')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-900/80 text-white hover:bg-slate-900 shadow transition">USGS High-Res</button>
+              <div class="absolute bottom-3 left-3 flex items-center gap-1.5 flex-wrap">
+                <button onclick="switchDossierSatLayer('${p.id}', 'esri')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-white text-slate-900 hover:bg-slate-100 shadow transition flex items-center gap-1"><i class="fa-solid fa-satellite text-emerald-600"></i> ESRI World (0.3m)</button>
+                <button onclick="switchDossierSatLayer('${p.id}', 'usgs')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-slate-900 text-white hover:bg-slate-800 shadow transition flex items-center gap-1"><i class="fa-solid fa-satellite text-teal-400"></i> USGS Ortho</button>
+                <button onclick="switchDossierSatLayer('${p.id}', 'topo')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-indigo-900 text-white hover:bg-indigo-800 shadow transition flex items-center gap-1"><i class="fa-solid fa-layer-group text-indigo-300"></i> USGS Topo Contours</button>
+                <button onclick="switchDossierSatLayer('${p.id}', 'ground')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-900 text-white hover:bg-amber-800 shadow transition flex items-center gap-1"><i class="fa-solid fa-mountain-sun text-amber-300"></i> Verified Field</button>
               </div>
             </div>
 
@@ -989,6 +1176,34 @@
       if (tab === 'overview') {
         content.innerHTML = `
           <div class="space-y-5 text-xs">
+            <!-- DUAL VISUAL INSPECTION PANEL: ACTUAL SATELLITE + VERIFIED FIELD -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-4">
+              <!-- Actual Parcel Satellite Ortho -->
+              <div class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 aspect-[16/10] group shadow-sm">
+                <img src="${p.satelliteUrl || getSatelliteUrl(p, 'esri')}" alt="Actual Parcel Satellite" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none"></div>
+                <div class="absolute top-2.5 left-2.5">
+                  <span class="badge bg-emerald-600 text-white text-[9px] font-black border border-emerald-400">🛰️ ACTUAL PARCEL SATELLITE (0.3M ORTHO)</span>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-[10px]">
+                  <span class="font-mono text-emerald-300 font-bold">${p.coordinates ? p.coordinates.lat.toFixed(4) + '°N, ' + Math.abs(p.coordinates.lng).toFixed(4) + '°W' : ''}</span>
+                  <button onclick="setDossierTab('satellite')" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[10px] font-bold">Inspect HUD &rarr;</button>
+                </div>
+              </div>
+              <!-- Verified Crop & Terroir Ground Photo -->
+              <div class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 aspect-[16/10] group shadow-sm">
+                <img src="${p.imageUrl}" alt="Verified Field Terroir" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none"></div>
+                <div class="absolute top-2.5 left-2.5">
+                  <span class="badge bg-amber-600 text-white text-[9px] font-black border border-amber-400">📸 VERIFIED ${p.state} AGRICULTURAL TERROIR</span>
+                </div>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-[10px]">
+                  <span class="font-bold truncate max-w-[200px]">${(p.suitableCrops || [])[0]?.cropName || 'Specialty Produce'}</span>
+                  <span class="font-mono text-amber-300 font-bold">${p.soil?.soilSeries || 'Rich Loam'}</span>
+                </div>
+              </div>
+            </div>
+
             <div>
               <h4 class="font-black text-sm text-slate-900 uppercase tracking-wider mb-2">Executive Investment Thesis</h4>
               <p class="text-slate-600 leading-relaxed text-sm bg-slate-50 p-4 rounded-2xl border border-slate-100">${p.summaryPitch}</p>
@@ -1448,6 +1663,9 @@
          const maxx = (coords.lng + radius).toFixed(6);
          const miny = (coords.lat - radius).toFixed(6);
          const maxy = (coords.lat + radius).toFixed(6);
+         if (service === 'topo') {
+           return `https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=${minx},${miny},${maxx},${maxy}&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image`;
+         }
          if (service === 'usgs') {
            return `https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=${minx},${miny},${maxx},${maxy}&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image`;
          }
@@ -1472,31 +1690,41 @@
          }
        }
 
-       // Toggle Card Satellite View on Deal Card
-       function toggleCardSatellite(id, event) {
+       // 3-Way Photo Cycling on Deal Card (Satellite <-> Field <-> Topo)
+       function cycleCardPhoto(id, event) {
          if (event) event.stopPropagation();
          const img = document.getElementById(`cardImg-${id}`);
          const btnLabel = document.getElementById(`satBtnLabel-${id}`);
-         const satBadge = document.getElementById(`satBadge-${id}`);
-         if (!img) return;
-
+         const badge = document.getElementById(`photoBadge-${id}`);
          const p = allProperties.find(x => x.id === id);
-         const groundUrl = img.getAttribute('data-ground') || (p ? p.imageUrl : '');
-         let satUrl = img.getAttribute('data-sat');
-         if (!satUrl && p) {
-           satUrl = p.satelliteUrl || getSatelliteUrl(p);
-           img.setAttribute('data-sat', satUrl);
+         if (!p) return;
+
+         const satUrl = p.satelliteUrl || getSatelliteUrl(p, 'esri');
+         const groundUrl = p.imageUrl;
+         const topoUrl = p.topoUrl || getSatelliteUrl(p, 'topo');
+
+         // If card was in split mode, re-initialize as normal img
+         if (!img) {
+           applyFilters();
+           return;
          }
 
-         const isShowingSat = img.src === satUrl;
-         if (isShowingSat) {
+         const currentState = img.getAttribute('data-state') || 'sat';
+         if (currentState === 'sat') {
            img.src = groundUrl;
+           img.setAttribute('data-state', 'ground');
+           if (btnLabel) btnLabel.textContent = '🗺️ Topo';
+           if (badge) badge.outerHTML = `<span id="photoBadge-${id}" class="badge bg-amber-600/95 text-white border border-amber-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-mountain-sun text-[10px]"></i> 📸 VERIFIED FIELD TERROIR</span>`;
+         } else if (currentState === 'ground') {
+           img.src = topoUrl;
+           img.setAttribute('data-state', 'topo');
            if (btnLabel) btnLabel.textContent = '🛰️ Sat';
-           if (satBadge) satBadge.classList.add('hidden');
+           if (badge) badge.outerHTML = `<span id="photoBadge-${id}" class="badge bg-indigo-600/95 text-white border border-indigo-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-layer-group text-[10px]"></i> 🗺️ USGS TOPO CONTOURS</span>`;
          } else {
            img.src = satUrl;
-           if (btnLabel) btnLabel.textContent = '🏞️ Ground';
-           if (satBadge) satBadge.classList.remove('hidden');
+           img.setAttribute('data-state', 'sat');
+           if (btnLabel) btnLabel.textContent = '📸 Field';
+           if (badge) badge.outerHTML = `<span id="photoBadge-${id}" class="badge bg-emerald-600/95 text-white border border-emerald-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-satellite text-[10px]"></i> 🛰️ 0.3M ORTHO (NOV 2026)</span>`;
          }
        }
 
@@ -1504,7 +1732,12 @@
        function switchDossierSatLayer(id, layer) {
          const p = allProperties.find(x => x.id === id);
          const img = document.getElementById('dossierSatMainImg');
-         if (p && img) {
+         if (!p || !img) return;
+         if (layer === 'ground') {
+           img.src = p.imageUrl;
+         } else if (layer === 'topo') {
+           img.src = p.topoUrl || getSatelliteUrl(p, 'topo');
+         } else {
            img.src = getSatelliteUrl(p, layer);
          }
        }
