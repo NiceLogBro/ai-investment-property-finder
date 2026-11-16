@@ -229,7 +229,7 @@
         <!-- Search Input -->
         <div class="md:col-span-6 relative">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
-          <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search 100 properties: location, soil series, crop (e.g. Mango, Truffle, Pecan), APN, or business idea..."
+          <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search all properties: location, soil series, crop (e.g. Mango, Truffle, Pecan), APN, or business idea..."
             class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition">
         </div>
 
@@ -797,6 +797,13 @@
     let activeVariant = '';
     const PROPERTY_VARIANTS = [
       {k:'', label:'All Types', icon:'🏞️'},
+      {k:'residential|single-family|fix-and-flip|short-term-rental', label:'Residential Homes', icon:'🏠'},
+      {k:'small-multifamily|duplex|triplex|fourplex', label:'Duplex–Fourplex', icon:'🏘️'},
+      {k:'multifamily|apartment|mobile-home-park', label:'Apartments & Mobile Home Parks', icon:'🏢'},
+      {k:'commercial|retail|office|medical-office|mixed-use|car-wash|convenience', label:'Commercial Buildings', icon:'🏬'},
+      {k:'industrial|warehouse|flex|self-storage', label:'Industrial & Self-Storage', icon:'🏭'},
+      {k:'hospitality|hotel|motel', label:'Hotels & Motels', icon:'🏨'},
+      {k:'land|development|infill|lots', label:'Development Land', icon:'📐'},
       {k:'farm|crop|acreage|agricultural|prairie', label:'Farmland', icon:'🌾'},
       {k:'orchard|pecan|apple|citrus|avocado|mango|guava|date|nut|fruit', label:'Orchards', icon:'🍎'},
       {k:'vineyard|grape|wine|viney', label:'Vineyards', icon:'🍇'},
@@ -824,7 +831,7 @@
     function variantMatches(p) {
       if (!activeVariant) return true;
       const re = new RegExp(activeVariant, 'i');
-      const hay = [p.title, p.propertyType, p.currentCondition, (p.tags||[]).join(' '),
+      const hay = [p.title, p.propertyType, p.assetClass, p.currentCondition, (p.tags||[]).join(' '),
         (p.suitableCrops||[]).map(c=>c.cropName).join(' '), (p.businessIdeas||[]).map(b=>b.name).join(' ')].join(' ');
       return re.test(hay);
     }
@@ -912,14 +919,47 @@
         {t:'Contractor Yard / RV Storage Operator', inc:'$50k–$160k', cost:'$30k–$100k', why:'Low-labor income on transition land', kw:'rv'}
       ]
     };
+    const CLASS_CAREERS = {
+      'residential|single-family|fix-and-flip|short-term-rental': [
+        {t:'Rental Property Investor / Landlord', inc:'$30k–$150k', cost:'$25k–$90k down', why:'Rent minus costs; leverage builds equity', kw:'residential'},
+        {t:'Fix-and-Flip Contractor / Investor', inc:'$40k–$200k', cost:'$40k–$150k', why:'Profit per project; depends on rehab skill and local resale market', kw:'residential'},
+        {t:'Short-Term Rental Operator', inc:'$30k–$140k', cost:'$30k–$120k', why:'Higher revenue than long-term rent; check local STR rules', kw:'residential'},
+        {t:'Property Manager', inc:'$40k–$110k', cost:'$5k–$25k', why:'Recurring fees from investors in the area', kw:'residential'}],
+      'multifamily|apartment|mobile-home-park': [
+        {t:'Apartment Owner-Operator', inc:'$50k–$300k', cost:'$150k–$1M+ equity', why:'Scale and forced appreciation via NOI growth', kw:'multifamily'},
+        {t:'Mobile Home Park Operator', inc:'$40k–$200k', cost:'$100k–$500k', why:'Lot rent with low turnover; infrastructure risk', kw:'multifamily'},
+        {t:'Syndicator / Real Estate Sponsor', inc:'$60k–$400k', cost:'$10k–$50k', why:'Fees plus promote; requires investor trust and compliance', kw:'multifamily'},
+        {t:'Asset / Property Management Firm Owner', inc:'$60k–$250k', cost:'$15k–$60k', why:'Fees per unit managed', kw:'multifamily'}],
+      'commercial|retail|office|medical-office|mixed-use|car-wash|convenience': [
+        {t:'Commercial Landlord (NNN / retail / office)', inc:'$50k–$300k', cost:'$100k–$600k equity', why:'Long leases and tenant-paid expenses', kw:'commercial'},
+        {t:'Owner-User Business Operator', inc:'$50k–$250k', cost:'$80k–$400k', why:'Own your building; avoid rent', kw:'commercial'},
+        {t:'Car Wash / Convenience Operator', inc:'$60k–$250k', cost:'$150k–$800k', why:'Cash flow business plus real estate', kw:'commercial'},
+        {t:'Leasing / Commercial Broker', inc:'$40k–$200k', cost:'$5k–$20k', why:'Commissions on lease-ups', kw:'commercial'}],
+      'industrial|warehouse|flex|self-storage': [
+        {t:'Self-Storage Owner-Operator', inc:'$40k–$200k', cost:'$100k–$600k', why:'Low labor, steady demand; watch local oversupply', kw:'industrial'},
+        {t:'Flex / Warehouse Landlord', inc:'$40k–$200k', cost:'$80k–$400k', why:'Small-bay tenants pay premium rent per sq ft', kw:'industrial'},
+        {t:'Contractor / Equipment Yard Lessor', inc:'$30k–$120k', cost:'$40k–$150k', why:'Low-build outdoor storage rental', kw:'industrial'},
+        {t:'Last-Mile Logistics Operator', inc:'$50k–$250k', cost:'$60k–$300k', why:'E-commerce delivery hub demand', kw:'industrial'}],
+      'hospitality|hotel|motel': [
+        {t:'Hotel / Motel Owner-Operator', inc:'$40k–$250k', cost:'$150k–$900k', why:'High operating leverage; management intensive', kw:'hospitality'},
+        {t:'Extended-Stay / Workforce Housing Operator', inc:'$40k–$180k', cost:'$100k–$500k', why:'Longer stays reduce turnover costs', kw:'hospitality'},
+        {t:'Boutique Lodging Brand Founder', inc:'$40k–$220k', cost:'$100k–$600k', why:'Premium rates in tourist markets', kw:'hospitality'},
+        {t:'Hospitality Asset Manager', inc:'$60k–$180k', cost:'$10k–$40k', why:'Fees for running hotels for owners', kw:'hospitality'}],
+      'land|development|infill|lots': [
+        {t:'Land Developer / Lot Subdivider', inc:'$50k–$400k', cost:'$80k–$500k', why:'Entitlement and sale spread; long timelines and permit risk', kw:'land'},
+        {t:'Build-to-Rent Developer', inc:'$50k–$300k', cost:'$150k–$800k', why:'Create rental income from new homes', kw:'land'},
+        {t:'Spec Home Builder', inc:'$50k–$250k', cost:'$100k–$500k', why:'Margin per house; sensitive to rates and costs', kw:'land'},
+        {t:'Land Banker / Wholesaler', inc:'$30k–$150k', cost:'$10k–$80k', why:'Buy ahead of growth; low carry cost', kw:'land'}]
+    };
     function renderCareers() {
       const grid = document.getElementById('careersGrid'); if (!grid) return;
       const s = activeRegion || '';
-      const list = CAREERS[s] || CAREERS[''];
+      const classList = CLASS_CAREERS[activeVariant];
+      const list = classList || CAREERS[s] || CAREERS[''];
       const t = document.getElementById('careersTitle');
-      if (t) t.textContent = s ? `Profitable careers in ${STATE_NAMES[s] || s}` : 'Profitable careers across the US';
+      if (t) t.textContent = classList ? 'Careers & income paths for this property type' : (s ? `Profitable careers in ${STATE_NAMES[s] || s}` : 'Profitable careers across the US');
       grid.innerHTML = list.map(c => {
-        const re = new RegExp(PROPERTY_VARIANTS.find(v => v.k.split('|').includes(c.kw))?.k || c.kw, 'i');
+        const re = new RegExp(classList ? activeVariant : (PROPERTY_VARIANTS.find(v => v.k.split('|').includes(c.kw))?.k || c.kw), 'i');
         const n = allProperties.filter(p => (!s || p.state === s) && re.test([p.title,p.propertyType,(p.tags||[]).join(' '),(p.suitableCrops||[]).map(x=>x.cropName).join(' '),(p.businessIdeas||[]).map(b=>b.name).join(' ')].join(' '))).length;
         return `<div class="rounded-2xl border border-slate-200 p-4 bg-slate-50/60 hover:border-emerald-300 transition flex flex-col justify-between">
           <div><h3 class="font-black text-sm text-slate-900 mb-1">${c.t}</h3><p class="text-[11px] text-slate-500 mb-3">${c.why}</p>
@@ -934,6 +974,19 @@
       document.getElementById('gridContainer').scrollIntoView({behavior:'smooth', block:'start'});
     }
     renderVariantChips();
+
+    // ===== DYNAMIC STATES (residential/commercial metros) =====
+    Object.assign(STATE_NAMES, {GA:'Georgia',TN:'Tennessee',IN:'Indiana',OH:'Ohio',MI:'Michigan',MO:'Missouri',AL:'Alabama',OK:'Oklahoma',NV:'Nevada',ID:'Idaho',UT:'Utah',CO:'Colorado',KY:'Kentucky',NY:'New York',MD:'Maryland'});
+    (function addDynamicStates() {
+      const have = new Set(Array.from(document.querySelectorAll('.region-chip')).map(b => b.getAttribute('data-state')));
+      const chipHost = document.querySelector('.region-chip')?.parentElement;
+      const sel = document.getElementById('heroState');
+      Array.from(new Set(allProperties.map(p => p.state))).sort().forEach(st => {
+        if (have.has(st)) return;
+        if (chipHost) { const b = document.createElement('button'); b.setAttribute('onclick', `setRegionFilter('${st}')`); b.setAttribute('data-state', st); b.className = 'region-chip px-3 py-1 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition'; b.textContent = STATE_NAMES[st] || st; chipHost.appendChild(b); }
+        if (sel && !Array.from(sel.options).some(o => o.value === st)) { const o = document.createElement('option'); o.value = st; o.textContent = STATE_NAMES[st] || st; sel.appendChild(o); }
+      });
+    })();
 
     let globalPhotoMode = 'satellite'; // 'satellite' (Accurate Actual Parcel Ortho by default), 'ground', or 'split'
     let isCanvasMaximized = false;
@@ -979,6 +1032,9 @@
       applyFilters();
     }
 
+    function sampleBadge(p) {
+      return p.dataQuality === 'modeled-sample' ? '<span class="badge bg-slate-800/90 text-amber-300 border border-amber-400/60 font-bold text-[9px]">MODELED SAMPLE · VERIFY</span>' : '';
+    }
     function renderCards(list) {
       const container = document.getElementById('gridContainer');
       if (list.length === 0) {
@@ -1049,6 +1105,7 @@
                     ${p.distressType}
                   </span>
                   ${badgeHtml}
+                  ${sampleBadge(p)}
                 </div>
                 <div class="flex items-center gap-1.5">
                   <button onclick="cycleCardPhoto('${p.id}', event)" title="Cycle Photos (Satellite / Field / Topo)" class="px-2.5 py-1 rounded-xl bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-sm border border-emerald-400/50 text-[10px] font-black flex items-center gap-1 shadow-sm transition hover:border-emerald-300">
