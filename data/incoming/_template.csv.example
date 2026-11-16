@@ -1,0 +1,2 @@
+title,address,city,state,zip,county,asset_class,property_type,price,arv,units,sqft,acres,cap_rate,lat,lng,distress,image_url,source_url,notes
+"Example: 4-Unit Rental",123 Example St,Memphis,TN,38104,Shelby County,Residential,Duplex / Triplex / Fourplex,310000,420000,4,3600,0.3,8.4,35.13,-90.01,Motivated Seller,,https://example.com/listing,Replace this row with a real listing
