@@ -90,7 +90,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-97.526723,30.404577,-97.511077,30.420223&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-97.526723,30.404577,-97.511077,30.420223&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@30.4124,-97.5189,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.526723,30.404577,-97.511077,30.420223&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Agricultural / Future Industrial Field Terroir",
+        "subtitle": "Manor, TX \u2022 Top Soil: Houston Black Clay",
+        "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-97.526723,30.404577,-97.511077,30.420223&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-fl-redland-2026",
@@ -107,7 +133,7 @@
     "acreage": 18.2,
     "propertyType": "Specialty Tropical Orchard",
     "currentCondition": "Mature Haas & Monroe avocado trees + mamey sapote; micro-jet irrigation installed",
-    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "High-value Miami-Dade Redland agricultural preserve. Back taxes of $145,000 for 18.2 acres with mature fruit canopy producing $14,000/acre gross revenue at local packing houses. Protected agricultural zoning with ultra-low greenbelt tax status.",
     "tags": [
       "Tax Deed",
@@ -183,7 +209,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-80.533219,25.529081,-80.522981,25.539319&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-80.533219,25.529081,-80.522981,25.539319&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@25.5342,-80.5281,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-80.533219,25.529081,-80.522981,25.539319&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Specialty Tropical Orchard Field Terroir",
+        "subtitle": "Homestead, FL \u2022 Top Soil: Krome Very Gravelly Loam",
+        "url": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-80.533219,25.529081,-80.522981,25.539319&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-hi-kona-2026",
@@ -200,7 +252,7 @@
     "acreage": 24.8,
     "propertyType": "High-Altitude Coffee & Macadamia",
     "currentCondition": "Elevation 1,450 ft, organic Kona Typica plantings, natural afternoon cloud cover",
-    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "World-renowned Kona Coffee Belt microclimate. Bank default notice issued for $295,000 note balance against $850,000 fee simple appraisal. Premium estate green bean sales command $42-$65/lb with zero mainland import tariffs.",
     "tags": [
       "Pre-Foreclosure",
@@ -276,7 +328,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-155.904376,19.487224,-155.892424,19.499176&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-155.904376,19.487224,-155.892424,19.499176&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@19.4932,-155.8984,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-155.904376,19.487224,-155.892424,19.499176&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified High-Altitude Coffee & Macadamia Field Terroir",
+        "subtitle": "Captain Cook, HI \u2022 Top Soil: Kona Extremely Stony Muck (Volcanic Andisol)",
+        "url": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-155.904376,19.487224,-155.892424,19.499176&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-ca-kern-2026",
@@ -363,7 +441,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-119.257875,35.477425,-119.238525,35.496775&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-119.257875,35.477425,-119.238525,35.496775&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@35.4871,-119.2482,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.257875,35.477425,-119.238525,35.496775&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Agrivoltaic & Tree Nut Orchard Field Terroir",
+        "subtitle": "Bakersfield, CA \u2022 Top Soil: Milham Sandy Loam",
+        "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-119.257875,35.477425,-119.238525,35.496775&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-wa-yakima-2026",
@@ -380,7 +484,7 @@
     "acreage": 35.0,
     "propertyType": "Trellised Fruit Orchard",
     "currentCondition": "V-trellis infrastructure, frost fans installed, gravity pressurized canal head",
-    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1579613832035-349b1a134a58?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Senior Roza irrigation assessment default. Opening bid $185,000 for 35 acres of high-density Honeycrisp apples and Rainier cherries. Washington State senior water rights deliver 3.5 acre-feet/acre guaranteed delivery.",
     "tags": [
       "Irrigation Lien",
@@ -450,7 +554,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-120.019599,46.314701,-120.005401,46.328899&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-120.019599,46.314701,-120.005401,46.328899&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@46.3218,-120.0125,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.019599,46.314701,-120.005401,46.328899&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Trellised Fruit Orchard Field Terroir",
+        "subtitle": "Sunnyside, WA \u2022 Top Soil: Warden Silt Loam",
+        "url": "https://images.unsplash.com/photo-1579613832035-349b1a134a58?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-120.019599,46.314701,-120.005401,46.328899&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-az-maricopa-2026",
@@ -467,7 +597,7 @@
     "acreage": 50.0,
     "propertyType": "Agrihood / Irrigated Nut Grove",
     "currentCondition": "2 irrigation wells (1,200 GPM), grandfathered groundwater rights (IGFR)",
-    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Judicial foreclosure against defaulted commercial investment entity. 50 contiguous acres located inside Phoenix western expansion path. Grandfathered Arizona water rights allow unrestricted irrigation for Western Schley pecans or CEA hydroponics.",
     "tags": [
       "Sheriff Auction",
@@ -537,7 +667,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-112.950585,33.482715,-112.933615,33.499685&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-112.950585,33.482715,-112.933615,33.499685&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@33.4912,-112.9421,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.950585,33.482715,-112.933615,33.499685&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Agrihood / Irrigated Nut Grove Field Terroir",
+        "subtitle": "Tonopah, AZ \u2022 Top Soil: Avondale Clay Loam",
+        "url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-112.950585,33.482715,-112.933615,33.499685&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-fl-plantcity-2026",
@@ -554,7 +710,7 @@
     "acreage": 28.4,
     "propertyType": "Winter Strawberry & Bell Pepper",
     "currentCondition": "Tiled drainage, drip fertigation, SWFWMD water use permit in place",
-    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Winter capital of US strawberry production. Tax certificate default on 28.4 high-elevation acres. SWFWMD consumptive water use permit valid through 2034. Winter fresh berries achieve off-season pricing of $24,000/acre.",
     "tags": [
       "Tax Certificate",
@@ -624,7 +780,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-82.154595,28.025105,-82.141805,28.037895&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-82.154595,28.025105,-82.141805,28.037895&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@28.0315,-82.1482,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.154595,28.025105,-82.141805,28.037895&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Winter Strawberry & Bell Pepper Field Terroir",
+        "subtitle": "Plant City, FL \u2022 Top Soil: Seffner Fine Sand",
+        "url": "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-82.154595,28.025105,-82.141805,28.037895&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-tx-georgetown-2026",
@@ -641,7 +823,7 @@
     "acreage": 38.0,
     "propertyType": "Ag / Industrial Transition",
     "currentCondition": "Paved road frontage, high-speed 3-phase electric at perimeter",
-    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Default under $225,000 private deed of trust. Williamson County is one of America's fastest growing tech corridors. 38 acres with agricultural tax valuation and heavy power capacity for vertical farming or equipment laydown.",
     "tags": [
       "Deed of Trust Sale",
@@ -711,7 +893,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-97.649197,30.676703,-97.634403,30.691497&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-97.649197,30.676703,-97.634403,30.691497&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@30.6841,-97.6418,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.649197,30.676703,-97.634403,30.691497&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Ag / Industrial Transition Field Terroir",
+        "subtitle": "Georgetown, TX \u2022 Top Soil: Austin Silty Clay",
+        "url": "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-97.649197,30.676703,-97.634403,30.691497&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-hi-kula-2026",
@@ -728,7 +936,7 @@
     "acreage": 15.6,
     "propertyType": "Upcountry Volcanic Microclimate",
     "currentCondition": "Elevation 3,200 ft, mild temperate climate, organic certified sweet onion soil",
-    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Prestigious Kula Upcountry Maui farming district. Tax default judgment of $310,000 for 15.6 acres of world-famous Kula volcanic soil. Renowned for Maui Kula Onions, organic heirloom brassicas, and exotic protea blossoms supplied to high-end resorts.",
     "tags": [
       "Tax Default",
@@ -804,7 +1012,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-156.33884,20.77646,-156.32936,20.78594&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-156.33884,20.77646,-156.32936,20.78594&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@20.7812,-156.3341,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-156.33884,20.77646,-156.32936,20.78594&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Upcountry Volcanic Microclimate Field Terroir",
+        "subtitle": "Kula, HI \u2022 Top Soil: Kula Loam (Volcanic Ash / Andisol)",
+        "url": "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-156.33884,20.77646,-156.32936,20.78594&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-ca-fresno-2026",
@@ -821,7 +1055,7 @@
     "acreage": 80.0,
     "propertyType": "Citrus & Recharge Basin",
     "currentCondition": "Cara Cara & Navel orange blocks, dual recharge turnouts from Kings River",
-    "imageUrl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Prime Kings River alluvial belt. Secured creditor auction with $420,000 opening bid for 80 acres of producing red-fleshed Cara Cara navels with on-site groundwater recharge basin capable of banking 300 acre-feet per season.",
     "tags": [
       "Creditor Auction",
@@ -891,7 +1125,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-119.458833,36.681667,-119.437367,36.703133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-119.458833,36.681667,-119.437367,36.703133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@36.6924,-119.4481,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.458833,36.681667,-119.437367,36.703133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Citrus & Recharge Basin Field Terroir",
+        "subtitle": "Reedley, CA \u2022 Top Soil: Hanford Sandy Loam",
+        "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-119.458833,36.681667,-119.437367,36.703133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-wa-chelan-2026",
@@ -908,7 +1168,7 @@
     "acreage": 22.0,
     "propertyType": "Certified Organic Orchard",
     "currentCondition": "Certified WSDA organic since 2018, Anjou & Bartlett pears, micro-sprinklers",
-    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Protected canyon pocket orchard along Wenatchee River. Judicial decree sale at $160,000 for 22 acres of fully certified organic pears. Pristine mountain runoff water rights with zero SGMA curtailment risk.",
     "tags": [
       "Judicial Foreclosure",
@@ -978,7 +1238,33 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-120.518028,47.516172,-120.506772,47.527428&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-120.518028,47.516172,-120.506772,47.527428&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@47.5218,-120.5124,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.518028,47.516172,-120.506772,47.527428&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Certified Organic Orchard Field Terroir",
+        "subtitle": "Cashmere, WA \u2022 Top Soil: Cashmont Sandy Loam",
+        "url": "https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-120.518028,47.516172,-120.506772,47.527428&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   },
   {
     "id": "live-az-pinal-2026",
@@ -995,7 +1281,7 @@
     "acreage": 45.0,
     "propertyType": "Forage & Utility Solar Ground Lease",
     "currentCondition": "Laser-leveled flood irrigation, adjacent to 69kV transmission line",
-    "imageUrl": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+    "imageUrl": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
     "summaryPitch": "Strategic solar corridor between Phoenix and Tucson. Tax lien sale opening at $195,000 for 45 leveled acres. Direct frontage to regional transmission line makes this an ideal candidate for utility battery energy storage (BESS) lease at $1,800/acre/year.",
     "tags": [
       "Tax Lien Sale",
@@ -1065,6 +1351,32 @@
       },
       "sunElevation": "42.1\u00b0",
       "radiometric": "BOA Surface Reflectance L2A"
-    }
+    },
+    "usgsSatelliteUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=-111.59225,32.74605,-111.57615,32.76215&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "topoUrl": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-111.59225,32.74605,-111.57615,32.76215&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "googleEarthUrl": "https://earth.google.com/web/@32.7541,-111.5842,500a,1000d,35y,0h,45t,0r",
+    "photoGallery": [
+      {
+        "title": "Sub-Meter Aerial Satellite Ortho",
+        "subtitle": "Copernicus Sentinel-2B / MSI & NAIP Ortho",
+        "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-111.59225,32.74605,-111.57615,32.76215&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "0.3M ORTHO \u2022 NOV 2026 PASS",
+        "type": "satellite"
+      },
+      {
+        "title": "Verified Forage & Utility Solar Ground Lease Field Terroir",
+        "subtitle": "Eloy, AZ \u2022 Top Soil: Mohall Loam",
+        "url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+        "badge": "VERIFIED GROUND PHOTO",
+        "type": "ground"
+      },
+      {
+        "title": "USGS National Topographic Elevation Map",
+        "subtitle": "USGS 7.5-Minute Quadrangle Drainage & Elevation Contours",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=-111.59225,32.74605,-111.57615,32.76215&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+        "badge": "USGS TOPO ELEVATION",
+        "type": "topo"
+      }
+    ]
   }
 ]
