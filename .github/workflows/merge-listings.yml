@@ -1,0 +1,21 @@
+name: Merge incoming listings
+on:
+  push:
+    paths: ['data/incoming/*.csv']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python merge_listings.py
+      - name: Commit merged dataset
+        run: |
+          git config user.name "terrayield-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add cloudflare/src/properties_extra.json
+          git diff --cached --quiet || git commit -m "Merge incoming listings" && git push
