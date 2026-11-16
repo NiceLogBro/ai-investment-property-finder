@@ -84,7 +84,7 @@
         "soilPhPreference": "7.0 - 8.2",
         "soilTextureFit": "Alkaline clay with deep profile",
         "marketDemandRating": "Regional Direct-to-Consumer",
-        "agronomicNotes": "100% resistant to Pierce’s Disease, ideal for Central Texas Hill Country wine blending."
+        "agronomicNotes": "100% resistant to Pierce\u2019s Disease, ideal for Central Texas Hill Country wine blending."
       }
     ],
     "zoning": {
@@ -194,7 +194,7 @@
         "paybackPeriodYears": 1.6,
         "roiPercentage": 60.9,
         "whyUniqueToArea": "Direct weekend route for Austin urbanites heading to Bastrop and Round Top antique trails; 1-D-1 ag exemption preserves low property tax base while operating a farm brewery under Texas TABC SB-1210 rules.",
-        "keyRegulatoryHurdle": "TABC Brewer’s License with farm-winery exemption + TCEQ on-site septic facility (OSSF) engineered system.",
+        "keyRegulatoryHurdle": "TABC Brewer\u2019s License with farm-winery exemption + TCEQ on-site septic facility (OSSF) engineered system.",
         "citations": [
           {
             "title": "Texas A&M AgriLife Agritourism & 1-D-1 Valuation Legal Handbook",
@@ -295,7 +295,24 @@
         "applicationWindow": "Biannual rounds (March and October deadlines)",
         "officialUrl": "https://www.texasagriculture.gov/Grants-Services/Young-Farmer-Grant"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.523547,30.336953,-97.513253,30.347247&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -97.523547,
+        "miny": 30.336953,
+        "maxx": -97.513253,
+        "maxy": 30.347247
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-sonoma-russian-river",
@@ -346,7 +363,7 @@
     },
     "suitableCrops": [
       {
-        "cropName": "French Périgord Black Truffles (Tuber melanosporum)",
+        "cropName": "French P\u00e9rigord Black Truffles (Tuber melanosporum)",
         "scientificFamily": "Tuberaceae / Betulaceae host",
         "suitabilityScore": 98,
         "harvestWindow": "December - February",
@@ -575,7 +592,24 @@
         "applicationWindow": "Annual winter/spring solicitation",
         "officialUrl": "https://www.cdfa.ca.gov/oefi/healthysoils/"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-122.898343,38.578957,-122.889857,38.587443&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.4%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -122.898343,
+        "miny": 38.578957,
+        "maxx": -122.889857,
+        "maxy": 38.587443
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-yakima-orchard",
@@ -831,7 +865,24 @@
         "applicationWindow": "Annual cycle (January concept deadlines)",
         "officialUrl": "https://agr.wa.gov/services/grants/specialty-crop-block-grant"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.185977,46.394523,-120.170423,46.410077&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.2%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -120.185977,
+        "miny": 46.394523,
+        "maxx": -120.170423,
+        "maxy": 46.410077
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-florida-citrus",
@@ -968,7 +1019,7 @@
         "estAnnualNOI": 175000,
         "paybackPeriodYears": 0.8,
         "roiPercentage": 129.6,
-        "whyUniqueToArea": "Direct access to US-27 tourist and freight corridor with 28,000 daily vehicle count. Lake County is Florida’s hub for high-margin specimen plant propagation.",
+        "whyUniqueToArea": "Direct access to US-27 tourist and freight corridor with 28,000 daily vehicle count. Lake County is Florida\u2019s hub for high-margin specimen plant propagation.",
         "keyRegulatoryHurdle": "FDACS Nursery Certificate of Registration and BMP water stewardship filing.",
         "citations": [
           {
@@ -1070,7 +1121,24 @@
         "applicationWindow": "Continuous state fiscal year enrollment",
         "officialUrl": "https://www.fdacs.gov/Agriculture-Industry/Water/Agricultural-Best-Management-Practices"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-81.755878,28.523422,-81.746522,28.532778&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.8%",
+      "ndviVigor": "0.73 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -81.755878,
+        "miny": 28.523422,
+        "maxx": -81.746522,
+        "maxy": 28.532778
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-lancaster-pa",
@@ -1302,7 +1370,24 @@
         "applicationWindow": "Continuous quarterly review cycles",
         "officialUrl": "https://dced.pa.gov/programs/first-industries-fund-fif/"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-76.189097,39.975403,-76.175103,39.989397&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.2%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -76.189097,
+        "miny": 39.975403,
+        "maxx": -76.175103,
+        "maxy": 39.989397
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-maricopa-buckeye",
@@ -1368,8 +1453,8 @@
         "cropName": "Drought-Resilient Agave tequilana (Blue Agave)",
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 93,
-        "harvestWindow": "6-year piña harvest cycle",
-        "estYieldPerAcre": "24 tons piñas / acre amortized",
+        "harvestWindow": "6-year pi\u00f1a harvest cycle",
+        "estYieldPerAcre": "24 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 18000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -1539,7 +1624,24 @@
         "applicationWindow": "Biannual grant windows (Spring and Fall)",
         "officialUrl": "https://agriculture.az.gov/grants"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.590506,33.364794,-112.577694,33.377606&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -112.590506,
+        "miny": 33.364794,
+        "maxx": -112.577694,
+        "maxy": 33.377606
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-asheville-nc",
@@ -1603,7 +1705,7 @@
         "agronomicNotes": "Wild-simulated Appalachian ginseng commands $600-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Log-Grown Gourmet Lion’s Mane & Shiitake Mushrooms",
+        "cropName": "Log-Grown Gourmet Lion\u2019s Mane & Shiitake Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 95,
         "harvestWindow": "April - November",
@@ -1613,7 +1715,7 @@
         "soilPhPreference": "5.0 - 6.2",
         "soilTextureFit": "Thrives in shaded hardwood understory with high natural humidity",
         "marketDemandRating": "Regional Direct-to-Consumer",
-        "agronomicNotes": "Asheville’s thriving culinary scene buys fresh local mushrooms at $12-$16/lb wholesale."
+        "agronomicNotes": "Asheville\u2019s thriving culinary scene buys fresh local mushrooms at $12-$16/lb wholesale."
       }
     ],
     "zoning": {
@@ -1770,7 +1872,24 @@
         "applicationWindow": "Annual fall solicitation (typically October - December)",
         "officialUrl": "https://www.ncadfp.org/"
       }
-    ]
+    ],
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.567728,35.713772,-82.556472,35.725028&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.85 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -82.567728,
+        "miny": 35.713772,
+        "maxx": -82.556472,
+        "maxy": 35.725028
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
+    }
   },
   {
     "id": "prop-gen-101",
@@ -1998,6 +2117,23 @@
       "irr5Year": 41.1,
       "lienToValueRatio": 0.03,
       "equitySpreadDiscount": 33.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-88.898988,25.361012,-88.881012,25.378988&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.4%",
+      "ndviVigor": "0.71 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -88.898988,
+        "miny": 25.361012,
+        "maxx": -88.881012,
+        "maxy": 25.378988
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -2254,6 +2390,23 @@
       "irr5Year": 29.3,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 37.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-86.789555,26.730445,-86.770445,26.749555&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.8%",
+      "ndviVigor": "0.85 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -86.789555,
+        "miny": 26.730445,
+        "maxx": -86.770445,
+        "maxy": 26.749555
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -2496,6 +2649,23 @@
       "irr5Year": 20.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 41.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-84.68009,28.09991,-84.65991,28.12009&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.2%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -84.68009,
+        "miny": 28.09991,
+        "maxx": -84.65991,
+        "maxy": 28.12009
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -2746,6 +2916,23 @@
       "irr5Year": 30.8,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 45
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.570598,29.469402,-82.549402,29.490598&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.82 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -82.570598,
+        "miny": 29.469402,
+        "maxx": -82.549402,
+        "maxy": 29.490598
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -2989,6 +3176,23 @@
       "irr5Year": 396.5,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 48.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-80.453,30.847,-80.447,30.853&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.5%",
+      "ndviVigor": "0.66 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -80.453,
+        "miny": 30.847,
+        "maxx": -80.447,
+        "maxy": 30.853
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -3217,6 +3421,23 @@
       "irr5Year": 122,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 52.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-78.34426,32.21574,-78.33574,32.22426&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.9%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -78.34426,
+        "miny": 32.21574,
+        "maxx": -78.33574,
+        "maxy": 32.22426
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -3279,7 +3500,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 91,
         "harvestWindow": "November - March",
@@ -3444,6 +3665,23 @@
       "irr5Year": 110.3,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 32.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-121.235353,33.584647,-121.224647,33.595353&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.3%",
+      "ndviVigor": "0.63 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -121.235353,
+        "miny": 33.584647,
+        "maxx": -121.224647,
+        "maxy": 33.595353
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -3510,7 +3748,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 92,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -3671,6 +3909,23 @@
       "irr5Year": 100.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 35.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.126258,34.953742,-119.113742,34.966258&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.7%",
+      "ndviVigor": "0.77 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.126258,
+        "miny": 34.953742,
+        "maxx": -119.113742,
+        "maxy": 34.966258
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -3899,6 +4154,23 @@
       "irr5Year": 72.2,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 39.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-117.017048,36.322952,-117.002952,36.337048&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.1%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -117.017048,
+        "miny": 36.322952,
+        "maxx": -117.002952,
+        "maxy": 36.337048
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -4155,6 +4427,23 @@
       "irr5Year": 33.7,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 43.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-114.907758,37.692242,-114.892242,37.707758&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.5%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -114.907758,
+        "miny": 37.692242,
+        "maxx": -114.892242,
+        "maxy": 37.707758
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -4397,6 +4686,23 @@
       "irr5Year": 25.8,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 46.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.798409,39.061591,-112.781591,39.078409&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.3%",
+      "ndviVigor": "0.58 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -112.798409,
+        "miny": 39.061591,
+        "maxx": -112.781591,
+        "maxy": 39.078409
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -4647,6 +4953,23 @@
       "irr5Year": 30.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 50.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-110.689012,40.430988,-110.670988,40.449012&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.7%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -110.689012,
+        "miny": 40.430988,
+        "maxx": -110.670988,
+        "maxy": 40.449012
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -4890,6 +5213,23 @@
       "irr5Year": 36.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 54.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-108.579577,41.800423,-108.560423,41.819577&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.1%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -108.579577,
+        "miny": 41.800423,
+        "maxx": -108.560423,
+        "maxy": 41.819577
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -5118,6 +5458,23 @@
       "irr5Year": 38,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 34
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-106.470111,43.169889,-106.449889,43.190111&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.5%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -106.470111,
+        "miny": 43.169889,
+        "maxx": -106.449889,
+        "maxy": 43.190111
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -5180,7 +5537,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 88,
         "harvestWindow": "November - March",
@@ -5345,6 +5702,23 @@
       "irr5Year": 44,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 37.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-104.360618,44.539382,-104.339382,44.560618&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.9%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -104.360618,
+        "miny": 44.539382,
+        "maxx": -104.339382,
+        "maxy": 44.560618
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -5411,7 +5785,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 89,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -5580,6 +5954,23 @@
       "irr5Year": 517.2,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 41.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-102.243,45.917,-102.237,45.923&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.3%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -102.243,
+        "miny": 45.917,
+        "maxx": -102.237,
+        "maxy": 45.923
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -5808,6 +6199,23 @@
       "irr5Year": 123,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 45.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-100.13431,47.28569,-100.12569,47.29431&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.2%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -100.13431,
+        "miny": 47.28569,
+        "maxx": -100.12569,
+        "maxy": 47.29431
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -6064,6 +6472,23 @@
       "irr5Year": 49.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 48.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-98.025393,25.654607,-98.014607,25.665393&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.6%",
+      "ndviVigor": "0.74 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -98.025393,
+        "miny": 25.654607,
+        "maxx": -98.014607,
+        "maxy": 25.665393
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -6306,6 +6731,23 @@
       "irr5Year": 43.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 52.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-95.916293,27.023707,-95.903707,27.036293&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.0%",
+      "ndviVigor": "0.58 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -95.916293,
+        "miny": 27.023707,
+        "maxx": -95.903707,
+        "maxy": 27.036293
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -6556,6 +6998,23 @@
       "irr5Year": 48.3,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 32.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-93.807079,28.392921,-93.792921,28.407079&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.4%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -93.807079,
+        "miny": 28.392921,
+        "maxx": -93.792921,
+        "maxy": 28.407079
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -6807,6 +7266,23 @@
       "irr5Year": 57.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 35.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-91.697786,29.762214,-91.682214,29.777786&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.7%",
+      "ndviVigor": "0.85 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -91.697786,
+        "miny": 29.762214,
+        "maxx": -91.682214,
+        "maxy": 29.777786
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -7035,6 +7511,23 @@
       "irr5Year": 38,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 39.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-89.588434,31.131566,-89.571566,31.148434&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.1%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -89.588434,
+        "miny": 31.131566,
+        "maxx": -89.571566,
+        "maxy": 31.148434
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -7097,7 +7590,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 96,
         "harvestWindow": "November - March",
@@ -7270,6 +7763,23 @@
       "irr5Year": 44,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 43.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-87.479036,32.500964,-87.460964,32.519036&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.5%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -87.479036,
+        "miny": 32.500964,
+        "maxx": -87.460964,
+        "maxy": 32.519036
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -7336,7 +7846,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 97,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -7505,6 +8015,23 @@
       "irr5Year": 72.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 47
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-85.3696,33.8704,-85.3504,33.8896&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.4%",
+      "ndviVigor": "0.66 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -85.3696,
+        "miny": 33.8704,
+        "maxx": -85.3504,
+        "maxy": 33.8896
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -7733,6 +8260,23 @@
       "irr5Year": 37.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 50.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-83.260133,35.239867,-83.239867,35.260133&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.8%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -83.260133,
+        "miny": 35.239867,
+        "maxx": -83.239867,
+        "maxy": 35.260133
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -7989,6 +8533,23 @@
       "irr5Year": 27.6,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 54.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-81.150639,36.609361,-81.129361,36.630639&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.2%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -81.150639,
+        "miny": 36.609361,
+        "maxx": -81.129361,
+        "maxy": 36.630639
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -8231,6 +8792,23 @@
       "irr5Year": 110.8,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 34.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-79.033,37.987,-79.027,37.993&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.6%",
+      "ndviVigor": "0.77 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -79.033,
+        "miny": 37.987,
+        "maxx": -79.027,
+        "maxy": 37.993
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -8481,6 +9059,23 @@
       "irr5Year": 80.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 37.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-121.92436,39.35564,-121.91564,39.36436&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.0%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -121.92436,
+        "miny": 39.35564,
+        "maxx": -121.91564,
+        "maxy": 39.36436
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -8724,6 +9319,23 @@
       "irr5Year": 129.8,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 41.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.815433,40.724567,-119.804567,40.735433&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.4%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.815433,
+        "miny": 40.724567,
+        "maxx": -119.804567,
+        "maxy": 40.735433
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -8952,6 +9564,23 @@
       "irr5Year": 69,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 45.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-117.706327,42.093673,-117.693673,42.106327&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.3%",
+      "ndviVigor": "0.59 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -117.706327,
+        "miny": 42.093673,
+        "maxx": -117.693673,
+        "maxy": 42.106327
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -9014,7 +9643,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 93,
         "harvestWindow": "November - March",
@@ -9179,6 +9808,23 @@
       "irr5Year": 74.5,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 48.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-115.597109,43.462891,-115.582891,43.477109&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.6%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -115.597109,
+        "miny": 43.462891,
+        "maxx": -115.582891,
+        "maxy": 43.477109
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -9245,7 +9891,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 94,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -9406,6 +10052,23 @@
       "irr5Year": 75.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 52.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-113.487814,44.832186,-113.472186,44.847814&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.0%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -113.487814,
+        "miny": 44.832186,
+        "maxx": -113.472186,
+        "maxy": 44.847814
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -9634,6 +10297,23 @@
       "irr5Year": 38.9,
       "lienToValueRatio": 0.03,
       "equitySpreadDiscount": 32.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-111.37846,46.20154,-111.36154,46.21846&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.4%",
+      "ndviVigor": "0.70 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -111.37846,
+        "miny": 46.20154,
+        "maxx": -111.36154,
+        "maxy": 46.21846
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -9890,6 +10570,23 @@
       "irr5Year": 30.4,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 36
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-109.26906,47.57094,-109.25094,47.58906&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.8%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -109.26906,
+        "miny": 47.57094,
+        "maxx": -109.25094,
+        "maxy": 47.58906
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -10132,6 +10829,23 @@
       "irr5Year": 24,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 39.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-107.159622,25.940378,-107.140378,25.959622&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.2%",
+      "ndviVigor": "0.77 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -107.159622,
+        "miny": 25.940378,
+        "maxx": -107.140378,
+        "maxy": 25.959622
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -10382,6 +11096,23 @@
       "irr5Year": 28,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 43.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-105.050154,27.309846,-105.029846,27.330154&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -105.050154,
+        "miny": 27.309846,
+        "maxx": -105.029846,
+        "maxy": 27.330154
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -10625,6 +11356,23 @@
       "irr5Year": 34,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 47.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-102.940659,28.679341,-102.919341,28.700659&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.5%",
+      "ndviVigor": "0.74 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -102.940659,
+        "miny": 28.679341,
+        "maxx": -102.919341,
+        "maxy": 28.700659
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -10853,6 +11601,23 @@
       "irr5Year": 192.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 50.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-100.823,30.057,-100.817,30.063&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.9%",
+      "ndviVigor": "0.58 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -100.823,
+        "miny": 30.057,
+        "maxx": -100.817,
+        "maxy": 30.063
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -10915,7 +11680,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 90,
         "harvestWindow": "November - March",
@@ -11080,6 +11845,23 @@
       "irr5Year": 217,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 54.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-98.714409,31.425591,-98.705591,31.434409&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.3%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -98.714409,
+        "miny": 31.425591,
+        "maxx": -98.705591,
+        "maxy": 31.434409
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -11146,7 +11928,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 91,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -11315,6 +12097,23 @@
       "irr5Year": 171.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 34.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-96.605473,32.794527,-96.594527,32.805473&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.7%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -96.605473,
+        "miny": 32.794527,
+        "maxx": -96.594527,
+        "maxy": 32.805473
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -11543,6 +12342,23 @@
       "irr5Year": 69.4,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 37.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-94.496361,34.163639,-94.483639,34.176361&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.0%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -94.496361,
+        "miny": 34.163639,
+        "maxx": -94.483639,
+        "maxy": 34.176361
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -11799,6 +12615,23 @@
       "irr5Year": 35.6,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 41.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-92.38714,35.53286,-92.37286,35.54714&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.4%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -92.38714,
+        "miny": 35.53286,
+        "maxx": -92.37286,
+        "maxy": 35.54714
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -12041,6 +12874,23 @@
       "irr5Year": 25,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 45.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-90.277841,36.902159,-90.262159,36.917841&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.3%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -90.277841,
+        "miny": 36.902159,
+        "maxx": -90.262159,
+        "maxy": 36.917841
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -12291,6 +13141,23 @@
       "irr5Year": 41,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 49
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-88.168485,38.271515,-88.151515,38.288485&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.7%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -88.168485,
+        "miny": 38.271515,
+        "maxx": -88.151515,
+        "maxy": 38.288485
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -12542,6 +13409,23 @@
       "irr5Year": 49.4,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 52.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-86.059084,39.640916,-86.040916,39.659084&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.1%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -86.059084,
+        "miny": 39.640916,
+        "maxx": -86.040916,
+        "maxy": 39.659084
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -12770,6 +13654,23 @@
       "irr5Year": 34.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 32.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-83.949645,41.010355,-83.930355,41.029645&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.5%",
+      "ndviVigor": "0.78 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -83.949645,
+        "miny": 41.010355,
+        "maxx": -83.930355,
+        "maxy": 41.029645
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -12832,7 +13733,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 98,
         "harvestWindow": "November - March",
@@ -13005,6 +13906,23 @@
       "irr5Year": 39.8,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 36.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-81.840175,42.379825,-81.819825,42.400175&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.9%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -81.840175,
+        "miny": 42.379825,
+        "maxx": -81.819825,
+        "maxy": 42.400175
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -13071,7 +13989,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 88,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -13240,6 +14158,23 @@
       "irr5Year": 43,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 39.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-79.730679,43.749321,-79.709321,43.770679&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.3%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -79.730679,
+        "miny": 43.749321,
+        "maxx": -79.709321,
+        "maxy": 43.770679
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -13468,6 +14403,23 @@
       "irr5Year": 318.5,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 43.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-77.613059,45.126941,-77.606941,45.133059&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.2%",
+      "ndviVigor": "0.59 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -77.613059,
+        "miny": 45.126941,
+        "maxx": -77.606941,
+        "maxy": 45.133059
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -13724,6 +14676,23 @@
       "irr5Year": 108.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 47.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-120.504458,46.495542,-120.495542,46.504458&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.6%",
+      "ndviVigor": "0.73 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -120.504458,
+        "miny": 46.495542,
+        "maxx": -120.495542,
+        "maxy": 46.504458
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -13966,6 +14935,23 @@
       "irr5Year": 43.4,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 50.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-118.395512,47.864488,-118.384488,47.875512&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.9%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -118.395512,
+        "miny": 47.864488,
+        "maxx": -118.384488,
+        "maxy": 47.875512
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -14216,6 +15202,23 @@
       "irr5Year": 47.5,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 54.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-116.286395,26.233605,-116.273605,26.246395&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.3%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -116.286395,
+        "miny": 26.233605,
+        "maxx": -116.273605,
+        "maxy": 26.246395
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -14459,6 +15462,23 @@
       "irr5Year": 55.4,
       "lienToValueRatio": 0.03,
       "equitySpreadDiscount": 34.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-114.17717,27.60283,-114.16283,27.61717&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.7%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -114.17717,
+        "miny": 27.60283,
+        "maxx": -114.16283,
+        "maxy": 27.61717
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -14687,6 +15707,23 @@
       "irr5Year": 54.5,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 38
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.067869,28.972131,-112.052131,28.987869&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.1%",
+      "ndviVigor": "0.77 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -112.067869,
+        "miny": 28.972131,
+        "maxx": -112.052131,
+        "maxy": 28.987869
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -14749,7 +15786,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 95,
         "harvestWindow": "November - March",
@@ -14914,6 +15951,23 @@
       "irr5Year": 61.4,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 41.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-109.958511,30.341489,-109.941489,30.358511&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.5%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -109.958511,
+        "miny": 30.341489,
+        "maxx": -109.941489,
+        "maxy": 30.358511
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -14980,7 +16034,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 96,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -15141,6 +16195,23 @@
       "irr5Year": 63.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 45.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-107.849107,31.710893,-107.830893,31.729107&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.4%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -107.849107,
+        "miny": 31.710893,
+        "maxx": -107.830893,
+        "maxy": 31.729107
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -15369,6 +16440,23 @@
       "irr5Year": 34.8,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 49.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-105.739667,33.080333,-105.720333,33.099667&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.8%",
+      "ndviVigor": "0.58 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -105.739667,
+        "miny": 33.080333,
+        "maxx": -105.720333,
+        "maxy": 33.099667
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -15625,6 +16713,23 @@
       "irr5Year": 21.4,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 52.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-103.630196,34.449804,-103.609804,34.470196&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.2%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -103.630196,
+        "miny": 34.449804,
+        "maxx": -103.609804,
+        "maxy": 34.470196
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -15867,6 +16972,23 @@
       "irr5Year": 23.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 32.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-101.5207,35.8193,-101.4993,35.8407&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.6%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -101.5207,
+        "miny": 35.8193,
+        "maxx": -101.4993,
+        "maxy": 35.8407
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -16117,6 +17239,23 @@
       "irr5Year": 192.7,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 36.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-99.403129,37.196871,-99.396871,37.203129&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.0%",
+      "ndviVigor": "0.70 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -99.403129,
+        "miny": 37.196871,
+        "maxx": -99.396871,
+        "maxy": 37.203129
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -16360,6 +17499,23 @@
       "irr5Year": 144.2,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 39.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.294506,38.565494,-97.285494,38.574506&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.3%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -97.294506,
+        "miny": 38.565494,
+        "maxx": -97.285494,
+        "maxy": 38.574506
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -16588,6 +17744,23 @@
       "irr5Year": 71.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 43.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-95.185551,39.934449,-95.174449,39.945551&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.2%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -95.185551,
+        "miny": 39.934449,
+        "maxx": -95.174449,
+        "maxy": 39.945551
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -16650,7 +17823,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 92,
         "harvestWindow": "November - March",
@@ -16815,6 +17988,23 @@
       "irr5Year": 74.4,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 47.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-93.076429,41.303571,-93.063571,41.316429&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.6%",
+      "ndviVigor": "0.81 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -93.076429,
+        "miny": 41.303571,
+        "maxx": -93.063571,
+        "maxy": 41.316429
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -16881,7 +18071,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 93,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -17050,6 +18240,23 @@
       "irr5Year": 118,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 51
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-90.9672,42.6728,-90.9528,42.6872&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.0%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -90.9672,
+        "miny": 42.6728,
+        "maxx": -90.9528,
+        "maxy": 42.6872
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -17278,6 +18485,23 @@
       "irr5Year": 54.2,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 54.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-88.857896,44.042104,-88.842104,44.057896&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.4%",
+      "ndviVigor": "0.78 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -88.857896,
+        "miny": 44.042104,
+        "maxx": -88.842104,
+        "maxy": 44.057896
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -17534,6 +18758,23 @@
       "irr5Year": 30.5,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 34.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-86.748536,45.411464,-86.731464,45.428536&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.8%",
+      "ndviVigor": "0.62 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -86.748536,
+        "miny": 45.411464,
+        "maxx": -86.731464,
+        "maxy": 45.428536
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -17776,6 +19017,23 @@
       "irr5Year": 22.7,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 38.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-84.639131,46.780869,-84.620869,46.799131&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.2%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -84.639131,
+        "miny": 46.780869,
+        "maxx": -84.620869,
+        "maxy": 46.799131
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -18026,6 +19284,23 @@
       "irr5Year": 26.4,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 41.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-82.52969,25.15031,-82.51031,25.16969&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -82.52969,
+        "miny": 25.15031,
+        "maxx": -82.51031,
+        "maxy": 25.16969
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -18277,6 +19552,23 @@
       "irr5Year": 46,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 45.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-80.420218,26.519782,-80.399782,26.540218&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.5%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -80.420218,
+        "miny": 26.519782,
+        "maxx": -80.399782,
+        "maxy": 26.540218
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -18505,6 +19797,23 @@
       "irr5Year": 32.3,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 49.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-78.31072,27.88928,-78.28928,27.91072&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.9%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -78.31072,
+        "miny": 27.88928,
+        "maxx": -78.28928,
+        "maxy": 27.91072
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -18567,7 +19876,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 89,
         "harvestWindow": "November - March",
@@ -18740,6 +20049,23 @@
       "irr5Year": 309.7,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 52.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-121.193197,29.266803,-121.186803,29.273197&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.2%",
+      "ndviVigor": "0.80 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -121.193197,
+        "miny": 29.266803,
+        "maxx": -121.186803,
+        "maxy": 29.273197
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -18806,7 +20132,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 90,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -18975,6 +20301,23 @@
       "irr5Year": 195.1,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 32.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.084554,30.635446,-119.075446,30.644554&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.6%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.084554,
+        "miny": 30.635446,
+        "maxx": -119.075446,
+        "maxy": 30.644554
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -19203,6 +20546,23 @@
       "irr5Year": 72.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 36.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-116.97559,32.00441,-116.96441,32.01559&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.0%",
+      "ndviVigor": "0.78 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -116.97559,
+        "miny": 32.00441,
+        "maxx": -116.96441,
+        "maxy": 32.01559
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -19459,6 +20819,23 @@
       "irr5Year": 64.9,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 40
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-114.866462,33.373538,-114.853538,33.386462&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.4%",
+      "ndviVigor": "0.61 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -114.866462,
+        "miny": 33.373538,
+        "maxx": -114.853538,
+        "maxy": 33.386462
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -19701,6 +21078,23 @@
       "irr5Year": 32.8,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 43.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-112.75723,34.74277,-112.74277,34.75723&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.3%",
+      "ndviVigor": "0.75 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -112.75723,
+        "miny": 34.74277,
+        "maxx": -112.74277,
+        "maxy": 34.75723
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -19951,6 +21345,23 @@
       "irr5Year": 37.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 47.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-110.647924,36.112076,-110.632076,36.127924&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.7%",
+      "ndviVigor": "0.59 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -110.647924,
+        "miny": 36.112076,
+        "maxx": -110.632076,
+        "maxy": 36.127924
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -20194,6 +21605,23 @@
       "irr5Year": 45.7,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 51.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-108.538561,37.481439,-108.521439,37.498561&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.1%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -108.538561,
+        "miny": 37.481439,
+        "maxx": -108.521439,
+        "maxy": 37.498561
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -20422,6 +21850,23 @@
       "irr5Year": 32.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 54.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-106.429155,38.850845,-106.410845,38.869155&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.5%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -106.429155,
+        "miny": 38.850845,
+        "maxx": -106.410845,
+        "maxy": 38.869155
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -20484,7 +21929,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 97,
         "harvestWindow": "November - March",
@@ -20649,6 +22094,23 @@
       "irr5Year": 55.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 34.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-104.319712,40.220288,-104.300288,40.239712&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.9%",
+      "ndviVigor": "0.70 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -104.319712,
+        "miny": 40.220288,
+        "maxx": -104.300288,
+        "maxy": 40.239712
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -20715,7 +22177,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 98,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -20876,6 +22338,23 @@
       "irr5Year": 58.3,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 38.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-102.210239,41.589761,-102.189761,41.610239&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.3%",
+      "ndviVigor": "0.84 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -102.210239,
+        "miny": 41.589761,
+        "maxx": -102.189761,
+        "maxy": 41.610239
+      },
+      "sunElevation": "42.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -21104,6 +22583,23 @@
       "irr5Year": 32.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 41.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-100.10074,42.95926,-100.07926,42.98074&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.1%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -100.10074,
+        "miny": 42.95926,
+        "maxx": -100.07926,
+        "maxy": 42.98074
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -21360,6 +22856,23 @@
       "irr5Year": 106.8,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 45.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-97.983264,44.336736,-97.976736,44.343264&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 11, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.5%",
+      "ndviVigor": "0.81 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -97.983264,
+        "miny": 44.336736,
+        "maxx": -97.976736,
+        "maxy": 44.343264
+      },
+      "sunElevation": "45.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -21602,6 +23115,23 @@
       "irr5Year": 48.7,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 49.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-95.874601,45.705399,-95.865399,45.714601&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.9%",
+      "ndviVigor": "0.65 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -95.874601,
+        "miny": 45.705399,
+        "maxx": -95.865399,
+        "maxy": 45.714601
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -21852,6 +23382,23 @@
       "irr5Year": 77.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 53
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-93.765628,47.074372,-93.754372,47.085628&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.3%",
+      "ndviVigor": "0.78 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -93.765628,
+        "miny": 47.074372,
+        "maxx": -93.754372,
+        "maxy": 47.085628
+      },
+      "sunElevation": "48.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -22095,6 +23642,23 @@
       "irr5Year": 84.5,
       "lienToValueRatio": 0.03,
       "equitySpreadDiscount": 32.7
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-91.656496,25.443504,-91.643504,25.456496&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.7%",
+      "ndviVigor": "0.72 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -91.656496,
+        "miny": 25.443504,
+        "maxx": -91.643504,
+        "maxy": 25.456496
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -22323,6 +23887,23 @@
       "irr5Year": 50.6,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 36.4
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-89.54726,26.81274,-89.53274,26.82726&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 9, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.1%",
+      "ndviVigor": "0.86 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -89.54726,
+        "miny": 26.81274,
+        "maxx": -89.53274,
+        "maxy": 26.82726
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -22385,7 +23966,7 @@
         "agronomicNotes": "Grown under shaded north-facing hardwood timber; commands $700-$900/lb from Asian export buyers."
       },
       {
-        "cropName": "Gourmet Shiitake & Lion’s Mane Forest Mushrooms",
+        "cropName": "Gourmet Shiitake & Lion\u2019s Mane Forest Mushrooms",
         "scientificFamily": "Hericiaceae / Omphalotaceae",
         "suitabilityScore": 94,
         "harvestWindow": "November - March",
@@ -22550,6 +24131,23 @@
       "irr5Year": 57.2,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 40.1
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-87.437951,28.182049,-87.422049,28.197951&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 13, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.5%",
+      "ndviVigor": "0.69 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -87.437951,
+        "miny": 28.182049,
+        "maxx": -87.422049,
+        "maxy": 28.197951
+      },
+      "sunElevation": "49.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -22616,7 +24214,7 @@
         "scientificFamily": "Asparagaceae",
         "suitabilityScore": 95,
         "harvestWindow": "November - March",
-        "estYieldPerAcre": "25 tons piñas / acre amortized",
+        "estYieldPerAcre": "25 tons pi\u00f1as / acre amortized",
         "estGrossRevenuePerAcre": 19000,
         "waterRequirement": "Very Low (Dryland)",
         "soilPhPreference": "7.5 - 8.4",
@@ -22785,6 +24383,23 @@
       "irr5Year": 59.6,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 43.8
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-85.328587,29.551413,-85.311413,29.568587&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.4%",
+      "ndviVigor": "0.83 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -85.328587,
+        "miny": 29.551413,
+        "maxx": -85.311413,
+        "maxy": 29.568587
+      },
+      "sunElevation": "50.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -23013,6 +24628,23 @@
       "irr5Year": 47.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 47.5
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-83.219178,30.920822,-83.200822,30.939178&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 14, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "1.8%",
+      "ndviVigor": "0.67 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -83.219178,
+        "miny": 30.920822,
+        "maxx": -83.200822,
+        "maxy": 30.939178
+      },
+      "sunElevation": "41.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -23269,6 +24901,23 @@
       "irr5Year": 28.1,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 51.2
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-81.109734,32.290266,-81.090266,32.309734&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 10, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.2%",
+      "ndviVigor": "0.81 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -81.109734,
+        "miny": 32.290266,
+        "maxx": -81.090266,
+        "maxy": 32.309734
+      },
+      "sunElevation": "43.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -23511,6 +25160,23 @@
       "irr5Year": 21.5,
       "lienToValueRatio": 0.01,
       "equitySpreadDiscount": 54.9
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-79.00026,33.65974,-78.97974,33.68026&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.5%",
+      "ndviVigor": "0.64 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -79.00026,
+        "miny": 33.65974,
+        "maxx": -78.97974,
+        "maxy": 33.68026
+      },
+      "sunElevation": "44.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -23761,6 +25427,23 @@
       "irr5Year": 24.9,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 34.6
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-121.89076,35.02924,-121.86924,35.05076&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 12, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "2.9%",
+      "ndviVigor": "0.78 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -121.89076,
+        "miny": 35.02924,
+        "maxx": -121.86924,
+        "maxy": 35.05076
+      },
+      "sunElevation": "46.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   },
   {
@@ -24012,6 +25695,23 @@
       "irr5Year": 207.7,
       "lienToValueRatio": 0.02,
       "equitySpreadDiscount": 38.3
+    },
+    "satelliteUrl": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=-119.77333,36.40667,-119.76667,36.41333&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image",
+    "satellitePassMeta": {
+      "mission": "Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho",
+      "passDate": "Nov 8, 2026 (Same Week Pass)",
+      "captureMonth": "November 2026",
+      "resolution": "0.3m Ultra-High Res Aerial Ortho / 10m L2A MSI",
+      "cloudCover": "3.3%",
+      "ndviVigor": "0.62 (Prime Agro-Vigor)",
+      "bbox": {
+        "minx": -119.77333,
+        "miny": 36.40667,
+        "maxx": -119.76667,
+        "maxy": 36.41333
+      },
+      "sunElevation": "47.0\u00b0",
+      "radiometric": "BOA Surface Reflectance L2A"
     }
   }
 ]
