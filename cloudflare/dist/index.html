@@ -592,7 +592,7 @@
       <div class="flex items-center gap-2">
         <span class="font-extrabold text-slate-900">TerraYield AI</span>
         <span>•</span>
-        <span>100-Property Agro-Forestry, Land Grants &amp; Deep Research Legitimacy Engine</span>
+        <span>356-Property Residential, Commercial, Industrial &amp; Ag Intelligence Engine</span>
       </div>
       <div class="text-[11px] text-slate-400">
         🌴 South Florida Redland Fruit Belts • 🌺 Hawaii Volcanic Terroir • USDA NRCS Soil Survey • Grounded via Google Search &amp; Maps
@@ -662,7 +662,10 @@
         ? 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-emerald-700 shadow-sm border border-emerald-100'
         : 'flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-emerald-700 hover:bg-white/60 transition-all';
 
-      document.getElementById('currentViewLabel').textContent = view.toUpperCase();
+      const cp = document.getElementById('cardsPagination');
+      if (cp) cp.classList.toggle('hidden', view !== 'grid');
+      const cvl = document.getElementById('currentViewLabel');
+      if (cvl) cvl.textContent = view.toUpperCase();
       applyFilters();
     }
 
