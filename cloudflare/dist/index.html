@@ -25,6 +25,8 @@
     .sunset-gradient { background: linear-gradient(135deg, #F59E0B 0%, #F43F5E 50%, #7C3AED 100%); }
     .sunset-text { background: linear-gradient(135deg, #EA580C 0%, #E11D48 50%, #9333EA 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col antialiased selection:bg-rose-500 selection:text-white">
 
@@ -82,8 +84,8 @@
             <span class="text-2xl font-black tracking-tight text-slate-900">
               Terra<span class="sunset-text">Yield</span>
             </span>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-gradient-to-r from-amber-100 to-rose-100 text-rose-900 border border-rose-200">
-              100 Properties
+            <span id="headerPropBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-gradient-to-r from-amber-100 to-rose-100 text-rose-900 border border-rose-200">
+              356+ Properties
             </span>
           </div>
           <p class="text-xs text-slate-500 hidden sm:block font-medium">
@@ -183,7 +185,7 @@
         </div>
       </div>
       <div id="careersGrid" class="p-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3"></div>
-      <p class="px-5 pb-4 text-[10px] text-slate-400">Income and startup figures are illustrative planning estimates, not guarantees. Verify with local market data, BLS/USDA sources, and a licensed advisor before investing.</p>
+      <p class="px-5 pb-4 text-[10px] text-slate-400">Income &amp; startup figures are planning ranges calibrated against BLS OEWS metro wage percentiles &amp; USDA NASS state farm-operator benchmarks — not guarantees. Verify with local market comps and a licensed advisor before investing.</p>
     </section>
 
     <!-- LOOK-FOR QUICK FILTER CHIPS (SCROLLING PILL ROW) -->
@@ -390,26 +392,24 @@
       </div>
     </div>
 
-    <!-- VIEW CONTAINER: SPATIAL MAP -->
-    <div id="mapContainer" class="hidden bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
-      <div class="flex items-center justify-between mb-4">
+    <!-- VIEW CONTAINER: INTERACTIVE LEAFLET MAP -->
+    <div id="mapContainer" class="hidden bg-white rounded-3xl border border-slate-200/80 shadow-sm p-5">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div>
-          <h3 class="text-base font-extrabold text-slate-900">Spatial Geographic Heatmap</h3>
-          <p class="text-xs text-slate-500">Geocoded parcel pins cross-referenced with NRCS soil classifications and Opportunity Zones</p>
+          <h3 class="text-base font-extrabold text-slate-900">Interactive Nationwide Property Map</h3>
+          <p class="text-xs text-slate-500">Click any marker to inspect pricing, cap rate, asset class, and open the full underwriting dossier.</p>
         </div>
-        <div class="flex gap-2 text-xs">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">● High Cap (>15%)</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-bold">● Deep Discount (>45%)</span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 border border-purple-200 font-bold">● Grants ($500k+)</span>
+        <div class="flex flex-wrap gap-1.5 text-[10px] font-bold">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">● Agricultural / Land</span>
+          <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-800 border border-blue-200">● Residential</span>
+          <span class="px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 border border-purple-200">● Commercial / Industrial</span>
+          <span class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">● Multifamily / Hospitality</span>
         </div>
       </div>
-      <div id="mapCanvas" class="bg-slate-900 rounded-2xl min-h-[500px] p-6 relative overflow-hidden flex items-center justify-center">
-        <!-- Interactive SVG Geographic Radar -->
-        <div id="mapPinsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full"></div>
-      </div>
+      <div id="leafletMap" class="w-full h-[580px] rounded-2xl border border-slate-200 z-10 bg-slate-100"></div>
     </div>
 
-  </main>
+    </main>
 
   <!-- MODAL: 8-TAB PROPERTY DOSSIER -->
   <div id="dossierModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md hidden z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
@@ -422,17 +422,17 @@
         </button>
       </div>
 
-      <!-- Dossier Tabs -->
+      <!-- Dossier Tabs (Asset-Class Aware) -->
       <div class="flex overflow-x-auto border-b border-slate-200 bg-white px-6 scrollbar-none text-xs font-bold">
         <button onclick="setDossierTab('overview')" class="dossier-tab py-3 px-3 text-emerald-700 border-b-2 border-emerald-600 shrink-0" data-tab="overview">1. Deal Memo</button>
-        <button onclick="setDossierTab('satellite')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0 flex items-center gap-1.5" data-tab="satellite"><i class="fa-solid fa-satellite text-emerald-600"></i> 2. 🛰️ Satellite Recon (Nov 2026)</button>
-        <button onclick="setDossierTab('projections')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="projections">3. 5-Yr Crop ROI Calc</button>
-        <button onclick="setDossierTab('business')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="business">3. Business Ventures</button>
-        <button onclick="setDossierTab('soil')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="soil">4. Soil &amp; Food Crops</button>
-        <button onclick="setDossierTab('zoning')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="zoning">5. Zoning &amp; Regulations</button>
-        <button onclick="setDossierTab('grants')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="grants">6. Land Grants</button>
-        <button onclick="setDossierTab('underwriting')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="underwriting">7. Financials &amp; Liens</button>
-        <button onclick="setDossierTab('advisor')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="advisor">8. AI Advisor</button>
+        <button onclick="setDossierTab('satellite')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0 flex items-center gap-1.5" data-tab="satellite"><i class="fa-solid fa-satellite text-emerald-600"></i> 2. 🛰️ Satellite Recon</button>
+        <button id="dTabProj" onclick="setDossierTab('projections')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="projections">3. ROI / DSCR Calc</button>
+        <button onclick="setDossierTab('business')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="business">4. Business Ventures</button>
+        <button id="dTabSoil" onclick="setDossierTab('soil')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="soil">5. Specs &amp; FEMA Flood</button>
+        <button onclick="setDossierTab('zoning')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="zoning">6. Zoning &amp; Code</button>
+        <button id="dTabGrants" onclick="setDossierTab('grants')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="grants">7. Grants &amp; Credits</button>
+        <button onclick="setDossierTab('underwriting')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="underwriting">8. Financials &amp; Liens</button>
+        <button onclick="setDossierTab('advisor')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="advisor">9. AI Advisor</button>
       </div>
 
       <!-- Modal Body (Dynamic Tab Content) -->
@@ -636,6 +636,8 @@
             allProperties = data;
             document.getElementById('tickerPropertiesCount').textContent = allProperties.length;
             document.getElementById('totalCount').textContent = allProperties.length;
+      const hpb = document.getElementById('headerPropBadge');
+      if (hpb) hpb.textContent = allProperties.length + ' Properties';
             applyFilters();
           }
         })
@@ -1087,7 +1089,7 @@
         const isSaved = savedIds.includes(p.id);
         const isComp = compareIds.includes(p.id);
 
-        const satUrl = p.satelliteUrl || getSatelliteUrl(p, 'esri');
+        const satUrl = getSatelliteUrl(p, 'esri');
         const groundUrl = p.imageUrl;
         const topoUrl = p.topoUrl || getSatelliteUrl(p, 'topo');
 
@@ -1217,7 +1219,7 @@
                     <span class="text-emerald-700 font-bold">${topCrop.cropName ? topCrop.cropName.split(' ')[0] : 'Orchard'} · ${topCrop.estYieldPerAcre || 'High Yield'}</span>
                   </div>
                   <div class="flex justify-between text-slate-400">
-                    <span>Zoning: ${p.zoning ? p.zoning.code : 'Rural Ag'}</span>
+                    <span>Zoning: ${p.zoning ? (p.zoning.code || p.zoning.currentZoning || p.assetClass || 'Verify') : (p.assetClass || 'Rural Ag')}</span>
                     <span>Liens: $${Math.round(fin.delinquentTaxesTotal || 2400).toLocaleString()}</span>
                   </div>
                 </div>
@@ -1289,24 +1291,46 @@
       }).join('');
     }
 
+    let leafletMapInstance = null;
+    let leafletMarkersLayer = null;
+
     function renderMap(list) {
-      const pinsGrid = document.getElementById('mapPinsGrid');
-      pinsGrid.innerHTML = list.slice(0, 16).map(p => {
+      const el = document.getElementById('leafletMap');
+      if (!el || typeof L === 'undefined') return;
+      if (!leafletMapInstance) {
+        leafletMapInstance = L.map('leafletMap').setView([38.5, -96.5], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '© OpenStreetMap'
+        }).addTo(leafletMapInstance);
+        leafletMarkersLayer = L.layerGroup().addTo(leafletMapInstance);
+      }
+      setTimeout(() => leafletMapInstance.invalidateSize(), 100);
+      leafletMarkersLayer.clearLayers();
+      const bounds = [];
+      const colors = { Residential: '#2563eb', Multifamily: '#d97706', Hospitality: '#d97706', Commercial: '#7c3aed', Industrial: '#7c3aed', Land: '#059669', Agricultural: '#059669' };
+      list.slice(0, 200).forEach(p => {
+        const c = p.coordinates;
+        if (!c || typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
         const fin = p.financials || {};
-        return `
-          <div onclick="openDossierModal('${p.id}', 'overview')" class="bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 p-3 rounded-2xl cursor-pointer transition text-white">
-            <div class="flex items-center justify-between text-[11px] mb-1">
-              <span class="badge bg-amber-500/20 text-amber-300 border border-amber-500/30">${p.state}</span>
-              <span class="font-mono text-emerald-400 font-bold">${fin.capRate}% Cap</span>
-            </div>
-            <div class="font-bold text-xs truncate mb-1">${p.title}</div>
-            <div class="text-[10px] text-slate-400 font-mono">$${Math.round((fin.askingOrOpeningBid || 0)/1000)}k • ${p.acreage} AC</div>
+        const col = colors[p.assetClass] || '#059669';
+        const m = L.circleMarker([c.lat, c.lng], { radius: 7, color: '#ffffff', weight: 1.5, fillColor: col, fillOpacity: 0.9 });
+        m.bindPopup(`
+          <div style="min-width:200px;font-family:Inter,sans-serif">
+            <div style="font-size:10px;font-weight:800;color:${col};text-transform:uppercase">${p.assetClass || 'Agricultural'} · ${p.state}</div>
+            <div style="font-weight:800;font-size:12px;margin:2px 0">${p.title}</div>
+            <div style="font-size:11px;color:#475569;margin-bottom:6px">Bid: $${Math.round((fin.askingOrOpeningBid||0)/1000)}k · ARV: $${Math.round((fin.estimatedARV||0)/1000)}k · Cap: ${fin.capRate||0}%</div>
+            <button onclick="openDossierModal('${p.id}','overview')" style="background:#059669;color:#fff;border:none;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;width:100%">Open Dossier</button>
           </div>
-        `;
-      }).join('');
+        `);
+        m.addTo(leafletMarkersLayer);
+        bounds.push([c.lat, c.lng]);
+      });
+      if (bounds.length > 0) {
+        try { leafletMapInstance.fitBounds(bounds, { padding: [30, 30], maxZoom: 11 }); } catch (e) {}
+      }
     }
 
-    // MODAL HANDLERS
     function openDossierModal(id, initialTab = 'overview') {
       currentDossierProp = allProperties.find(p => p.id === id);
       if (!currentDossierProp) return;
@@ -1327,6 +1351,13 @@
       calcState.acres = Math.min(10, currentDossierProp.acreage);
       calcState.yieldPerAcre = parseInt(topCrop.estYieldPerAcre) || 1400;
 
+      const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(currentDossierProp.assetClass);
+      const tProj = document.getElementById('dTabProj');
+      const tSoil = document.getElementById('dTabSoil');
+      const tGrants = document.getElementById('dTabGrants');
+      if (tProj) tProj.textContent = isNonAg ? '3. DSCR & Cash-Flow Calc' : '3. 5-Yr Crop ROI Calc';
+      if (tSoil) tSoil.textContent = isNonAg ? '5. Building Specs & FEMA Flood' : '5. Soil, Crops & FEMA Flood';
+      if (tGrants) tGrants.textContent = isNonAg ? '7. Tax Credits & Financing' : '7. Land Grants';
       setDossierTab(initialTab);
       document.getElementById('dossierModal').classList.remove('hidden');
     }
@@ -1363,7 +1394,7 @@
           sunElevation: '41.8°',
           radiometric: 'BOA Surface Reflectance L2A'
         };
-        const satUrl = p.satelliteUrl || getSatelliteUrl(p);
+        const satUrl = getSatelliteUrl(p, 'esri');
         const lat = (p.coordinates && p.coordinates.lat) ? p.coordinates.lat : 30.2672;
         const lng = (p.coordinates && p.coordinates.lng) ? p.coordinates.lng : -97.7431;
 
@@ -1455,7 +1486,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-4">
               <!-- Actual Parcel Satellite Ortho -->
               <div class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 aspect-[16/10] group shadow-sm">
-                <img src="${p.satelliteUrl || getSatelliteUrl(p, 'esri')}" alt="Actual Parcel Satellite" class="w-full h-full object-cover">
+                <img src="${getSatelliteUrl(p, 'esri')}" alt="Actual Parcel Satellite" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none"></div>
                 <div class="absolute top-2.5 left-2.5">
                   <span class="badge bg-emerald-600 text-white text-[9px] font-black border border-emerald-400">🛰️ ACTUAL PARCEL SATELLITE (0.3M ORTHO)</span>
@@ -1500,6 +1531,55 @@
           </div>
         `;
       } else if (tab === 'projections') {
+        const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(p.assetClass);
+        if (isNonAg) {
+          const ask = fin.askingOrOpeningBid || 250000;
+          const cap = fin.capRate || 7.5;
+          const estNoi = fin.estAnnualNOI || Math.round(ask * cap / 100);
+          window._dscrState = { price: ask, downPct: 25, rate: 6.75, noi: estNoi };
+          window.recalcDSCR = function() {
+            const s = window._dscrState;
+            s.price = parseFloat(document.getElementById('dscrPrice').value) || ask;
+            s.downPct = parseFloat(document.getElementById('dscrDown').value) || 25;
+            s.rate = parseFloat(document.getElementById('dscrRate').value) || 6.75;
+            s.noi = parseFloat(document.getElementById('dscrNoi').value) || estNoi;
+            const eq = s.price * (s.downPct / 100);
+            const loan = s.price - eq;
+            const mr = (s.rate / 100) / 12;
+            const n = 360;
+            const pmt = loan > 0 && mr > 0 ? loan * (mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1) : 0;
+            const ads = pmt * 12;
+            const cf = s.noi - ads;
+            const dscr = ads > 0 ? (s.noi / ads) : 9.99;
+            const coc = eq > 0 ? (cf / eq) * 100 : 0;
+            document.getElementById('dscrOutDscr').textContent = dscr.toFixed(2) + 'x';
+            document.getElementById('dscrOutCf').textContent = (cf >= 0 ? '$' : '-$') + Math.abs(Math.round(cf)).toLocaleString() + '/yr';
+            document.getElementById('dscrOutCoc').textContent = coc.toFixed(1) + '%';
+            document.getElementById('dscrOutLoan').textContent = '$' + Math.round(loan).toLocaleString();
+          };
+          content.innerHTML = `
+            <div class="space-y-4 text-xs">
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                <h4 class="font-black text-sm text-slate-900 mb-1">Commercial &amp; Residential DSCR Underwriting Calculator</h4>
+                <p class="text-slate-500">Adjust acquisition price, leverage, interest rate, and NOI to stress-test debt service coverage (30-yr amortization).</p>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Purchase Price ($)</label><input id="dscrPrice" type="number" value="${ask}" oninput="recalcDSCR()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Down Payment (%)</label><input id="dscrDown" type="number" value="25" oninput="recalcDSCR()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Interest Rate (%)</label><input id="dscrRate" type="number" step="0.1" value="6.75" oninput="recalcDSCR()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Annual NOI ($)</label><input id="dscrNoi" type="number" value="${estNoi}" oninput="recalcDSCR()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200"><div class="text-[10px] font-bold text-emerald-700 uppercase">DSCR Ratio</div><div id="dscrOutDscr" class="text-xl font-black text-emerald-900 font-mono">-</div></div>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">Annual Cash Flow</div><div id="dscrOutCf" class="text-xl font-black text-slate-900 font-mono">-</div></div>
+                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200"><div class="text-[10px] font-bold text-amber-700 uppercase">Cash-on-Cash</div><div id="dscrOutCoc" class="text-xl font-black text-amber-900 font-mono">-</div></div>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">Loan Amount</div><div id="dscrOutLoan" class="text-xl font-black text-slate-700 font-mono">-</div></div>
+              </div>
+            </div>
+          `;
+          setTimeout(window.recalcDSCR, 0);
+          return;
+        }
         content.innerHTML = renderRoiCalculatorHtml();
       } else if (tab === 'business') {
         content.innerHTML = `
@@ -1525,7 +1605,52 @@
             `).join('')}
           </div>
         `;
-      } else if (tab === 'soil') {
+      } else window.fetchLiveFemaFlood = async function(lat, lng) {
+        const el = document.getElementById('femaFloodBox');
+        if (!el) return;
+        el.innerHTML = '<span class="text-slate-500">Querying live FEMA NFHL API (hazards.fema.gov)...</span>';
+        try {
+          const r = await fetch(`/api/flood?lat=${lat}&lng=${lng}`);
+          const d = await r.json();
+          if (d.zone) {
+            el.innerHTML = `<div class="flex flex-wrap items-center justify-between gap-2"><div><span class="font-black text-slate-900">FEMA Flood Zone: ${d.zone}</span> <span class="text-slate-600">(${d.subtype || 'Standard Designation'})</span></div><span class="badge ${d.zone.startsWith('X') ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-rose-100 text-rose-800 border-rose-300'}">${d.zone.startsWith('X') ? 'Minimal Flood Hazard' : 'Special Flood Hazard Area'}</span></div>`;
+          } else {
+            el.innerHTML = `<span class="text-slate-600">FEMA NFHL returned no special flood zone polygon at [${lat.toFixed(4)}, ${lng.toFixed(4)}]. Verify local FIRM panel.</span>`;
+          }
+        } catch (e) {
+          el.innerHTML = '<span class="text-rose-600">Could not reach FEMA NFHL API.</span>';
+        }
+      };
+
+      if (tab === 'soil') {
+        const lat = (p.coordinates && p.coordinates.lat) ? p.coordinates.lat : 30.2672;
+        const lng = (p.coordinates && p.coordinates.lng) ? p.coordinates.lng : -97.7431;
+        const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(p.assetClass);
+        if (isNonAg) {
+          content.innerHTML = `
+            <div class="space-y-4 text-xs">
+              <div class="bg-blue-50/60 p-5 rounded-2xl border border-blue-200">
+                <h4 class="font-black text-sm text-blue-950 mb-3">Building &amp; Asset Specifications</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div class="bg-white p-3 rounded-xl border border-blue-100"><div class="text-[10px] text-slate-400 font-bold uppercase">Asset Class</div><div class="font-black text-slate-900">${p.assetClass}</div></div>
+                  <div class="bg-white p-3 rounded-xl border border-blue-100"><div class="text-[10px] text-slate-400 font-bold uppercase">Units</div><div class="font-black text-slate-900 font-mono">${p.units || 1}</div></div>
+                  <div class="bg-white p-3 rounded-xl border border-blue-100"><div class="text-[10px] text-slate-400 font-bold uppercase">Building Sq Ft</div><div class="font-black text-slate-900 font-mono">${p.sqft ? p.sqft.toLocaleString() + ' SF' : 'Verify'}</div></div>
+                  <div class="bg-white p-3 rounded-xl border border-blue-100"><div class="text-[10px] text-slate-400 font-bold uppercase">Year Built</div><div class="font-black text-slate-900 font-mono">${p.yearBuilt || 'Verify'}</div></div>
+                </div>
+                <div class="mt-3 text-slate-700">Condition: <strong>${p.currentCondition || 'Verify'}</strong> · Lot Acreage: <strong>${p.acreage} AC</strong></div>
+              </div>
+              <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-black text-xs text-sky-950 uppercase">Live FEMA Flood Zone Check (NFHL)</h4>
+                  <button onclick="fetchLiveFemaFlood(${lat}, ${lng})" class="px-3 py-1 rounded-lg bg-sky-600 text-white font-bold text-[11px]">Refresh FEMA</button>
+                </div>
+                <div id="femaFloodBox" class="text-xs">Loading live FEMA flood zone...</div>
+              </div>
+            </div>
+          `;
+          setTimeout(() => window.fetchLiveFemaFlood(lat, lng), 50);
+          return;
+        }
         content.innerHTML = `
           <div class="space-y-5 text-xs">
             <div class="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-200">
@@ -1580,6 +1705,23 @@
           </div>
         `;
       } else if (tab === 'grants') {
+        if (!grants || grants.length === 0) {
+          content.innerHTML = `
+            <div class="space-y-3 text-xs">
+              <div class="bg-purple-50 p-4 rounded-2xl border border-purple-200">
+                <h4 class="font-black text-sm text-purple-950 mb-1">Commercial &amp; Residential Financing / Tax Credit Programs</h4>
+                <p class="text-purple-800">Typical programs to verify for ${p.assetClass || 'this property'} in ${p.city}, ${p.state}:</p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-4 rounded-2xl border border-slate-200 bg-white"><div class="font-black text-slate-900 mb-1">SBA 504 / 7(a) Owner-User Loan</div><p class="text-slate-600">Up to 90% LTV for owner-occupied commercial, industrial, or hospitality facilities.</p></div>
+                <div class="p-4 rounded-2xl border border-slate-200 bg-white"><div class="font-black text-slate-900 mb-1">IRS Section 179D Energy Deduction</div><p class="text-slate-600">Accelerated deduction for qualifying HVAC, lighting, and envelope upgrades on commercial/multifamily buildings.</p></div>
+                <div class="p-4 rounded-2xl border border-slate-200 bg-white"><div class="font-black text-slate-900 mb-1">Cost Segregation &amp; Bonus Depreciation</div><p class="text-slate-600">Accelerate 5/7/15-year building components to offset passive income (confirm current tax year rules with CPA).</p></div>
+                <div class="p-4 rounded-2xl border border-slate-200 bg-white"><div class="font-black text-slate-900 mb-1">State &amp; Local TIF / Opportunity Zone</div><p class="text-slate-600">Check municipal economic development incentives in ${p.county || p.city} for job creation or infill rehab.</p></div>
+              </div>
+            </div>
+          `;
+          return;
+        }
         content.innerHTML = `
           <div class="space-y-3">
             <h4 class="font-black text-sm text-slate-900 uppercase tracking-wider">Eligible Federal &amp; State Land Grants</h4>
@@ -1879,27 +2021,44 @@
       container.innerHTML += `<div class="bg-slate-100 p-2.5 rounded-2xl text-slate-900 font-medium ml-6">${q}</div>`;
       container.scrollTop = container.scrollHeight;
 
-      // Smart heuristic answer
-      setTimeout(() => {
-        let ans = "Underwriting Analysis: Based on the USDA NRCS Soil Survey and county judicial records, this parcel qualifies for the Environmental Quality Incentives Program (EQIP) and Section 9003 REAP solar grants. Super-priority ad valorem tax liens must be satisfied by the purchaser, while junior debt is extinguished.";
-        if (q.toLowerCase().includes('grant')) {
-          ans = "Grant Intelligence: Over $98.4M in non-dilutive capital is tracked across our 100 indexed parcels. Top programs include USDA EQIP ($450k cap), REAP Solar ($1M cap, 50% match), and FSA Microloans ($50k).";
-        } else if (q.toLowerCase().includes('soil') || q.toLowerCase().includes('crop')) {
-          ans = "Soil Science: Houston Black Clay and Krome Loam support high-margin specialty crops including Improved Texas Pecans, Dragon Fruit, and Kona Coffee, with gross yields reaching $18,000 to $35,000 per acre.";
+      const typingId = 'ai-typing-' + Date.now();
+      container.innerHTML += `<div id="${typingId}" class="bg-purple-50 border border-purple-100 p-3 rounded-2xl text-slate-500 mr-6 font-medium">Analyzing parcel metrics...</div>`;
+      container.scrollTop = container.scrollHeight;
+
+      fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: q, property: currentDossierProp || null })
+      }).then(r => r.json()).then(d => {
+        const el = document.getElementById(typingId);
+        if (el) {
+          el.className = 'bg-purple-50 border border-purple-100 p-3 rounded-2xl text-slate-800 mr-6 font-medium whitespace-pre-line';
+          el.textContent = d.answer || 'Unable to generate analysis.';
         }
-        container.innerHTML += `<div class="bg-purple-50 border border-purple-100 p-3 rounded-2xl text-slate-800 mr-6 font-medium">${ans}</div>`;
         container.scrollTop = container.scrollHeight;
-      }, 400);
+      }).catch(() => {
+        const el = document.getElementById(typingId);
+        if (el) el.textContent = 'AI underwriting endpoint temporarily unavailable.';
+      });
     }
 
     function toggleSave(id) {
-      if (savedIds.includes(id)) {
-        savedIds = savedIds.filter(i => i !== id);
-      } else {
-        savedIds.push(id);
-      }
+      const saved = !savedIds.includes(id);
+      if (saved) savedIds.push(id);
+      else savedIds = savedIds.filter(i => i !== id);
+      try {
+        fetch('/api/vault', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, action: saved ? 'save' : 'remove' }) }).catch(() => {});
+      } catch (e) {}
       applyFilters();
     }
+    (function loadD1VaultAndImports() {
+      fetch('/api/vault').then(r => r.ok ? r.json() : []).then(rows => {
+        if (Array.isArray(rows) && rows.length) {
+          rows.forEach(r => { if (r.id && !savedIds.includes(r.id)) savedIds.push(r.id); });
+          applyFilters(true);
+        }
+      }).catch(() => {});
+    })();
 
     function toggleCompare(id) {
       if (compareIds.includes(id)) {
@@ -1938,13 +2097,8 @@
          const maxx = (coords.lng + radius).toFixed(6);
          const miny = (coords.lat - radius).toFixed(6);
          const maxy = (coords.lat + radius).toFixed(6);
-         if (service === 'topo') {
-           return `https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export?bbox=${minx},${miny},${maxx},${maxy}&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image`;
-         }
-         if (service === 'usgs') {
-           return `https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export?bbox=${minx},${miny},${maxx},${maxy}&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image`;
-         }
-         return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${minx},${miny},${maxx},${maxy}&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image`;
+         const src = (service === 'topo' || service === 'usgs') ? service : 'esri';
+         return `/api/tile?src=${src}&bbox=${minx},${miny},${maxx},${maxy}`;
        }
 
        function ensureSatelliteMeta(p) {
@@ -1974,7 +2128,7 @@
          const p = allProperties.find(x => x.id === id);
          if (!p) return;
 
-         const satUrl = p.satelliteUrl || getSatelliteUrl(p, 'esri');
+         const satUrl = getSatelliteUrl(p, 'esri');
          const groundUrl = p.imageUrl;
          const topoUrl = p.topoUrl || getSatelliteUrl(p, 'topo');
 
