@@ -362,6 +362,7 @@
     <div id="gridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-5">
       <!-- Injected by JavaScript -->
     </div>
+    <div id="cardsPagination" class="mt-6 flex flex-wrap items-center justify-center gap-3"></div>
 
     <!-- VIEW CONTAINER: SIMPLE INDEX TABLE -->
     <div id="tableContainer" class="hidden bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
@@ -773,7 +774,16 @@
       return list;
     }
 
-    function applyFilters() {
+    let cardsLimit = 24;
+    function loadMoreCards(n) {
+      cardsLimit = n ? cardsLimit + n : 9999;
+      const list = getFilteredList();
+      if (currentView === 'grid') renderCards(list, true);
+      else if (currentView === 'table') renderTable(list);
+    }
+
+    function applyFilters(keepLimit) {
+      if (!keepLimit) cardsLimit = 24;
       const list = getFilteredList();
       updateHeroForRegion();
       renderCareers();
@@ -913,10 +923,10 @@
         {t:'Agritourism & Event Host', inc:'$40k–$140k', cost:'$30k–$120k', why:'Heritage farmstead tourism', kw:'agritourism'}
       ],
       '': [
-        {t:'Specialty Crop Grower', inc:'$40k–$200k', cost:'$50k–$300k', why:'High value per acre on small parcels', kw:'specialty'},
-        {t:'Solar / Energy Land Lessor', inc:'$50k–$200k', cost:'$20k–$80k', why:'Passive lease income in growth corridors', kw:'solar'},
-        {t:'Agritourism / Glamping Host', inc:'$40k–$180k', cost:'$30k–$150k', why:'Experience-driven demand', kw:'glamping'},
-        {t:'Contractor Yard / RV Storage Operator', inc:'$50k–$160k', cost:'$30k–$100k', why:'Low-labor income on transition land', kw:'rv'}
+        {t:'Commercial / Retail & NNN Landlord', inc:'$55k–$280k', cost:'$100k–$550k equity', why:'Long commercial leases with tenant-paid NNN expenses', kw:'commercial'},
+        {t:'Multifamily / Rental Portfolio Operator', inc:'$45k–$240k', cost:'$40k–$250k down', why:'Steady residential housing demand across US metros', kw:'residential'},
+        {t:'Self-Storage & Flex Industrial Operator', inc:'$45k–$210k', cost:'$80k–$450k', why:'Lower labor overhead with scalable small-bay/unit rents', kw:'industrial'},
+        {t:'Specialty Ag / Solar Land Operator', inc:'$40k–$200k', cost:'$30k–$250k', why:'High-margin specialty crops, agritourism, or energy leases', kw:'solar'}
       ]
     };
     const CLASS_CAREERS = {
@@ -976,7 +986,14 @@
     renderVariantChips();
 
     // ===== DYNAMIC STATES (residential/commercial metros) =====
-    Object.assign(STATE_NAMES, {GA:'Georgia',TN:'Tennessee',IN:'Indiana',OH:'Ohio',MI:'Michigan',MO:'Missouri',AL:'Alabama',OK:'Oklahoma',NV:'Nevada',ID:'Idaho',UT:'Utah',CO:'Colorado',KY:'Kentucky',NY:'New York',MD:'Maryland'});
+    Object.assign(STATE_NAMES, {
+      AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',
+      FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',
+      ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',
+      NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',
+      OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',
+      UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+    });
     (function addDynamicStates() {
       const have = new Set(Array.from(document.querySelectorAll('.region-chip')).map(b => b.getAttribute('data-state')));
       const chipHost = document.querySelector('.region-chip')?.parentElement;
@@ -1045,7 +1062,22 @@
         return;
       }
 
-      container.innerHTML = list.map(p => {
+      const visible = list.slice(0, cardsLimit);
+      const pagEl = document.getElementById('cardsPagination');
+      if (pagEl) {
+        if (list.length > visible.length) {
+          const rem = list.length - visible.length;
+          pagEl.innerHTML = `
+            <span class="text-xs font-bold text-slate-500">Showing ${visible.length} of ${list.length} properties</span>
+            <button onclick="loadMoreCards(24)" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black shadow transition">Load 24 More (${rem} remaining)</button>
+            <button onclick="loadMoreCards(0)" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-200 transition">Show All ${list.length}</button>
+          `;
+        } else {
+          pagEl.innerHTML = list.length > 0 ? `<span class="text-xs font-bold text-slate-400">Showing all ${list.length} matching properties</span>` : '';
+        }
+      }
+
+      container.innerHTML = visible.map(p => {
         const fin = p.financials || {};
         const soil = p.soil || {};
         const topCrop = (p.suitableCrops || [])[0] || {};
@@ -1065,11 +1097,11 @@
         let toggleLabel = '';
 
         if (globalPhotoMode === 'satellite') {
-          heroHtml = `<img id="cardImg-${p.id}" src="${satUrl}" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="sat" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
+          heroHtml = `<img id="cardImg-${p.id}" loading="lazy" src="${satUrl}" onerror="this.onerror=null;this.src='${groundUrl}'" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="sat" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
           badgeHtml = `<span id="photoBadge-${p.id}" class="badge bg-emerald-600/95 text-white border border-emerald-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-satellite text-[10px]"></i> 🛰️ 0.3M ORTHO (NOV 2026)</span>`;
           toggleLabel = `📸 Field`;
         } else if (globalPhotoMode === 'ground') {
-          heroHtml = `<img id="cardImg-${p.id}" src="${groundUrl}" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="ground" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
+          heroHtml = `<img id="cardImg-${p.id}" loading="lazy" src="${groundUrl}" data-ground="${groundUrl}" data-sat="${satUrl}" data-topo="${topoUrl}" data-state="ground" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">`;
           badgeHtml = `<span id="photoBadge-${p.id}" class="badge bg-amber-600/95 text-white border border-amber-400 shadow-sm backdrop-blur-sm font-bold flex items-center gap-1"><i class="fa-solid fa-mountain-sun text-[10px]"></i> 📸 VERIFIED TERROIR</span>`;
           toggleLabel = `🛰️ Sat`;
         } else {
@@ -1077,11 +1109,11 @@
           heroHtml = `
             <div class="w-full h-full flex relative">
               <div class="w-1/2 h-full overflow-hidden relative border-r border-white/40">
-                <img src="${satUrl}" alt="Satellite Ortho" class="w-full h-full object-cover">
+                <img loading="lazy" src="${satUrl}" onerror="this.onerror=null;this.src='${groundUrl}'" alt="Satellite Ortho" class="w-full h-full object-cover">
                 <span class="absolute bottom-2 left-2 bg-slate-950/80 text-[8px] font-black text-emerald-300 px-1.5 py-0.5 rounded backdrop-blur-sm">🛰️ AERIAL</span>
               </div>
               <div class="w-1/2 h-full overflow-hidden relative">
-                <img src="${groundUrl}" alt="Field Terroir" class="w-full h-full object-cover">
+                <img loading="lazy" src="${groundUrl}" alt="Field Terroir" class="w-full h-full object-cover">
                 <span class="absolute bottom-2 right-2 bg-slate-950/80 text-[8px] font-black text-amber-300 px-1.5 py-0.5 rounded backdrop-blur-sm">📸 FIELD</span>
               </div>
             </div>
@@ -1217,7 +1249,7 @@
 
     function renderTable(list) {
       const tbody = document.getElementById('tableBody');
-      tbody.innerHTML = list.map(p => {
+      tbody.innerHTML = list.slice(0, Math.max(50, cardsLimit)).map(p => {
         const fin = p.financials || {};
         const soil = p.soil || {};
         const topCrop = (p.suitableCrops || [])[0] || {};
@@ -2189,9 +2221,9 @@
 
        function loadSampleCsv() {
          const sample = `title,address,city,state,zip,acres,bid,arv,apn,lat,lng,soil,distress
-48 AC Pecos Basin High-Recovery Alfalfa,US Hwy 285,Pecos,TX,79772,48.0,175000,480000,TX-PEC-26-891,31.4228,-103.4932,Reeves Loam,Judicial Foreclosure
-25 AC Homestead Dragon Fruit & Lychee Grove,SW 216th St,Homestead,FL,33031,25.0,195000,620000,FL-MIA-26-4412,25.5684,-80.4812,Krome Gravelly Loam,Tax Deed Auction
-32 AC South Kona Volcanic Macadamia Orchard,Mamalahoa Hwy,Honaunau,HI,96726,32.0,320000,910000,HI-KON-26-092,19.4215,-155.8841,Kona Volcanic Muck,Notice of Default`;
+12-Unit Retail Strip Center (LoopNet Export),4100 Westheimer Rd,Houston,TX,77027,1.4,1450000,1950000,TX-HAR-26-102,29.7420,-95.4460,Commercial NNN,Motivated Seller
+18500 SF Flex Industrial Warehouse,820 Peachtree Industrial Blvd,Atlanta,GA,30341,2.2,1180000,1620000,GA-FUL-26-309,33.8901,-84.2981,Industrial Flex,Off-Market Commercial
+4-Unit Brick Fourplex Value-Add,1912 Poplar Ave,Memphis,TN,38104,0.35,340000,475000,TN-SHL-26-814,35.1410,-89.9970,Residential Multifamily,Estate Sale`;
          document.getElementById('csvInputText').value = sample;
        }
 
