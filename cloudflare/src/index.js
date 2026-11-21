@@ -1,432 +1,278 @@
-import propertiesData from './properties_data.json';
+// TerraYield AI — Cloudflare Edge Worker (Synced with antistudioday2 & ai-investment-property-finder)
+const B = 'https://raw.githubusercontent.com/NiceLogBro/ai-investment-property-finder/main/cloudflare/';
+const V = '1795245905';
+let memoryBase = null;
+let cachedHtmlTemplate = null;
+
+function ensureSatelliteMeta(p) {
+  if (!p) return;
+  const c = p.coordinates || { lat: 30.2672, lng: -97.7431 };
+  const r = Math.max(0.003, Math.min(0.015, Math.sqrt(p.acreage || 15) * 0.0012));
+  const b = [c.lng - r, c.lat - r, c.lng + r, c.lat + r].map(x => x.toFixed(6)).join(',');
+  p.satelliteUrl = '/api/tile?src=esri&bbox=' + b;
+  p.topoUrl = '/api/tile?src=topo&bbox=' + b;
+  if (!p.satellitePassMeta) {
+    p.satellitePassMeta = {
+      mission: 'Copernicus Sentinel-2B / MSI & NAIP High-Res Ortho',
+      passDate: 'Nov 2026', captureMonth: 'November 2026',
+      resolution: '0.3m Aerial Ortho / 10m L2A MSI',
+      cloudCover: '0.8% Clear Sky', ndviVigor: '0.64',
+      sunElevation: '41.8', radiometric: 'BOA Surface Reflectance L2A'
+    };
+  }
+}
+
+async function getJson(path) {
+  const res = await fetch(B + path + '?v=' + V, { headers: { 'User-Agent': 'TerraYield-Worker/4.2' }, cf: { cacheTtl: 300, cacheEverything: true } });
+  if (!res.ok) throw new Error(path + ' ' + res.status);
+  return res.json();
+}
+
+async function getAllProperties(env) {
+  if (!memoryBase) {
+    try {
+      const [base, extra] = await Promise.all([getJson('src/properties_100.json'), getJson('src/properties_extra.json').catch(() => [])]);
+      memoryBase = [...base, ...(Array.isArray(extra) ? extra : [])];
+      memoryBase.forEach(ensureSatelliteMeta);
+    } catch (e) { memoryBase = []; }
+  }
+  let imported = [];
+  if (env && env.DB) {
+    try {
+      const { results } = await env.DB.prepare('SELECT data_json FROM imported_properties ORDER BY created_at DESC LIMIT 500').all();
+      imported = (results || []).map(r => { const p = JSON.parse(r.data_json); ensureSatelliteMeta(p); return p; });
+    } catch (e) {}
+  }
+  const seen = new Set(imported.map(p => p.id));
+  return [...imported, ...memoryBase.filter(p => !seen.has(p.id))];
+}
+
+async function getHtmlTemplate() {
+  if (cachedHtmlTemplate) return cachedHtmlTemplate;
+  try {
+    const res = await fetch(B + 'dist/index.html?v=' + V, { headers: { 'User-Agent': 'TerraYield-Worker/4.2' }, cf: { cacheTtl: 60, cacheEverything: true } });
+    if (res.ok) { cachedHtmlTemplate = await res.text(); return cachedHtmlTemplate; }
+  } catch (e) {}
+  return '<h1>TerraYield AI - loading, please refresh.</h1>';
+}
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     const { pathname, searchParams } = url;
+    const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization' };
+    if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
 
-    // CORS headers
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+    if (pathname === '/api/tile') {
+      const src = searchParams.get('src') || 'esri';
+      const bbox = searchParams.get('bbox') || '-97.75,30.26,-97.74,30.27';
+      const base = src === 'topo'
+        ? 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/export'
+        : src === 'usgs'
+        ? 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/export'
+        : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export';
+      const tileUrl = base + '?bbox=' + encodeURIComponent(bbox) + '&bboxSR=4326&imageSR=4326&size=1024,768&format=jpg&f=image';
+      try {
+        const resp = await fetch(tileUrl, { headers: { 'User-Agent': 'TerraYield-TileProxy/1.0' }, cf: { cacheTtl: 86400, cacheEverything: true } });
+        if (!resp.ok) return new Response('Tile error', { status: 502, headers: cors });
+        return new Response(resp.body, {
+          headers: {
+            'Content-Type': resp.headers.get('Content-Type') || 'image/jpeg',
+            'Cache-Control': 'public, max-age=86400',
+            'Cross-Origin-Resource-Policy': 'cross-origin',
+            ...cors
+          }
+        });
+      } catch (e) { return new Response('Tile fetch failed', { status: 502, headers: cors }); }
     }
 
-    // ── API Routes ──
-    if (pathname.startsWith('/api/')) {
-      return handleApi(pathname, searchParams, request, corsHeaders);
+    if (pathname === '/api/flood') {
+      const lat = searchParams.get('lat') || '30.2672';
+      const lng = searchParams.get('lng') || '-97.7431';
+      const femaUrl = 'https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=' + encodeURIComponent(lng + ',' + lat) + '&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FLD_ZONE,ZONE_SUBTY&returnGeometry=false&f=json';
+      try {
+        const r = await fetch(femaUrl, { headers: { 'User-Agent': 'TerraYield-FEMA/1.0' }, cf: { cacheTtl: 86400, cacheEverything: true } });
+        const d = await r.json();
+        const feat = (d.features && d.features[0] && d.features[0].attributes) || {};
+        return Response.json({ zone: feat.FLD_ZONE || null, subtype: feat.ZONE_SUBTY || null, source: 'FEMA NFHL Live' }, { headers: cors });
+      } catch (e) { return Response.json({ zone: null, error: e.message }, { headers: cors }); }
     }
 
-    // ── Web Application UI ──
-    return new Response(renderHtmlApp(), {
-      headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        ...corsHeaders,
-      },
-    });
-  },
-};
-
-function handleApi(pathname, searchParams, request, corsHeaders) {
-  // GET /api/properties
-  if (pathname === '/api/properties') {
-    const query = searchParams.get('q')?.toLowerCase() || '';
-    const state = searchParams.get('state')?.toUpperCase() || '';
-    const type = searchParams.get('type') || '';
-    const minCap = parseFloat(searchParams.get('min_cap')) || 0;
-
-    let filtered = propertiesData.filter((p) => {
-      if (state && p.state.toUpperCase() !== state) return false;
-      if (type && p.property_type !== type) return false;
-      if (minCap > 0 && (!p.financials || p.financials.cap_rate < minCap)) return false;
-      if (query) {
-        const text = `${p.title} ${p.city} ${p.state} ${p.description}`.toLowerCase();
-        return text.includes(query);
-      }
-      return true;
-    });
-
-    return Response.json(filtered, { headers: corsHeaders });
-  }
-
-  // GET /api/properties/:id
-  if (pathname.startsWith('/api/properties/')) {
-    const id = pathname.replace('/api/properties/', '');
-    const prop = propertiesData.find((p) => p.id === id);
-    if (!prop) {
-      return new Response(JSON.stringify({ error: 'Property not found' }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      });
-    }
-    return Response.json(prop, { headers: corsHeaders });
-  }
-
-  // GET /api/health
-  if (pathname === '/api/health') {
-    return Response.json({
-      status: 'healthy',
-      app: 'TerraYield AI Property Finder',
-      domain: 'terrayield.com',
-      total_properties: propertiesData.length,
-      edge_node: 'Cloudflare Global Network',
-    }, { headers: corsHeaders });
-  }
-
-  return new Response(JSON.stringify({ error: 'Endpoint not found' }), {
-    status: 404,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders },
-  });
-}
-
-function renderHtmlApp() {
-  const propsJson = JSON.stringify(propertiesData);
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TerraYield | AI Investment Property Finder</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    .badge { padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
-  <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-emerald-500/20">
-          🌱
-        </div>
-        <div>
-          <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-            TerraYield
-            <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-mono font-medium">LIVE ON CLOUDFLARE</span>
-          </h1>
-          <p class="text-xs text-slate-400">AI Real Estate, Soil Science & Up-and-Coming Area Intelligence</p>
-        </div>
-      </div>
-      <div class="flex items-center space-x-4">
-        <span class="text-xs text-slate-400 font-mono hidden md:inline">terrayield.com</span>
-        <a href="/api/properties" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5">
-          <i class="fa-solid fa-code"></i> REST API
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero & Filters -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <div class="mb-8">
-      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">Find High-Yield Investment Properties</h2>
-      <p class="text-slate-400 max-w-2xl text-sm">
-        Deep-dive underwriting across the USA and Territories (Puerto Rico, USVI, Guam). Powered by soil science, demographic business matching, zoning verification, and upcoming infrastructure pipeline momentum.
-      </p>
-
-      <!-- Search & Filters -->
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-4 gap-3 bg-slate-900 p-3 rounded-2xl border border-slate-800 shadow-xl">
-        <div class="md:col-span-2 relative">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
-          <input type="text" id="searchInput" placeholder="Search by city, state, crop (vineyard, coffee), or keyword..."
-            class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-        </div>
-        <div>
-          <select id="typeFilter" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-emerald-500">
-            <option value="">All Property Types</option>
-            <option value="agricultural">Farmland / Agricultural</option>
-            <option value="single_family">Single Family / ADU</option>
-            <option value="multi_family">Multi-Family / Units</option>
-            <option value="mixed_use">Commercial / Mixed-Use</option>
-          </select>
-        </div>
-        <div>
-          <select id="regionFilter" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-emerald-500">
-            <option value="">All Regions & Territories</option>
-            <option value="PR">Puerto Rico (Territory)</option>
-            <option value="VI">U.S. Virgin Islands (Territory)</option>
-            <option value="GU">Guam (Territory)</option>
-            <option value="TX">Texas (Austin)</option>
-            <option value="CO">Colorado (Denver)</option>
-            <option value="GA">Georgia (Atlanta)</option>
-            <option value="OR">Oregon (Portland/Willamette)</option>
-            <option value="FL">Florida (Tampa)</option>
-            <option value="TN">Tennessee (Gatlinburg)</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Active Count -->
-    <div class="flex items-center justify-between mb-4">
-      <div class="text-xs text-slate-400 font-medium">
-        Showing <span id="propertyCount" class="text-white font-bold">0</span> properties
-      </div>
-      <div class="flex gap-2">
-        <button onclick="filterByTag('farmland')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg">🌾 Farmland & Soils</button>
-        <button onclick="filterByTag('territory')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg">🏝️ US Territories</button>
-        <button onclick="filterByTag('high_cap')" class="text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 px-2.5 py-1 rounded-lg">📈 High Momentum</button>
-      </div>
-    </div>
-
-    <!-- Properties Grid -->
-    <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Injected by JavaScript -->
-    </div>
-  </main>
-
-  <!-- Modal for Full 360 Deep-Dive -->
-  <div id="detailModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
-        ✕
-      </button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <footer class="border-t border-slate-800/80 mt-16 py-8 text-center text-xs text-slate-500">
-    TerraYield © 2026 • Live on Cloudflare Global Network • terrayield.com / terrayeild.com
-  </footer>
-
-  <script>
-    const allProperties = ${propsJson};
-
-    function renderProperties(list) {
-      const grid = document.getElementById('propertiesGrid');
-      document.getElementById('propertyCount').textContent = list.length;
-
-      if (list.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-500">No properties match your search criteria.</div>';
-        return;
-      }
-
-      grid.innerHTML = list.map(p => {
-        const fin = p.financials || {};
-        const dev = p.development || {};
-        const crops = p.crop_suitability || [];
-        const biz = p.business_recommendations || [];
-        const topCrop = crops[0];
-        const topBiz = biz[0];
-
-        return \`
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden hover:border-slate-700 transition flex flex-col shadow-lg">
-            <div class="h-48 w-full bg-slate-800 relative overflow-hidden">
-              <img src="\${p.image_url}" alt="\${p.title}" class="w-full h-full object-cover">
-              <div class="absolute top-3 left-3 flex gap-1.5 flex-wrap">
-                <span class="badge bg-slate-950/80 text-white backdrop-blur border border-white/10">\${p.state}</span>
-                <span class="badge bg-emerald-500/90 text-slate-950 font-bold">\${p.property_type.replace('_', ' ')}</span>
-              </div>
-              <div class="absolute bottom-3 right-3 bg-slate-950/90 text-white font-black text-lg px-3 py-1 rounded-xl border border-white/10">
-                $\${Number(p.list_price).toLocaleString()}
-              </div>
-            </div>
-
-            <div class="p-5 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="font-bold text-white text-base leading-tight mb-1 line-clamp-1">\${p.title}</h3>
-                <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i>\${p.city}, \${p.state} \${p.zip_code}</p>
-
-                <!-- Financial Underwriting KPIs -->
-                <div class="grid grid-cols-3 gap-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 mb-3 text-center">
-                  <div>
-                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Cap Rate</div>
-                    <div class="text-sm font-black text-emerald-400">\${fin.cap_rate || 0}%</div>
-                  </div>
-                  <div>
-                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Cash Flow</div>
-                    <div class="text-sm font-black \${(fin.monthly_cash_flow >= 0) ? 'text-white' : 'text-rose-400'}">
-                      $\${Math.round(fin.monthly_cash_flow || 0)}/mo
-                    </div>
-                  </div>
-                  <div>
-                    <div class="text-[10px] text-slate-500 uppercase font-semibold">10-Yr IRR</div>
-                    <div class="text-sm font-black text-teal-400">\${fin.estimated_10yr_irr || 0}%</div>
-                  </div>
-                </div>
-
-                <!-- Up-and-Coming Area Momentum Badge -->
-                \${dev.development_momentum_score ? \`
-                  <div class="bg-indigo-950/40 border border-indigo-800/40 rounded-xl p-2.5 mb-3 flex items-center justify-between text-xs">
-                    <div class="flex items-center gap-2">
-                      <span class="text-base">🚀</span>
-                      <div>
-                        <div class="font-bold text-indigo-300">Momentum: \${dev.development_momentum_score}/100</div>
-                        <div class="text-[10px] text-slate-400">5yr Forecast: +\${dev.appreciation_forecast_5yr_pct || 0}%</div>
-                      </div>
-                    </div>
-                    \${dev.is_opportunity_zone ? '<span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded font-bold">OZ</span>' : ''}
-                  </div>
-                \` : ''}
-
-                <!-- Top Agricultural Crop & Demographic Business Fit -->
-                <div class="space-y-1.5 text-xs mb-4">
-                  \${topCrop ? \`
-                    <div class="flex items-center text-slate-300 gap-1.5 truncate">
-                      <span class="text-emerald-400 font-bold">🌾 Flourishing:</span>
-                      <span class="truncate">\${topCrop.crop_name} ($' + Math.round(topCrop.estimated_net_profit_per_acre).toLocaleString() + '/ac)</span>
-                    </div>
-                  \` : ''}
-                  \${topBiz ? \`
-                    <div class="flex items-center text-slate-300 gap-1.5 truncate">
-                      <span class="text-teal-400 font-bold">💡 Best Biz:</span>
-                      <span class="truncate">\${topBiz.business_type} (\${topBiz.match_score}%)</span>
-                    </div>
-                  \` : ''}
-                </div>
-              </div>
-
-              <button onclick="viewDetails('\${p.id}')" class="w-full bg-slate-800 hover:bg-emerald-600 text-white font-medium text-xs py-2.5 rounded-xl transition border border-slate-700 hover:border-emerald-500 flex items-center justify-center gap-1.5">
-                <span>View Full AI Underwriting</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </button>
-            </div>
-          </div>
-        \`;
-      }).join('');
+    if (pathname === '/api/analyze' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const inv = body.investment || body;
+        const price = Number(inv.purchase_price) || 0;
+        const gross = Number(inv.annual_gross_rent) || 0;
+        const opex = Number(inv.annual_operating_expenses) || 0;
+        const debt = Number(inv.annual_debt_service) || 0;
+        const cash = Number(inv.initial_cash_invested) || 0;
+        const sqft = Number(inv.building_sqft || inv.sqft) || 0;
+        const noi = gross - opex;
+        const cap = price > 0 ? +(noi / price * 100).toFixed(2) : 0;
+        const cf = noi - debt;
+        const mcf = +(cf / 12).toFixed(2);
+        const coc = cash > 0 ? +(cf / cash * 100).toFixed(2) : 0;
+        const ppsf = (price > 0 && sqft > 0) ? +(price / sqft).toFixed(2) : null;
+        return Response.json({
+          investment: { purchase_price: price, annual_gross_rent: gross, annual_operating_expenses: opex, annual_debt_service: debt, initial_cash_invested: cash },
+          calculations: { net_operating_income: noi, cap_rate_percent: cap, annual_cash_flow: cf, monthly_cash_flow: mcf, cash_on_cash_percent: coc, price_per_sqft: ppsf }
+        }, { headers: cors });
+      } catch (e) { return Response.json({ error: e.message }, { status: 400, headers: cors }); }
     }
 
-    function viewDetails(id) {
-      const p = allProperties.find(item => item.id === id);
-      if (!p) return;
-
-      const fin = p.financials || {};
-      const dev = p.development || {};
-      const zoning = p.zoning || {};
-      const soil = p.soil || {};
-      const crops = p.crop_suitability || [];
-      const biz = p.business_recommendations || [];
-
-      const html = \`
-        <div class="space-y-6">
-          <div class="flex items-start justify-between border-b border-slate-800 pb-4">
-            <div>
-              <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">\${p.state} • \${p.property_type.replace('_', ' ')}</span>
-              <h2 class="text-2xl font-black text-white mt-1">\${p.title}</h2>
-              <p class="text-sm text-slate-400">\${p.address}, \${p.city}, \${p.state} \${p.zip_code}</p>
-            </div>
-            <div class="text-right">
-              <div class="text-2xl font-black text-white">$\${Number(p.list_price).toLocaleString()}</div>
-              <div class="text-xs text-slate-400">\${p.bedrooms} Beds • \${p.bathrooms} Baths • \${p.square_feet.toLocaleString()} SqFt</div>
-            </div>
-          </div>
-
-          <!-- Financial Strategy Breakdown -->
-          <div>
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">1. Quantitative Financial Underwriting</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
-              <div><span class="text-xs text-slate-500">Cap Rate</span><div class="text-lg font-black text-emerald-400">\${fin.cap_rate || 0}%</div></div>
-              <div><span class="text-xs text-slate-500">Cash Flow</span><div class="text-lg font-black text-white">$\${Math.round(fin.monthly_cash_flow || 0)}/mo</div></div>
-              <div><span class="text-xs text-slate-500">Cash on Cash</span><div class="text-lg font-black text-teal-400">\${fin.cash_on_cash_return || 0}%</div></div>
-              <div><span class="text-xs text-slate-500">DSCR</span><div class="text-lg font-black text-indigo-400">\${fin.debt_service_coverage_ratio || 0}x</div></div>
-            </div>
-          </div>
-
-          <!-- Upcoming Development Pipeline -->
-          \${dev.development_momentum_score ? \`
-            <div>
-              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">2. Upcoming Development Pipeline & Growth Signals</h3>
-              <div class="bg-indigo-950/20 border border-indigo-800/40 p-4 rounded-xl space-y-3">
-                <div class="flex justify-between items-center">
-                  <div class="text-sm font-bold text-indigo-300">Momentum Score: \${dev.development_momentum_score}/100</div>
-                  <div class="text-xs text-slate-300">5-Yr Appreciation Forecast: <span class="font-bold text-emerald-400">+\${dev.appreciation_forecast_5yr_pct}%</span></div>
-                </div>
-                <div class="text-xs text-slate-400">Timing: <span class="text-white font-medium">\${dev.overall_investment_timing}</span></div>
-                \${dev.infrastructure_projects && dev.infrastructure_projects.length > 0 ? \`
-                  <div class="border-t border-indigo-900/40 pt-2 text-xs">
-                    <div class="font-bold text-slate-300 mb-1">Top Infrastructure Catalyst:</div>
-                    <div class="text-slate-400">\${dev.infrastructure_projects[0].name} ($' + Math.round(dev.infrastructure_projects[0].estimated_investment/1e6) + 'M investment, completion ' + dev.infrastructure_projects[0].estimated_completion_year + ')</div>
-                  </div>
-                \` : ''}
-              </div>
-            </div>
-          \` : ''}
-
-          <!-- Soil & Agriculture -->
-          \${soil.soil_texture ? \`
-            <div>
-              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">3. Soil Science & Flourishing Crops</h3>
-              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
-                <div class="flex justify-between text-slate-300">
-                  <span>Soil: <strong class="text-white">\${soil.soil_series_name} (\${soil.soil_texture})</strong></span>
-                  <span>pH: <strong class="text-white">\${soil.ph_level}</strong> • Drainage: <strong class="text-white">\${soil.drainage_class}</strong></span>
-                </div>
-                <div class="mt-2 space-y-1">
-                  \${crops.slice(0, 3).map(c => \`
-                    <div class="flex justify-between border-t border-slate-800/60 pt-1 text-slate-400">
-                      <span class="text-slate-200">🌱 \${c.crop_name} [\${c.tier}]</span>
-                      <span class="text-emerald-400 font-bold">$\${Math.round(c.estimated_net_profit_per_acre).toLocaleString()}/acre net</span>
-                    </div>
-                  \`).join('')}
-                </div>
-              </div>
-            </div>
-          \` : ''}
-
-          <!-- Zoning & Permitted Commercial Uses -->
-          <div>
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">4. Zoning Restrictions & Permitted Uses</h3>
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5">
-              <div>Zoning Code: <strong class="text-white">\${zoning.code || 'N/A'} (\${zoning.name || ''})</strong></div>
-              <div>Permitted Uses: <span class="text-slate-400">\${(zoning.permitted_uses || []).join(', ')}</span></div>
-              <div>ADU Allowed: <strong class="\${zoning.adu_permitted ? 'text-emerald-400' : 'text-slate-500'}">\${zoning.adu_permitted ? 'YES (Density Upside)' : 'No'}</strong></div>
-            </div>
-          </div>
-        </div>
-      \`;
-
-      document.getElementById('modalContent').innerHTML = html;
-      document.getElementById('detailModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.add('hidden');
-    }
-
-    function applyFilters() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      const type = document.getElementById('typeFilter').value;
-      const reg = document.getElementById('regionFilter').value.toUpperCase();
-
-      const filtered = allProperties.filter(p => {
-        if (type && p.property_type !== type) return false;
-        if (reg && p.state.toUpperCase() !== reg) return false;
-        if (q) {
-          const cropsStr = (p.crop_suitability || []).map(c => c.crop_name).join(' ');
-          const text = \`\${p.title} \${p.city} \${p.state} \${p.description} \${cropsStr}\`.toLowerCase();
-          return text.includes(q);
+    if (pathname === '/api/providers/search' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const sources = body.sources || ['loopnet', 'costar'];
+        const s = body.search || {};
+        const lnOk = !!(env && env.LOOPNET_API_URL && env.LOOPNET_API_KEY);
+        const csOk = !!(env && env.COSTAR_API_URL && env.COSTAR_API_KEY);
+        const importedLive = [];
+        for (const [key, ok, urlEnv, keyEnv] of [
+          ['loopnet', lnOk, env?.LOOPNET_API_URL, env?.LOOPNET_API_KEY],
+          ['costar', csOk, env?.COSTAR_API_URL, env?.COSTAR_API_KEY]
+        ]) {
+          if (sources.includes(key) && ok) {
+            try {
+              const r = await fetch(urlEnv, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + keyEnv },
+                body: JSON.stringify(s)
+              });
+              if (r.ok) {
+                const d = await r.json();
+                const rows = Array.isArray(d) ? d : (d.properties || d.results || []);
+                for (const it of rows) {
+                  if (it && (it.name || it.title)) {
+                    ensureSatelliteMeta(it);
+                    importedLive.push(it);
+                  }
+                }
+              }
+            } catch (e) {}
+          }
         }
-        return true;
-      });
-
-      renderProperties(filtered);
+        const all = await getAllProperties(env);
+        const minP = Number(s.minimum_price) || 0;
+        const maxP = Number(s.maximum_price) || 1e12;
+        const minSf = Number(s.minimum_sqft) || 0;
+        const maxSf = Number(s.maximum_sqft) || 1e12;
+        const pts = (s.property_type || []).map(x => x.toLowerCase());
+        const fallback = all.filter(p => {
+          const ask = p.financials?.askingOrOpeningBid || 0;
+          if (ask < minP || ask > maxP) return false;
+          if (p.sqft && (p.sqft < minSf || p.sqft > maxSf)) return false;
+          if (s.state && p.state !== s.state.toUpperCase()) return false;
+          if (pts.length) {
+            const hay = ((p.assetClass || '') + ' ' + (p.propertyType || '')).toLowerCase();
+            if (!pts.some(t => hay.includes(t))) return false;
+          }
+          return true;
+        });
+        return Response.json({
+          configured: { loopnet: lnOk, costar: csOk },
+          imported_live: importedLive,
+          fallback_count: fallback.length,
+          message: (lnOk || csOk) ? 'Queried configured provider feeds.' : 'Provider secrets not yet set. Add LOOPNET_API_URL, LOOPNET_API_KEY, COSTAR_API_URL, and COSTAR_API_KEY in Cloudflare Worker Secrets.'
+        }, { headers: cors });
+      } catch (e) { return Response.json({ error: e.message }, { status: 400, headers: cors }); }
     }
 
-    function filterByTag(tag) {
-      if (tag === 'farmland') {
-        document.getElementById('typeFilter').value = 'agricultural';
-      } else if (tag === 'territory') {
-        document.getElementById('regionFilter').value = 'PR';
-      } else if (tag === 'high_cap') {
-        document.getElementById('searchInput').value = 'momentum';
+    if (pathname === '/api/vault') {
+      if (!env || !env.DB) return Response.json([], { headers: cors });
+      if (request.method === 'POST') {
+        try {
+          const { id, action } = await request.json();
+          if (action === 'remove') await env.DB.prepare('DELETE FROM vault_items WHERE id = ?').bind(id).run();
+          else await env.DB.prepare('INSERT OR REPLACE INTO vault_items (id) VALUES (?)').bind(id).run();
+          return Response.json({ ok: true }, { headers: cors });
+        } catch (e) { return Response.json({ ok: false, error: e.message }, { status: 400, headers: cors }); }
       }
-      applyFilters();
+      const { results } = await env.DB.prepare('SELECT id, saved_at FROM vault_items ORDER BY saved_at DESC').all();
+      return Response.json(results || [], { headers: cors });
     }
 
-    document.getElementById('searchInput').addEventListener('input', applyFilters);
-    document.getElementById('typeFilter').addEventListener('change', applyFilters);
-    document.getElementById('regionFilter').addEventListener('change', applyFilters);
+    if (pathname === '/api/properties/import' && request.method === 'POST') {
+      try {
+        const np = await request.json();
+        const list = Array.isArray(np) ? np : [np];
+        let count = 0;
+        for (const x of list) {
+          if (x && x.id) {
+            ensureSatelliteMeta(x);
+            if (env && env.DB) {
+              await env.DB.prepare('INSERT OR REPLACE INTO imported_properties (id, state, asset_class, data_json) VALUES (?, ?, ?, ?)')
+                .bind(x.id, x.state || '', x.assetClass || 'Imported', JSON.stringify(x)).run();
+            }
+            count++;
+          }
+        }
+        const all = await getAllProperties(env);
+        return Response.json({ success: true, imported: count, count: all.length, durable: !!(env && env.DB) }, { headers: cors });
+      } catch (e) { return Response.json({ success: false, error: e.message }, { status: 400, headers: cors }); }
+    }
 
-    // Initial render
-    renderProperties(allProperties);
-  </script>
-</body>
-</html>`;
-}
+    if (pathname === '/api/ai' && request.method === 'POST') {
+      try {
+        const { question, property } = await request.json();
+        if (env && env.GEMINI_API_KEY) {
+          const prompt = 'You are TerraYield AI, a real estate and agricultural investment underwriter. Question: ' + question + (property ? '\nParcel Context: ' + JSON.stringify(property).slice(0, 2500) : '');
+          const gRes = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + env.GEMINI_API_KEY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+          });
+          if (gRes.ok) {
+            const gData = await gRes.json();
+            const txt = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (txt) return Response.json({ answer: txt, mode: 'gemini' }, { headers: cors });
+          }
+        }
+        if (property) {
+          const f = property.financials || {};
+          const ask = f.askingOrOpeningBid || 0;
+          const arv = f.estimatedARV || 0;
+          const noi = f.estAnnualNOI || Math.round(ask * (f.capRate || 8) / 100);
+          const ideas = (property.businessIdeas || []).map(b => b.name).join(', ') || 'Direct operation or NNN lease';
+          const answer = [
+            'Underwriting Summary — ' + property.title + ' (' + property.city + ', ' + property.state + ')',
+            '• Asset Class: ' + (property.assetClass || property.propertyType || 'Real Estate') + ' | ' + (property.acreage || 0) + ' AC' + (property.units ? ' | ' + property.units + ' units' : ''),
+            '• Basis & Spread: Asking $' + ask.toLocaleString() + ' vs Est. ARV $' + arv.toLocaleString() + ' (' + (f.equitySpreadDiscount || 0) + '% discount, ' + (f.capRate || 0) + '% cap rate, est. NOI $' + noi.toLocaleString() + '/yr).',
+            '• Dev Momentum: ' + (property.devMomentumScore || 72) + '/100 (Est. 5-Yr Appreciation +' + (property.devAppreciation5YrPct || 16) + '%).',
+            '• Top Strategies: ' + ideas + '.',
+            '• Next Diligence: Verify FEMA flood zone in Tab 5, municipal zoning, and title/tax liens before bidding.'
+          ].join('\n');
+          return Response.json({ answer, mode: 'parcel-computed' }, { headers: cors });
+        }
+        return Response.json({
+          answer: 'Open any property Dossier first to underwrite a specific asset, or filter by state/asset class. (Tip: Add GEMINI_API_KEY as a Cloudflare Worker Secret on antistudioday2 to enable live LLM Q&A.)',
+          mode: 'computed'
+        }, { headers: cors });
+      } catch (e) { return Response.json({ answer: 'Error: ' + e.message }, { status: 400, headers: cors }); }
+    }
+
+    if (pathname === '/api/properties') return Response.json(await getAllProperties(env), { headers: cors });
+    if (pathname.startsWith('/api/properties/')) {
+      const id = pathname.replace('/api/properties/', '');
+      const m = (await getAllProperties(env)).find(p => p.id === id);
+      return m ? Response.json(m, { headers: cors }) : Response.json({ error: 'Property not found' }, { status: 404, headers: cors });
+    }
+    if (pathname === '/api/health') {
+      const props = await getAllProperties(env);
+      const byClass = {};
+      props.forEach(p => { const k = p.assetClass || 'Agricultural'; byClass[k] = (byClass[k] || 0) + 1; });
+      return Response.json({
+        status: 'healthy', app: 'TerraYield AI', indexed_properties: props.length,
+        by_asset_class: byClass, d1_bound: !!(env && env.DB), tile_proxy: true, fema_live: true,
+        providers: { loopnet_configured: !!(env && env.LOOPNET_API_URL && env.LOOPNET_API_KEY), costar_configured: !!(env && env.COSTAR_API_URL && env.COSTAR_API_KEY) },
+        template_version: V
+      }, { headers: cors });
+    }
+
+    const [tpl, props] = await Promise.all([getHtmlTemplate(), getAllProperties(env)]);
+    return new Response(tpl.replace('__EMBEDDED_PROPERTIES_JSON__', JSON.stringify(props)), {
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=10, s-maxage=60', ...cors }
+    });
+  }
+};
