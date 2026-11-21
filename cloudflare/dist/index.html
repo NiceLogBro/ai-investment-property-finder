@@ -40,7 +40,7 @@
       <span class="font-black text-amber-200 tracking-wide uppercase text-[11px] flex items-center gap-1">
         🌅 SUNSET-RADAR:
       </span>
-      <span id="tickerPropertiesCount">100</span> investment parcels indexed across South Florida, Hawaii &amp; US Agronomic Belts
+      <span id="tickerPropertiesCount">359</span> investment parcels indexed across South Florida, Hawaii &amp; US Agronomic Belts
     </div>
 
     <div class="hidden md:flex items-center gap-5">
@@ -193,6 +193,9 @@
       <span class="text-xs font-black text-slate-400 uppercase tracking-wider shrink-0 flex items-center gap-1 mr-1">
         <i class="fa-solid fa-bolt text-amber-500"></i> Look For:
       </span>
+      <button onclick="quickFilter('high_dev_80')" class="quick-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-indigo-50 text-slate-700 border border-slate-200 hover:border-indigo-300 shadow-sm transition">
+        🚀 High-Growth Corridors (80+ Dev)
+      </button>
       <button onclick="quickFilter('grants_500k')" class="quick-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 hover:border-amber-300 shadow-sm transition">
         🏛️ Land Grants ($500k+)
       </button>
@@ -433,6 +436,7 @@
         <button id="dTabGrants" onclick="setDossierTab('grants')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="grants">7. Grants &amp; Credits</button>
         <button onclick="setDossierTab('underwriting')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="underwriting">8. Financials &amp; Liens</button>
         <button onclick="setDossierTab('advisor')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="advisor">9. AI Advisor</button>
+        <button onclick="setDossierTab('dev')" class="dossier-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0" data-tab="dev">10. 🚀 Dev Catalysts</button>
       </div>
 
       <!-- Modal Body (Dynamic Tab Content) -->
@@ -638,6 +642,8 @@
             document.getElementById('totalCount').textContent = allProperties.length;
       const hpb = document.getElementById('headerPropBadge');
       if (hpb) hpb.textContent = allProperties.length + ' Properties';
+      const tpc = document.getElementById('tickerPropertiesCount');
+      if (tpc) tpc.textContent = allProperties.length;
             applyFilters();
           }
         })
@@ -707,7 +713,7 @@
         if (primeOnly && p.soil && p.soil.nrcsSoilSurveyRating !== 'Prime Farmland') return false;
 
         if (activeQuickFilter) {
-          if (activeQuickFilter === 'grants_500k') {
+          if (activeQuickFilter === 'high_dev_80') { if ((p.devMomentumScore || 0) < 80) return false; } else if (activeQuickFilter === 'grants_500k') {
             const sum = (p.eligibleLandGrants || []).reduce((acc, g) => acc + (g.maxAwardAmount || 0), 0);
             if (sum < 500000) return false;
           } else if (activeQuickFilter === 'tropical_fruit') {
@@ -997,7 +1003,7 @@
       ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',
       NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',
       OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',
-      UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+      UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',PR:'Puerto Rico',VI:'U.S. Virgin Islands',GU:'Guam'
     });
     (function addDynamicStates() {
       const have = new Set(Array.from(document.querySelectorAll('.region-chip')).map(b => b.getAttribute('data-state')));
@@ -1143,6 +1149,7 @@
                   </span>
                   ${badgeHtml}
                   ${sampleBadge(p)}
+                  <span class="badge bg-indigo-950/85 text-indigo-200 border border-indigo-400/50 font-bold text-[9px] backdrop-blur-sm">🚀 Dev ${p.devMomentumScore || 72}/100</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                   <button onclick="cycleCardPhoto('${p.id}', event)" title="Cycle Photos (Satellite / Field / Topo)" class="px-2.5 py-1 rounded-xl bg-slate-900/85 hover:bg-slate-950 text-white backdrop-blur-sm border border-emerald-400/50 text-[10px] font-black flex items-center gap-1 shadow-sm transition hover:border-emerald-300">
@@ -1537,8 +1544,101 @@
         const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(p.assetClass);
         if (isNonAg) {
           const ask = fin.askingOrOpeningBid || 250000;
+          const arv0 = fin.estimatedARV || Math.round(ask * 1.35);
           const cap = fin.capRate || 7.5;
           const estNoi = fin.estAnnualNOI || Math.round(ask * cap / 100);
+          const sf = p.sqft || 1800;
+
+          window._evalStrat = window._evalStrat || 'dscr';
+          window.setEvalStrategy = function(s) { window._evalStrat = s; setDossierTab('projections'); };
+
+          if (window._evalStrat === 'flip') {
+            window.recalcFlip = function() {
+              const price = parseFloat(document.getElementById('flPrice').value) || ask;
+              const tier = parseFloat(document.getElementById('flTier').value) || 45;
+              const arv = parseFloat(document.getElementById('flArv').value) || arv0;
+              const months = parseFloat(document.getElementById('flMonths').value) || 6;
+              const rehab = sf * tier;
+              const mao70 = Math.max(0, arv * 0.70 - rehab);
+              const hold = ((price + rehab * 0.5) * (0.105 / 12) + 250 + ((arv * 0.014) / 12)) * months;
+              const buyClose = price * 0.02, sellClose = arv * 0.07;
+              const profit = arv - (price + rehab + hold + buyClose + sellClose);
+              const cashReq = price + rehab + hold + buyClose;
+              const roi = cashReq > 0 ? (profit / cashReq) * 100 : 0;
+              const brrrrOut = (arv * 0.75) * 0.98;
+              const leftIn = Math.max(0, (price + rehab + buyClose + hold * 0.75) - brrrrOut);
+              document.getElementById('flOutRehab').textContent = '$' + Math.round(rehab).toLocaleString();
+              document.getElementById('flOutMao').textContent = '$' + Math.round(mao70).toLocaleString();
+              document.getElementById('flOutProfit').textContent = (profit >= 0 ? '$' : '-$') + Math.abs(Math.round(profit)).toLocaleString();
+              document.getElementById('flOutRoi').textContent = roi.toFixed(1) + '%';
+              document.getElementById('flOutBrrrr').textContent = '$' + Math.round(leftIn).toLocaleString() + ' left in';
+            };
+            content.innerHTML = `
+              <div class="space-y-4 text-xs">
+                <div class="flex flex-wrap gap-1.5">
+                  <button onclick="setEvalStrategy('dscr')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">1. DSCR / Buy &amp; Hold</button>
+                  <button onclick="setEvalStrategy('flip')" class="px-3 py-1.5 rounded-xl font-black bg-emerald-600 text-white">2. Fix &amp; Flip / BRRRR (70% Rule)</button>
+                  <button onclick="setEvalStrategy('str')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">3. Short-Term Rental (Airbnb/VRBO)</button>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Purchase ($)</label><input id="flPrice" type="number" value="${ask}" oninput="recalcFlip()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Rehab Tier (${sf.toLocaleString()} SF)</label><select id="flTier" onchange="recalcFlip()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-bold bg-white"><option value="25">Cosmetic ($25/sf)</option><option value="45" selected>Moderate ($45/sf)</option><option value="75">Heavy Gut ($75/sf)</option></select></div>
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Target ARV ($)</label><input id="flArv" type="number" value="${arv0}" oninput="recalcFlip()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Hold (Months)</label><input id="flMonths" type="number" value="6" oninput="recalcFlip()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
+                  <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">Est. Rehab</div><div id="flOutRehab" class="text-base font-black text-slate-900 font-mono">-</div></div>
+                  <div class="bg-amber-50 p-3 rounded-2xl border border-amber-200"><div class="text-[10px] font-bold text-amber-700 uppercase">70% Rule MAO</div><div id="flOutMao" class="text-base font-black text-amber-900 font-mono">-</div></div>
+                  <div class="bg-emerald-50 p-3 rounded-2xl border border-emerald-200"><div class="text-[10px] font-bold text-emerald-700 uppercase">Net Flip Profit</div><div id="flOutProfit" class="text-base font-black text-emerald-900 font-mono">-</div></div>
+                  <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">Flip ROI</div><div id="flOutRoi" class="text-base font-black text-slate-900 font-mono">-</div></div>
+                  <div class="bg-purple-50 p-3 rounded-2xl border border-purple-200"><div class="text-[10px] font-bold text-purple-700 uppercase">BRRRR (75% LTV)</div><div id="flOutBrrrr" class="text-sm font-black text-purple-900 font-mono">-</div></div>
+                </div>
+              </div>`;
+            setTimeout(window.recalcFlip, 0);
+            return;
+          }
+
+          if (window._evalStrat === 'str') {
+            const defAdr = Math.max(125, Math.round((estNoi / 12) * 1.4 / 20));
+            window.recalcStr = function() {
+              const adr = parseFloat(document.getElementById('strAdr').value) || defAdr;
+              const occ = parseFloat(document.getElementById('strOcc').value) || 65;
+              const furn = parseFloat(document.getElementById('strFurn').value) || 15000;
+              const gross = adr * 365 * (occ / 100);
+              const exp = gross * 0.27 + 4200 + (ask * 0.015);
+              const noi = Math.max(0, gross - exp);
+              const ads = (ask * 0.8 * 0.0065) * 12;
+              const cf = noi - ads;
+              const cashIn = ask * 0.23 + furn;
+              const coc = cashIn > 0 ? (cf / cashIn) * 100 : 0;
+              document.getElementById('strOutGross').textContent = '$' + Math.round(gross).toLocaleString() + '/yr';
+              document.getElementById('strOutNoi').textContent = '$' + Math.round(noi).toLocaleString() + '/yr';
+              document.getElementById('strOutCf').textContent = (cf >= 0 ? '$' : '-$') + Math.abs(Math.round(cf)).toLocaleString() + '/yr';
+              document.getElementById('strOutCoc').textContent = coc.toFixed(1) + '%';
+            };
+            content.innerHTML = `
+              <div class="space-y-4 text-xs">
+                <div class="flex flex-wrap gap-1.5">
+                  <button onclick="setEvalStrategy('dscr')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">1. DSCR / Buy &amp; Hold</button>
+                  <button onclick="setEvalStrategy('flip')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">2. Fix &amp; Flip / BRRRR (70% Rule)</button>
+                  <button onclick="setEvalStrategy('str')" class="px-3 py-1.5 rounded-xl font-black bg-emerald-600 text-white">3. Short-Term Rental (Airbnb/VRBO)</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Avg Daily Rate ($/night)</label><input id="strAdr" type="number" value="${defAdr}" oninput="recalcStr()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Occupancy (%)</label><input id="strOcc" type="number" value="65" oninput="recalcStr()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                  <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Furnishing Budget ($)</label><input id="strFurn" type="number" value="15000" oninput="recalcStr()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                  <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">Gross STR Revenue</div><div id="strOutGross" class="text-lg font-black text-slate-900 font-mono">-</div></div>
+                  <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200"><div class="text-[10px] font-bold text-slate-500 uppercase">STR Net Op Income</div><div id="strOutNoi" class="text-lg font-black text-slate-900 font-mono">-</div></div>
+                  <div class="bg-emerald-50 p-3.5 rounded-2xl border border-emerald-200"><div class="text-[10px] font-bold text-emerald-700 uppercase">Annual Cash Flow</div><div id="strOutCf" class="text-lg font-black text-emerald-900 font-mono">-</div></div>
+                  <div class="bg-amber-50 p-3.5 rounded-2xl border border-amber-200"><div class="text-[10px] font-bold text-amber-700 uppercase">STR Cash-on-Cash</div><div id="strOutCoc" class="text-lg font-black text-amber-900 font-mono">-</div></div>
+                </div>
+              </div>`;
+            setTimeout(window.recalcStr, 0);
+            return;
+          }
+
           window._dscrState = { price: ask, downPct: 25, rate: 6.75, noi: estNoi };
           window.recalcDSCR = function() {
             const s = window._dscrState;
@@ -1562,9 +1662,10 @@
           };
           content.innerHTML = `
             <div class="space-y-4 text-xs">
-              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                <h4 class="font-black text-sm text-slate-900 mb-1">Commercial &amp; Residential DSCR Underwriting Calculator</h4>
-                <p class="text-slate-500">Adjust acquisition price, leverage, interest rate, and NOI to stress-test debt service coverage (30-yr amortization).</p>
+              <div class="flex flex-wrap gap-1.5">
+                <button onclick="setEvalStrategy('dscr')" class="px-3 py-1.5 rounded-xl font-black bg-emerald-600 text-white">1. DSCR / Buy &amp; Hold</button>
+                <button onclick="setEvalStrategy('flip')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">2. Fix &amp; Flip / BRRRR (70% Rule)</button>
+                <button onclick="setEvalStrategy('str')" class="px-3 py-1.5 rounded-xl font-bold bg-slate-100 text-slate-700">3. Short-Term Rental (Airbnb/VRBO)</button>
               </div>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Purchase Price ($)</label><input id="dscrPrice" type="number" value="${ask}" oninput="recalcDSCR()" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono font-bold"></div>
@@ -1753,7 +1854,46 @@
             </div>
           </div>
         `;
-      } else if (tab === 'advisor') {
+      } else if (tab === 'dev') {
+        const score = p.devMomentumScore || 72;
+        const app5 = p.devAppreciation5YrPct || 16.8;
+        const cats = p.devCatalysts || [];
+        content.innerHTML = `
+          <div class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+              <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-200">
+                <div class="text-[10px] font-bold text-indigo-700 uppercase">Dev Momentum Score</div>
+                <div class="text-2xl font-black text-indigo-950 font-mono">${score} / 100</div>
+              </div>
+              <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200">
+                <div class="text-[10px] font-bold text-emerald-700 uppercase">5-Yr Est. Appreciation</div>
+                <div class="text-2xl font-black text-emerald-900 font-mono">+${app5}%</div>
+              </div>
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                <div class="text-[10px] font-bold text-slate-500 uppercase">Pipeline Catalysts</div>
+                <div class="text-2xl font-black text-slate-900 font-mono">${cats.length}</div>
+              </div>
+            </div>
+            ${cats.length > 0 ? cats.map(c => `
+              <div class="p-4 rounded-2xl border border-slate-200 bg-white space-y-1.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="font-black text-sm text-slate-900">${c.name}</span>
+                  <span class="badge bg-indigo-100 text-indigo-900 border border-indigo-200 text-[10px]">Catalyst Score: ${c.score}/100</span>
+                </div>
+                <div class="text-[11px] font-bold text-slate-500">Est. Investment: $${c.investmentM}M · ${c.distanceMiles} mi away · Target ${c.completionYear} · ${c.jobsCreated ? c.jobsCreated.toLocaleString() + ' jobs' : 'Regional uplift'} · Phase: ${c.phase}</div>
+                <p class="text-slate-600 leading-relaxed">${c.impact}</p>
+              </div>
+            `).join('') : `
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 text-slate-600">
+                Regional baseline score (${score}/100) reflects metro growth trajectory in ${p.city}, ${p.state}. Verify municipal rezoning agendas and local building permit filings before acquisition.
+              </div>
+            `}
+          </div>
+        `;
+        return;
+      }
+
+      if (tab === 'advisor') {
         content.innerHTML = `
           <div class="p-6 text-center space-y-4">
             <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 mx-auto flex items-center justify-center text-xl">🤖</div>
@@ -1992,11 +2132,40 @@
         list.innerHTML = `<div class="py-12 text-center text-slate-400">Your Private Vault is empty. Bookmark deals to save them here.</div>`;
         return;
       }
-      list.innerHTML = savedProps.map(p => `
+      const totVal = savedProps.reduce((s, p) => s + (p.financials?.askingOrOpeningBid || 0), 0);
+      const totNoi = savedProps.reduce((s, p) => s + (p.financials?.estAnnualNOI || Math.round((p.financials?.askingOrOpeningBid || 0) * ((p.financials?.capRate || 8) / 100))), 0);
+      const totDebt = (totVal * 0.75) * 0.0778; // 6.75% 30-yr constant
+      const blendedCap = totVal > 0 ? (totNoi / totVal * 100).toFixed(1) : '0.0';
+      const blendedDscr = totDebt > 0 ? (totNoi / totDebt).toFixed(2) : '0.00';
+      const stressedNoi = totNoi * 0.88;
+      const stressedDebt = totDebt * 1.14;
+      const stressedDscr = stressedDebt > 0 ? (stressedNoi / stressedDebt).toFixed(2) : '0.00';
+
+      const portfolioCard = `
+        <div class="p-4 rounded-2xl bg-slate-900 text-white space-y-3 mb-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400">Portfolio Rollup (${savedProps.length} Assets)</span>
+            <span class="font-mono font-bold text-xs">$${Math.round(totVal / 1000).toLocaleString()}k Basis</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div class="bg-slate-800 p-2 rounded-xl"><div class="text-[9px] text-slate-400">Blended Cap</div><div class="font-black text-emerald-400 font-mono">${blendedCap}%</div></div>
+            <div class="bg-slate-800 p-2 rounded-xl"><div class="text-[9px] text-slate-400">Blended DSCR</div><div class="font-black text-white font-mono">${blendedDscr}x</div></div>
+            <div class="bg-slate-800 p-2 rounded-xl"><div class="text-[9px] text-slate-400">Est. NOI/yr</div><div class="font-black text-amber-300 font-mono">$${Math.round(totNoi / 1000)}k</div></div>
+          </div>
+          <button onclick="document.getElementById('vaultStressOut').classList.toggle('hidden')" class="w-full py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 font-bold text-[11px] transition">
+            ⚡ Stress Test (+7% Vac · +150bps Rate · +10% OpEx)
+          </button>
+          <div id="vaultStressOut" class="hidden bg-slate-800/90 p-2.5 rounded-xl text-[11px] text-slate-200 border border-slate-700">
+            Stressed NOI: <strong class="text-amber-300">$${Math.round(stressedNoi / 1000)}k/yr</strong> · Stressed DSCR: <strong class="${parseFloat(stressedDscr) >= 1.15 ? 'text-emerald-400' : 'text-rose-400'}">${stressedDscr}x</strong> (${parseFloat(stressedDscr) >= 1.15 ? 'Resilient' : 'Tight Coverage'})
+          </div>
+        </div>
+      `;
+
+      list.innerHTML = portfolioCard + savedProps.map(p => `
         <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
           <div>
             <div class="font-bold text-slate-900 text-xs">${p.title}</div>
-            <div class="text-[10px] text-slate-400 font-mono">${p.city}, ${p.state} • $${Math.round((p.financials.askingOrOpeningBid || 0)/1000)}k</div>
+            <div class="text-[10px] text-slate-400 font-mono">${p.city}, ${p.state} • $${Math.round((p.financials.askingOrOpeningBid || 0)/1000)}k • Dev ${p.devMomentumScore || 72}/100</div>
           </div>
           <button onclick="openDossierModal('${p.id}', 'overview'); closeVaultDrawer();" class="text-xs text-emerald-700 font-bold">Open</button>
         </div>
