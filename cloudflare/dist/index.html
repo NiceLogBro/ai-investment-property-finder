@@ -569,6 +569,9 @@
         <button onclick="setImportTab('manual')" id="importTabBtnManual" class="import-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0 font-bold flex items-center gap-1.5">
           <i class="fa-solid fa-plus-circle text-rose-500"></i> 3. Add Single Live Parcel
         </button>
+        <button onclick="setImportTab('providers')" id="importTabBtnProviders" class="import-tab py-3 px-3 text-slate-500 hover:text-slate-800 shrink-0 font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-plug text-indigo-600"></i> 4. Provider API Sync (LoopNet / CoStar)
+        </button>
       </div>
 
       <!-- Tab Content Area -->
@@ -1656,7 +1659,7 @@
             const dscr = ads > 0 ? (s.noi / ads) : 9.99;
             const coc = eq > 0 ? (cf / eq) * 100 : 0;
             document.getElementById('dscrOutDscr').textContent = dscr.toFixed(2) + 'x';
-            document.getElementById('dscrOutCf').textContent = (cf >= 0 ? '$' : '-$') + Math.abs(Math.round(cf)).toLocaleString() + '/yr';
+            document.getElementById('dscrOutCf').textContent = (cf >= 0 ? '$' : '-$') + Math.abs(Math.round(cf)).toLocaleString() + '/yr ($' + Math.round(cf / 12).toLocaleString() + '/mo)';
             document.getElementById('dscrOutCoc').textContent = coc.toFixed(1) + '%';
             document.getElementById('dscrOutLoan').textContent = '$' + Math.round(loan).toLocaleString();
           };
@@ -2358,7 +2361,7 @@
 
        function setImportTab(tab) {
          currentImportTab = tab;
-         ['syndication', 'csv', 'manual'].forEach(t => {
+         ['syndication', 'csv', 'manual', 'providers'].forEach(t => {
            const btn = document.getElementById(`importTabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
            if (btn) {
              if (t === tab) {
@@ -2455,6 +2458,42 @@
                </div>
              </div>
            `;
+         } else if (currentImportTab === 'providers') {
+           container.innerHTML = `
+             <div class="space-y-4">
+               <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-200 flex flex-wrap items-center justify-between gap-3">
+                 <div>
+                   <h4 class="font-black text-indigo-950 text-xs">Provider-Approved Commercial API Search (LoopNet / CoStar)</h4>
+                   <p class="text-[11px] text-indigo-800 mt-0.5">Queries <code class="font-mono bg-white/70 px-1 rounded">/api/providers/search</code> using Cloudflare Worker Secrets (<code class="font-mono">LOOPNET_API_URL</code>, <code class="font-mono">LOOPNET_API_KEY</code>, <code class="font-mono">COSTAR_API_URL</code>, <code class="font-mono">COSTAR_API_KEY</code>).</p>
+                 </div>
+                 <span id="providerStatusBadge" class="badge bg-white text-indigo-900 border border-indigo-200 text-[10px]">Checking status...</span>
+               </div>
+               <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                 <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Min Price ($)</label><input id="provMinPrice" type="number" value="100000" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono"></div>
+                 <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Max Price ($)</label><input id="provMaxPrice" type="number" value="10000000" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono"></div>
+                 <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Min Sq Ft</label><input id="provMinSqft" type="number" value="1000" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono"></div>
+                 <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Max Sq Ft</label><input id="provMaxSqft" type="number" value="100000" class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono"></div>
+               </div>
+               <div class="flex flex-wrap items-center justify-between gap-2">
+                 <div class="flex flex-wrap gap-2 text-[11px] font-bold text-slate-700">
+                   <label class="flex items-center gap-1"><input type="checkbox" class="provTypeChk" value="multifamily" checked> Multifamily</label>
+                   <label class="flex items-center gap-1"><input type="checkbox" class="provTypeChk" value="retail" checked> Retail</label>
+                   <label class="flex items-center gap-1"><input type="checkbox" class="provTypeChk" value="industrial" checked> Industrial</label>
+                   <label class="flex items-center gap-1"><input type="checkbox" class="provTypeChk" value="office"> Office</label>
+                   <label class="flex items-center gap-1"><input type="checkbox" class="provTypeChk" value="hospitality"> Hospitality</label>
+                 </div>
+                 <button onclick="runProviderSearch()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs shadow transition">Run Provider Search</button>
+               </div>
+               <div id="providerSearchOut" class="text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-200">Configure provider secrets in Cloudflare Workers to pull live LoopNet/CoStar feeds, or click Run Provider Search to test matching fallback results.</div>
+             </div>`;
+           fetch('/api/health').then(r => r.json()).then(h => {
+             const b = document.getElementById('providerStatusBadge');
+             if (b && h.providers) {
+               const ln = h.providers.loopnet_configured ? 'LoopNet: Connected' : 'LoopNet: Key Needed';
+               const cs = h.providers.costar_configured ? 'CoStar: Connected' : 'CoStar: Key Needed';
+               b.textContent = ln + ' · ' + cs;
+             }
+           }).catch(() => {});
          } else if (currentImportTab === 'manual') {
            container.innerHTML = `
              <form onsubmit="handleManualParcelSubmit(event)" class="space-y-4">
@@ -2777,6 +2816,39 @@
            }
          } catch (err) {
            console.warn('Failed to load persisted properties:', err);
+         }
+       }
+
+       async function runProviderSearch() {
+         const out = document.getElementById('providerSearchOut');
+         if (out) out.textContent = 'Querying /api/providers/search...';
+         const types = Array.from(document.querySelectorAll('.provTypeChk:checked')).map(c => c.value);
+         const payload = {
+           sources: ['loopnet', 'costar'],
+           search: {
+             location: 'United States',
+             state: activeRegion || '',
+             property_type: types,
+             transaction: 'sale',
+             minimum_price: parseFloat(document.getElementById('provMinPrice')?.value) || 100000,
+             maximum_price: parseFloat(document.getElementById('provMaxPrice')?.value) || 10000000,
+             minimum_sqft: parseFloat(document.getElementById('provMinSqft')?.value) || 1000,
+             maximum_sqft: parseFloat(document.getElementById('provMaxSqft')?.value) || 100000,
+             sort_by: 'asking_price',
+             sort_order: 'ascending'
+           }
+         };
+         try {
+           const r = await fetch('/api/providers/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+           const d = await r.json();
+           if (d.imported_live && d.imported_live.length) {
+             saveAndSyncImported(d.imported_live);
+             out.innerHTML = `<div class="text-emerald-700 font-bold">Imported ${d.imported_live.length} live provider listings into TerraYield!</div>`;
+           } else {
+             out.innerHTML = `<div class="font-bold text-slate-800 mb-1">${d.message}</div><div class="text-[11px] text-slate-500">Matched ${d.fallback_count || 0} existing catalog profiles in that price/sqft range.</div>`;
+           }
+         } catch (e) {
+           if (out) out.textContent = 'Provider search request failed: ' + e.message;
          }
        }
 
