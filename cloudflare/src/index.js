@@ -98,6 +98,32 @@ export default {
       } catch (e) { return Response.json({ zone: null, error: e.message }, { headers: cors }); }
     }
 
+    if (pathname === '/api/providers/config') {
+      return Response.json({
+        platform: 'National CRE Investment API',
+        version: '1.0.0',
+        geographic_scope: 'US',
+        integrations: {
+          loopnet: {
+            enabled: true,
+            provider: 'LoopNet',
+            base_url: (env && env.LOOPNET_API_URL) ? '[configured]' : null,
+            configured: !!(env && env.LOOPNET_API_URL && env.LOOPNET_API_KEY),
+            authentication: 'authorized_provider_credentials',
+            data_access: 'licensed_api_or_feed'
+          },
+          costar: {
+            enabled: !!(env && env.COSTAR_API_URL && env.COSTAR_API_KEY),
+            base_url: (env && env.COSTAR_API_URL) ? '[configured]' : null,
+            authentication: 'authorized_api_credentials'
+          }
+        },
+        property_types: ['office', 'retail', 'industrial', 'multifamily', 'land', 'hospitality'],
+        search: { nationwide: true, filters: ['state', 'city', 'zip', 'property_type', 'asking_price', 'building_size', 'cap_rate'] },
+        investment_analysis: { noi: true, cap_rate: true, cash_on_cash: true, cash_flow: true, investment_score: true }
+      }, { headers: cors });
+    }
+
     if (pathname === '/api/analyze' && request.method === 'POST') {
       try {
         const body = await request.json();
@@ -114,9 +140,13 @@ export default {
         const mcf = +(cf / 12).toFixed(2);
         const coc = cash > 0 ? +(cf / cash * 100).toFixed(2) : 0;
         const ppsf = (price > 0 && sqft > 0) ? +(price / sqft).toFixed(2) : null;
+        const dscr = debt > 0 ? +(noi / debt).toFixed(2) : (noi > 0 ? 9.99 : 0);
+        const invScore = Math.max(0, Math.min(100, Math.round(
+          Math.min(40, cap * 4) + Math.min(35, Math.max(0, coc * 2.2)) + Math.min(25, dscr * 15)
+        )));
         return Response.json({
           investment: { purchase_price: price, annual_gross_rent: gross, annual_operating_expenses: opex, annual_debt_service: debt, initial_cash_invested: cash },
-          calculations: { net_operating_income: noi, cap_rate_percent: cap, annual_cash_flow: cf, monthly_cash_flow: mcf, cash_on_cash_percent: coc, price_per_sqft: ppsf }
+          calculations: { net_operating_income: noi, cap_rate_percent: cap, annual_cash_flow: cf, monthly_cash_flow: mcf, cash_on_cash_percent: coc, price_per_sqft: ppsf, dscr, investment_score: invScore }
         }, { headers: cors });
       } catch (e) { return Response.json({ error: e.message }, { status: 400, headers: cors }); }
     }
@@ -158,12 +188,16 @@ export default {
         const maxP = Number(s.maximum_price) || 1e12;
         const minSf = Number(s.minimum_sqft) || 0;
         const maxSf = Number(s.maximum_sqft) || 1e12;
+        const minCap = Number(s.min_cap_rate || s.cap_rate) || 0;
         const pts = (s.property_type || []).map(x => x.toLowerCase());
         const fallback = all.filter(p => {
           const ask = p.financials?.askingOrOpeningBid || 0;
           if (ask < minP || ask > maxP) return false;
           if (p.sqft && (p.sqft < minSf || p.sqft > maxSf)) return false;
+          if (minCap > 0 && (p.financials?.capRate || 0) < minCap) return false;
           if (s.state && p.state !== s.state.toUpperCase()) return false;
+          if (s.city && (p.city || '').toLowerCase() !== s.city.toLowerCase()) return false;
+          if (s.zip && p.zipCode !== String(s.zip)) return false;
           if (pts.length) {
             const hay = ((p.assetClass || '') + ' ' + (p.propertyType || '')).toLowerCase();
             if (!pts.some(t => hay.includes(t))) return false;
