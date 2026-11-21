@@ -40,7 +40,7 @@
       <span class="font-black text-amber-200 tracking-wide uppercase text-[11px] flex items-center gap-1">
         🌅 SUNSET-RADAR:
       </span>
-      <span id="tickerPropertiesCount">359</span> investment parcels indexed across South Florida, Hawaii &amp; US Agronomic Belts
+      <span id="tickerPropertiesCount">359</span> properties indexed across Commercial, Apartments, Houses, Businesses &amp; Land
     </div>
 
     <div class="hidden md:flex items-center gap-5">
@@ -85,11 +85,11 @@
               Terra<span class="sunset-text">Yield</span>
             </span>
             <span id="headerPropBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-gradient-to-r from-amber-100 to-rose-100 text-rose-900 border border-rose-200">
-              356+ Properties
+              389 Properties
             </span>
           </div>
           <p class="text-xs text-slate-500 hidden sm:block font-medium">
-            Agro-Forestry, Land Grants, Distressed Liens &amp; Deep Research Legitimacy
+            Commercial Buildings · Apartments · Houses · Operating Businesses · Land
           </p>
         </div>
       </div>
@@ -238,20 +238,27 @@
             class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-11 pr-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition">
         </div>
 
-        <!-- Prime Soil Toggle -->
-        <div class="md:col-span-3 flex items-center justify-start md:justify-center">
-          <label class="flex items-center gap-2 cursor-pointer text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-2xl w-full justify-between hover:bg-slate-100 transition">
-            <span class="flex items-center gap-1.5">
-              <span class="text-emerald-600">🌾</span> Prime Farmland Only
-            </span>
-            <input type="checkbox" id="primeSoilToggle" onchange="applyFilters()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500">
-          </label>
+        <!-- Asset Class Filter -->
+        <div class="md:col-span-3">
+          <select id="assetClassFilter" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-3.5 py-2.5 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+            <option value="">All Asset Classes (389)</option>
+            <option value="Commercial">🏬 Commercial Buildings</option>
+            <option value="Multifamily">🏢 Apartments &amp; Multifamily</option>
+            <option value="Residential">🏠 Houses &amp; Small Multi</option>
+            <option value="Business">🏪 Operating Businesses</option>
+            <option value="Industrial">🏭 Industrial &amp; Storage</option>
+            <option value="Hospitality">🏨 Hotels &amp; Motels</option>
+            <option value="Land">📐 Development Land</option>
+            <option value="Agricultural">🌾 Farms &amp; Ag Land</option>
+          </select>
+          <input type="checkbox" id="primeSoilToggle" class="hidden">
         </div>
 
         <!-- Sort Select -->
         <div class="md:col-span-3">
           <select id="sortSelect" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-3.5 py-2.5 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500">
-            <option value="cap_desc">Highest Cap Rate (Default)</option>
+            <option value="featured_mix" selected>All Property Types Mix (Default)</option>
+            <option value="cap_desc">Highest Cap Rate</option>
             <option value="discount_desc">Deepest ARV Discount</option>
             <option value="price_asc">Price: Low to High</option>
             <option value="price_desc">Price: High to Low</option>
@@ -702,7 +709,8 @@
       activeRegion = '';
       document.getElementById('searchInput').value = '';
       document.getElementById('primeSoilToggle').checked = false;
-      document.getElementById('sortSelect').value = 'cap_desc';
+      document.getElementById('sortSelect').value = 'featured_mix';
+      const acf = document.getElementById('assetClassFilter'); if (acf) acf.value = '';
       setRegionFilter('');
     }
 
@@ -713,6 +721,8 @@
 
       let list = allProperties.filter(p => {
         if (activeRegion && p.state !== activeRegion) return false;
+        const acFilter = document.getElementById('assetClassFilter')?.value || '';
+        if (acFilter && (p.assetClass || 'Agricultural') !== acFilter) return false;
         if (primeOnly && p.soil && p.soil.nrcsSoilSurveyRating !== 'Prime Farmland') return false;
 
         if (activeQuickFilter) {
@@ -776,6 +786,25 @@
       }
 
       // Sorting
+      if (sort === 'featured_mix') {
+        const buckets = {};
+        const order = ['Commercial', 'Multifamily', 'Residential', 'Business', 'Industrial', 'Hospitality', 'Land', 'Agricultural'];
+        order.forEach(k => buckets[k] = []);
+        list.forEach(p => {
+          const k = p.assetClass || 'Agricultural';
+          if (!buckets[k]) buckets[k] = [];
+          buckets[k].push(p);
+        });
+        const mixed = [];
+        let added = true;
+        while (added) {
+          added = false;
+          for (const k of Object.keys(buckets)) {
+            if (buckets[k].length) { mixed.push(buckets[k].shift()); added = true; }
+          }
+        }
+        return mixed;
+      }
       list.sort((a, b) => {
         if (sort === 'cap_desc') return (b.financials.capRate || 0) - (a.financials.capRate || 0);
         if (sort === 'discount_desc') return (b.financials.equitySpreadDiscount || 0) - (a.financials.equitySpreadDiscount || 0);
@@ -825,6 +854,7 @@
       {k:'small-multifamily|duplex|triplex|fourplex', label:'Duplex–Fourplex', icon:'🏘️'},
       {k:'multifamily|apartment|mobile-home-park', label:'Apartments & Mobile Home Parks', icon:'🏢'},
       {k:'commercial|retail|office|medical-office|mixed-use|car-wash|convenience', label:'Commercial Buildings', icon:'🏬'},
+      {k:'business|laundromat|car-wash|restaurant|auto-service|convenience|medical|turnkey', label:'Businesses for Sale', icon:'🏪'},
       {k:'industrial|warehouse|flex|self-storage', label:'Industrial & Self-Storage', icon:'🏭'},
       {k:'hospitality|hotel|motel', label:'Hotels & Motels', icon:'🏨'},
       {k:'land|development|infill|lots', label:'Development Land', icon:'📐'},
@@ -944,6 +974,11 @@
       ]
     };
     const CLASS_CAREERS = {
+      'business|laundromat|car-wash|restaurant|auto-service|convenience|medical|turnkey': [
+        {t:'Car Wash / Express Tunnel Owner', inc:'$80k–$320k', cost:'$180k–$600k down', why:'Recurring wash-club memberships + real estate appreciation', kw:'business'},
+        {t:'Automated Laundromat Operator', inc:'$55k–$180k', cost:'$90k–$280k', why:'Cashless app machines, low staffing, steady local demand', kw:'business'},
+        {t:'Turnkey Restaurant / Venue Owner', inc:'$60k–$240k', cost:'$120k–$400k', why:'Own the building + business; capture catering & event margin', kw:'business'},
+        {t:'Auto Service / Fleet Center Operator', inc:'$70k–$220k', cost:'$130k–$350k', why:'High-ticket repairs & commercial fleet maintenance contracts', kw:'business'}],
       'residential|single-family|fix-and-flip|short-term-rental': [
         {t:'Rental Property Investor / Landlord', inc:'$30k–$150k', cost:'$25k–$90k down', why:'Rent minus costs; leverage builds equity', kw:'residential'},
         {t:'Fix-and-Flip Contractor / Investor', inc:'$40k–$200k', cost:'$40k–$150k', why:'Profit per project; depends on rehab skill and local resale market', kw:'residential'},
@@ -1170,7 +1205,8 @@
               <!-- Bottom Overlay Chips -->
               <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white">
                 <div class="flex items-center gap-1.5">
-                  <span class="bg-slate-950/80 px-2.5 py-1 rounded-xl backdrop-blur-sm border border-white/10 font-mono">${p.acreage} AC</span>
+                  <span class="bg-indigo-600/90 px-2 py-1 rounded-xl backdrop-blur-sm border border-indigo-400/40 font-black uppercase text-[10px]">${p.assetClass || 'Ag / Land'}</span>
+                  <span class="bg-slate-950/80 px-2.5 py-1 rounded-xl backdrop-blur-sm border border-white/10 font-mono">${p.sqft ? p.sqft.toLocaleString() + ' SF' : p.acreage + ' AC'}</span>
                   <span class="bg-slate-950/80 px-2.5 py-1 rounded-xl backdrop-blur-sm border border-white/10 font-mono">${p.parcelIdAPN || 'APN'}</span>
                 </div>
                 <span class="bg-rose-600/90 text-white px-2.5 py-1 rounded-xl backdrop-blur-sm border border-rose-400/30 font-black">
@@ -1321,7 +1357,7 @@
       setTimeout(() => leafletMapInstance.invalidateSize(), 100);
       leafletMarkersLayer.clearLayers();
       const bounds = [];
-      const colors = { Residential: '#2563eb', Multifamily: '#d97706', Hospitality: '#d97706', Commercial: '#7c3aed', Industrial: '#7c3aed', Land: '#059669', Agricultural: '#059669' };
+      const colors = { Residential: '#2563eb', Multifamily: '#d97706', Hospitality: '#d97706', Commercial: '#7c3aed', Business: '#e11d48', Industrial: '#7c3aed', Land: '#059669', Agricultural: '#059669' };
       list.slice(0, 200).forEach(p => {
         const c = p.coordinates;
         if (!c || typeof c.lat !== 'number' || typeof c.lng !== 'number') return;
@@ -1364,7 +1400,7 @@
       calcState.acres = Math.min(10, currentDossierProp.acreage);
       calcState.yieldPerAcre = parseInt(topCrop.estYieldPerAcre) || 1400;
 
-      const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(currentDossierProp.assetClass);
+      const isNonAg = ['Residential','Multifamily','Commercial','Business','Industrial','Hospitality'].includes(currentDossierProp.assetClass);
       const tProj = document.getElementById('dTabProj');
       const tSoil = document.getElementById('dTabSoil');
       const tGrants = document.getElementById('dTabGrants');
@@ -1544,7 +1580,7 @@
           </div>
         `;
       } else if (tab === 'projections') {
-        const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(p.assetClass);
+        const isNonAg = ['Residential','Multifamily','Commercial','Business','Industrial','Hospitality'].includes(p.assetClass);
         if (isNonAg) {
           const ask = fin.askingOrOpeningBid || 250000;
           const arv0 = fin.estimatedARV || Math.round(ask * 1.35);
@@ -1732,7 +1768,7 @@
       if (tab === 'soil') {
         const lat = (p.coordinates && p.coordinates.lat) ? p.coordinates.lat : 30.2672;
         const lng = (p.coordinates && p.coordinates.lng) ? p.coordinates.lng : -97.7431;
-        const isNonAg = ['Residential','Multifamily','Commercial','Industrial','Hospitality'].includes(p.assetClass);
+        const isNonAg = ['Residential','Multifamily','Commercial','Business','Industrial','Hospitality'].includes(p.assetClass);
         if (isNonAg) {
           content.innerHTML = `
             <div class="space-y-4 text-xs">
